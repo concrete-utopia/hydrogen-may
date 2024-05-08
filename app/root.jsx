@@ -63,7 +63,7 @@ export async function loader({context}) {
   const {storefront, customerAccount, cart} = context;
   const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
 
-  // TODO createCustomerAccountClient UTOPIA
+  // TODO UTOPIA createCustomerAccountClient is unavailable in the hydrogen import in the browser
   // const isLoggedInPromise = customerAccount.isLoggedIn();
   const cartPromise = cart.get();
 

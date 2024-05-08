@@ -67,7 +67,7 @@ export const getLoadContext =
     return {
       session,
       storefront,
-      // customerAccount,  // TODO createCustomerAccountClient UTOPIA
+      // customerAccount,  // TODO UTOPIA createCustomerAccountClient is unavailable in the hydrogen import in the browser
       cart,
       env,
       waitUntil,
