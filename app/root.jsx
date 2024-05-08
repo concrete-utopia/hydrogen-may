@@ -11,8 +11,11 @@ import {
   isRouteErrorResponse,
 } from '@remix-run/react';
 import favicon from './assets/favicon.svg';
-import resetStyles from './styles/reset.css?url';
-import appStyles from './styles/app.css?url';
+
+// Utopia TODO – fix this
+// import resetStyles from './styles/reset.css?url'
+// import appStyles from './styles/app.css?url'
+
 import {Layout} from '~/components/Layout';
 
 /**
@@ -35,8 +38,8 @@ export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
 
 export function links() {
   return [
-    {rel: 'stylesheet', href: resetStyles},
-    {rel: 'stylesheet', href: appStyles},
+    // { rel: 'stylesheet', href: resetStyles },
+    // { rel: 'stylesheet', href: appStyles },
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
