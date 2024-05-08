@@ -1,22 +1,18 @@
 import {useNonce} from '@shopify/hydrogen';
 import {defer} from '@shopify/remix-oxygen';
 import {
-  Links,
   Meta,
   Outlet,
   Scripts,
+  LiveReload,
+  useMatches,
   useRouteError,
   useLoaderData,
   ScrollRestoration,
   isRouteErrorResponse,
+  Links,
 } from '@remix-run/react';
-import favicon from './assets/favicon.svg';
 
-// TODO Utopia – fix this
-// import resetStyles from './styles/reset.css?url'
-// import appStyles from './styles/app.css?url'
-
-// For now we turn these into naked imports
 import './styles/reset.css';
 import './styles/app.css';
 
@@ -42,8 +38,8 @@ export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
 
 export function links() {
   return [
-    // { rel: 'stylesheet', href: resetStyles },
-    // { rel: 'stylesheet', href: appStyles },
+    // {rel: 'stylesheet', href: resetStyles},
+    // {rel: 'stylesheet', href: appStyles},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -52,19 +48,33 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    {rel: 'icon', type: 'image/svg+xml', href: favicon},
+    // {rel: 'icon', type: 'image/svg+xml', href: favicon},
   ];
 }
+
+/**
+ * @return {LoaderReturnData}
+ */
+export const useRootLoaderData = () => {
+  const [root] = useMatches();
+  return root?.data;
+};
 
 /**
  * @param {LoaderFunctionArgs}
  */
 export async function loader({context}) {
-  const {storefront, customerAccount, cart} = context;
+  const {storefront, session, cart} = context;
+  const customerAccessToken = await session.get('customerAccessToken');
   const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
 
-  // TODO UTOPIA createCustomerAccountClient is unavailable in the hydrogen import in the browser
-  // const isLoggedInPromise = customerAccount.isLoggedIn();
+  // validate the customer access token is valid
+  const {isLoggedIn, headers} = await validateCustomerAccessToken(
+    session,
+    customerAccessToken,
+  );
+
+  // defer the cart query by not awaiting it
   const cartPromise = cart.get();
 
   // defer the footer query (below the fold)
@@ -88,36 +98,51 @@ export async function loader({context}) {
       cart: cartPromise,
       footer: footerPromise,
       header: await headerPromise,
-      isLoggedIn: false,
+      isLoggedIn,
       publicStoreDomain,
     },
-    {
-      headers: {
-        'Set-Cookie': await context.session.commit(),
-      },
-    },
+    {headers},
   );
 }
 
 export default function App() {
-  const nonce = useNonce();
-  /** @type {LoaderReturnData} */
   const data = useLoaderData();
 
   return (
-    <html lang="en">
+    <Root>
+      <Layout {...data}>
+        <Outlet />
+      </Layout>
+    </Root>
+  );
+}
+
+function Root({children}) {
+  const nonce = useNonce();
+  return (
+    <html lang="en" style={{backgroundColor: '#FFFFFF'}}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        <Layout {...data}>
-          <Outlet />
-        </Layout>
+      <body style={{minHeight: 1000}}>
+        {children}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
+        <LiveReload nonce={nonce} />
       </body>
     </html>
   );
@@ -125,8 +150,7 @@ export default function App() {
 
 export function ErrorBoundary() {
   const error = useRouteError();
-  /** @type {LoaderReturnData} */
-  const rootData = useLoaderData();
+  const rootData = useRootLoaderData();
   const nonce = useNonce();
   let errorMessage = 'Unknown error';
   let errorStatus = 500;
@@ -144,7 +168,6 @@ export function ErrorBoundary() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
-        <Links />
       </head>
       <body>
         <Layout {...rootData}>
@@ -160,9 +183,45 @@ export function ErrorBoundary() {
         </Layout>
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
+        <LiveReload nonce={nonce} />
       </body>
     </html>
   );
+}
+
+/**
+ * Validates the customer access token and returns a boolean and headers
+ * @see https://shopify.dev/docs/api/storefront/latest/objects/CustomerAccessToken
+ *
+ * @example
+ * ```js
+ * const {isLoggedIn, headers} = await validateCustomerAccessToken(
+ *  customerAccessToken,
+ *  session,
+ * );
+ * ```
+ * @param {LoaderFunctionArgs['context']['session']} session
+ * @param {CustomerAccessToken} [customerAccessToken]
+ */
+async function validateCustomerAccessToken(session, customerAccessToken) {
+  let isLoggedIn = false;
+  const headers = new Headers();
+  if (!customerAccessToken?.accessToken || !customerAccessToken?.expiresAt) {
+    return {isLoggedIn, headers};
+  }
+
+  const expiresAt = new Date(customerAccessToken.expiresAt).getTime();
+  const dateNow = Date.now();
+  const customerAccessTokenExpired = expiresAt < dateNow;
+
+  if (customerAccessTokenExpired) {
+    session.unset('customerAccessToken');
+    headers.append('Set-Cookie', await session.commit());
+  } else {
+    isLoggedIn = true;
+  }
+
+  return {isLoggedIn, headers};
 }
 
 const MENU_FRAGMENT = `#graphql
@@ -237,4 +296,5 @@ const FOOTER_QUERY = `#graphql
 
 /** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */
 /** @typedef {import('@remix-run/react').ShouldRevalidateFunction} ShouldRevalidateFunction */
+/** @typedef {import('@shopify/hydrogen/storefront-api-types').CustomerAccessToken} CustomerAccessToken */
 /** @typedef {import('@shopify/remix-oxygen').SerializeFrom<typeof loader>} LoaderReturnData */
