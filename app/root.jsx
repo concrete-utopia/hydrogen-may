@@ -12,9 +12,13 @@ import {
 } from '@remix-run/react';
 import favicon from './assets/favicon.svg';
 
-// Utopia TODO – fix this
+// TODO Utopia – fix this
 // import resetStyles from './styles/reset.css?url'
 // import appStyles from './styles/app.css?url'
+
+// For now we turn these into naked imports
+import './styles/reset.css';
+import './styles/app.css';
 
 import {Layout} from '~/components/Layout';
 
