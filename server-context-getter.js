@@ -9,6 +9,10 @@ import {getStorefrontHeaders} from '@shopify/remix-oxygen';
 import {CART_QUERY_FRAGMENT} from '~/lib/fragments';
 import {AppSession} from '~/lib/session';
 
+import * as Hydrogen from '@shopify/hydrogen';
+
+console.log('Hydrogen', Hydrogen);
+
 /** The getLoadContext is used both in server.js, and by Utopia's storyboard.js */
 export const getLoadContext =
   (env, executionContext, mockCartID) => async (request) => {
@@ -32,16 +36,16 @@ export const getLoadContext =
       storefrontHeaders: getStorefrontHeaders(request),
     });
 
-    /**
-     * Create a client for Customer Account API.
-     */
-    const customerAccount = createCustomerAccountClient({
-      waitUntil,
-      request,
-      session,
-      customerAccountId: env.PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID,
-      customerAccountUrl: env.PUBLIC_CUSTOMER_ACCOUNT_API_URL,
-    });
+    // /**
+    //  * Create a client for Customer Account API.
+    //  */
+    // const customerAccount = createCustomerAccountClient({
+    //   waitUntil,
+    //   request,
+    //   session,
+    //   customerAccountId: env.PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID,
+    //   customerAccountUrl: env.PUBLIC_CUSTOMER_ACCOUNT_API_URL,
+    // });
 
     /*
      * Create a cart handler that will be used to
@@ -60,5 +64,12 @@ export const getLoadContext =
       cartQueryFragment: CART_QUERY_FRAGMENT,
     });
 
-    return {session, storefront, customerAccount, cart, env, waitUntil};
+    return {
+      session,
+      storefront,
+      // customerAccount,  // TODO createCustomerAccountClient UTOPIA
+      cart,
+      env,
+      waitUntil,
+    };
   };

@@ -56,7 +56,8 @@ export async function loader({context}) {
   const {storefront, customerAccount, cart} = context;
   const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
 
-  const isLoggedInPromise = customerAccount.isLoggedIn();
+  // TODO createCustomerAccountClient UTOPIA
+  // const isLoggedInPromise = customerAccount.isLoggedIn();
   const cartPromise = cart.get();
 
   // defer the footer query (below the fold)
@@ -80,7 +81,7 @@ export async function loader({context}) {
       cart: cartPromise,
       footer: footerPromise,
       header: await headerPromise,
-      isLoggedIn: isLoggedInPromise,
+      isLoggedIn: false,
       publicStoreDomain,
     },
     {
