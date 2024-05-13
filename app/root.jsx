@@ -13,8 +13,7 @@ import {
   Links,
 } from '@remix-run/react';
 
-import './styles/reset.css';
-import './styles/app.css';
+import appStyles from './styles/app.css?url';
 
 import {Layout} from '~/components/Layout';
 
@@ -38,8 +37,7 @@ export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
 
 export function links() {
   return [
-    // {rel: 'stylesheet', href: resetStyles},
-    // {rel: 'stylesheet', href: appStyles},
+    {rel: 'stylesheet', href: appStyles},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -120,19 +118,8 @@ export default function App() {
 function Root({children}) {
   const nonce = useNonce();
   return (
-    <html lang="en" style={{backgroundColor: '#FFFFFF'}}>
+    <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&display=swap"
-          rel="stylesheet"
-        />
-
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
@@ -142,7 +129,6 @@ function Root({children}) {
         {children}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
-        <LiveReload nonce={nonce} />
       </body>
     </html>
   );

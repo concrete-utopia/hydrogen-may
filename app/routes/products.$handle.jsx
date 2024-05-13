@@ -10,45 +10,24 @@ import {
 } from '@shopify/hydrogen';
 import {getVariantUrl} from '~/lib/variants';
 
-/**
- * @type {MetaFunction<typeof loader>}
- */
-export const meta = ({data, location}) => {
+export const meta = ({data}) => {
   return [{title: `Hydrogen | ${data?.product.title ?? ''}`}];
 };
 
-/**
- * @param {LoaderFunctionArgs}
- */
 export async function loader({params, request, context}) {
   const {handle} = params;
   const {storefront} = context;
 
-  const selectedOptions = getSelectedProductOptions(request).filter(
-    (option) =>
-      // Filter out Shopify predictive search query params
-      !option.name.startsWith('_sid') &&
-      !option.name.startsWith('_pos') &&
-      !option.name.startsWith('_psq') &&
-      !option.name.startsWith('_ss') &&
-      !option.name.startsWith('_v') &&
-      // Filter out third party tracking params
-      !option.name.startsWith('fbclid'),
-  );
-
-  if (!handle) {
-    throw new Error('Expected product handle to be defined');
-  }
-
-  // await the query for the critical product data
   const {product} = await storefront.query(PRODUCT_QUERY, {
-    variables: {handle, selectedOptions},
+    variables: {handle, selectedOptions: getSelectedProductOptions(request)},
   });
 
   if (!product?.id) {
     throw new Response(null, {status: 404});
   }
 
+  // TODO: Package up all this stuff into a utility function
+  // setDefaultSelectedVariant(product, 'first'); Also handle "available" for first available variant as well
   const firstVariant = product.variants.nodes[0];
   const firstVariantIsDefault = Boolean(
     firstVariant.selectedOptions.find(
@@ -59,18 +38,27 @@ export async function loader({params, request, context}) {
   if (firstVariantIsDefault) {
     product.selectedVariant = firstVariant;
   } else {
-    // if no selected variant was returned from the selected options,
-    // we redirect to the first variant's url with it's selected options applied
     if (!product.selectedVariant) {
-      throw redirectToFirstVariant({product, request});
+      throw function ({product, request}) {
+        const url = new URL(request.url);
+        const firstVariant = product.variants.nodes[0];
+
+        return redirect(
+          getVariantUrl({
+            pathname: url.pathname,
+            handle: product.handle,
+            selectedOptions: firstVariant.selectedOptions,
+            searchParams: new URLSearchParams(url.search),
+          }),
+          {
+            status: 302,
+          },
+        );
+      };
     }
   }
+  // END TODO
 
-  // In order to show which variants are available in the UI, we need to query
-  // all of them. But there might be a *lot*, so instead separate the variants
-  // into it's own separate query that is deferred. So there's a brief moment
-  // where variant options might show as available when they're not, but after
-  // this deffered query resolves, the UI will update.
   const variants = storefront.query(VARIANTS_QUERY, {
     variables: {handle},
   });
@@ -78,135 +66,70 @@ export async function loader({params, request, context}) {
   return defer({product, variants});
 }
 
-/**
- * @param {{
- *   product: ProductFragment;
- *   request: Request;
- * }}
- */
-function redirectToFirstVariant({product, request}) {
-  const url = new URL(request.url);
-  const firstVariant = product.variants.nodes[0];
-
-  return redirect(
-    getVariantUrl({
-      pathname: url.pathname,
-      handle: product.handle,
-      selectedOptions: firstVariant.selectedOptions,
-      searchParams: new URLSearchParams(url.search),
-    }),
-    {
-      status: 302,
-    },
-  );
-}
-
 export default function Product() {
   /** @type {LoaderReturnData} */
   const {product, variants} = useLoaderData();
-  const {selectedVariant} = product;
+  const {selectedVariant, title, descriptionHtml} = product;
   return (
     <div className="product">
-      <ProductImage image={selectedVariant?.image} />
-      <ProductMain
-        selectedVariant={selectedVariant}
-        product={product}
-        variants={variants}
-      />
-    </div>
-  );
-}
+      <div className="product-image">
+        <Image
+          alt={selectedVariant?.image.altText || 'Product Image'}
+          aspectRatio="1/1"
+          data={selectedVariant?.image}
+          key={selectedVariant?.image.id}
+          sizes="(min-width: 45em) 50vw, 100vw"
+        />
+      </div>
+      <div className="product-main">
+        <h1>{title}</h1>
 
-/**
- * @param {{image: ProductVariantFragment['image']}}
- */
-function ProductImage({image}) {
-  if (!image) {
-    return <div className="product-image" />;
-  }
-  return (
-    <div className="product-image">
-      <Image
-        alt={image.altText || 'Product Image'}
-        aspectRatio="1/1"
-        data={image}
-        key={image.id}
-        sizes="(min-width: 45em) 50vw, 100vw"
-      />
-    </div>
-  );
-}
+        <div className="product-price">
+          {selectedVariant?.compareAtPrice ? (
+            <>
+              <p>Sale</p>
 
-/**
- * @param {{
- *   product: ProductFragment;
- *   selectedVariant: ProductFragment['selectedVariant'];
- *   variants: Promise<ProductVariantsQuery>;
- * }}
- */
-function ProductMain({selectedVariant, product, variants}) {
-  const {title, descriptionHtml} = product;
-  return (
-    <div className="product-main">
-      <h1>{title}</h1>
-      <ProductPrice selectedVariant={selectedVariant} />
-      <br />
-      <Suspense
-        fallback={
-          <ProductForm
-            product={product}
-            selectedVariant={selectedVariant}
-            variants={[]}
-          />
-        }
-      >
-        <Await
-          errorElement="There was a problem loading product variants"
-          resolve={variants}
-        >
-          {(data) => (
+              <div className="product-price-on-sale">
+                {selectedVariant ? (
+                  <Money data={selectedVariant.price} />
+                ) : null}
+                <s>
+                  <Money data={selectedVariant.compareAtPrice} />
+                </s>
+              </div>
+            </>
+          ) : (
+            selectedVariant?.price && <Money data={selectedVariant?.price} />
+          )}
+        </div>
+
+        <Suspense
+          fallback={
             <ProductForm
               product={product}
               selectedVariant={selectedVariant}
-              variants={data.product?.variants.nodes || []}
+              variants={[]}
             />
-          )}
-        </Await>
-      </Suspense>
-      <br />
-      <br />
-      <p>
-        <strong>Description</strong>
-      </p>
-      <br />
-      <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
-      <br />
-    </div>
-  );
-}
-
-/**
- * @param {{
- *   selectedVariant: ProductFragment['selectedVariant'];
- * }}
- */
-function ProductPrice({selectedVariant}) {
-  return (
-    <div className="product-price">
-      {selectedVariant?.compareAtPrice ? (
-        <>
-          <p>Sale</p>
-          <br />
-          <div className="product-price-on-sale">
-            {selectedVariant ? <Money data={selectedVariant.price} /> : null}
-            <s>
-              <Money data={selectedVariant.compareAtPrice} />
-            </s>
-          </div>
-        </>
-      ) : (
-        selectedVariant?.price && <Money data={selectedVariant?.price} />
-      )}
+          }
+        >
+          <Await
+            errorElement="There was a problem loading product variants"
+            resolve={variants}
+          >
+            {(data) => (
+              <ProductForm
+                product={product}
+                selectedVariant={selectedVariant}
+                variants={data.product?.variants.nodes || []}
+              />
+            )}
+          </Await>
+        </Suspense>
+        <p>
+          <strong>Description</strong>
+        </p>
+        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
+      </div>
     </div>
   );
 }
@@ -226,9 +149,35 @@ function ProductForm({product, selectedVariant, variants}) {
         options={product.options}
         variants={variants}
       >
-        {({option}) => <ProductOptions key={option.name} option={option} />}
+        {({option}) => (
+          <div className="product-options" key={option.name}>
+            <h5>{option.name}</h5>
+            <div className="product-options-grid">
+              {option.values.map(({value, isAvailable, isActive, to}) => {
+                return (
+                  <Link
+                    className="product-options-item"
+                    key={option.name + value}
+                    prefetch="intent"
+                    preventScrollReset
+                    replace
+                    to={to}
+                    style={{
+                      border: isActive
+                        ? '1px solid black'
+                        : '1px solid transparent',
+                      opacity: isAvailable ? 1 : 0.3,
+                    }}
+                  >
+                    {value}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </VariantSelector>
-      <br />
+
       <AddToCartButton
         disabled={!selectedVariant || !selectedVariant.availableForSale}
         onClick={() => {
@@ -251,37 +200,9 @@ function ProductForm({product, selectedVariant, variants}) {
   );
 }
 
-/**
- * @param {{option: VariantOption}}
- */
-function ProductOptions({option}) {
-  return (
-    <div className="product-options" key={option.name}>
-      <h5>{option.name}</h5>
-      <div className="product-options-grid">
-        {option.values.map(({value, isAvailable, isActive, to}) => {
-          return (
-            <Link
-              className="product-options-item"
-              key={option.name + value}
-              prefetch="intent"
-              preventScrollReset
-              replace
-              to={to}
-              style={{
-                border: isActive ? '1px solid black' : '1px solid transparent',
-                opacity: isAvailable ? 1 : 0.3,
-              }}
-            >
-              {value}
-            </Link>
-          );
-        })}
-      </div>
-      <br />
-    </div>
-  );
-}
+/***********************
+ * ELEMENTS: TODO: Abstract
+ ***********************/
 
 /**
  * @param {{
@@ -314,6 +235,10 @@ function AddToCartButton({analytics, children, disabled, lines, onClick}) {
     </CartForm>
   );
 }
+
+/***********************
+ * DATA
+ ***********************/
 
 const PRODUCT_VARIANT_FRAGMENT = `#graphql
   fragment ProductVariant on ProductVariant {
@@ -406,7 +331,6 @@ const PRODUCT_VARIANTS_FRAGMENT = `#graphql
 `;
 
 const VARIANTS_QUERY = `#graphql
-  ${PRODUCT_VARIANTS_FRAGMENT}
   query ProductVariants(
     $country: CountryCode
     $language: LanguageCode
@@ -416,6 +340,7 @@ const VARIANTS_QUERY = `#graphql
       ...ProductVariants
     }
   }
+  ${PRODUCT_VARIANTS_FRAGMENT}
 `;
 
 /** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */
