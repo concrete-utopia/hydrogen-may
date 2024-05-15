@@ -8,6 +8,7 @@ import Reviews from './sections/reviews';
 import Spotlight from './sections/spotlight';
 import Recommended from './sections/recommended';
 import Marquee from './sections/marquee';
+import {Flex} from '@h2/new/Layout';
 
 export const meta = ({data}) => {
   return [{title: `Hydrogen | ${data?.product.title ?? ''}`}];

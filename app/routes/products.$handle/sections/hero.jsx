@@ -5,6 +5,9 @@ import {AddToCartButton} from '@h2/Button';
 import {Heading, Text} from '@h2/Text';
 import {Price, PriceCompareAt} from '@h2/Price';
 import {ShopPayButton} from '@h2/ShopPayButton';
+import {Background, Flex} from '@h2/new/Layout';
+import Link from '@h2/Link';
+import Accordion from '@h2/new/Accordion';
 
 export default function Hero() {
   const {product} = useLoaderData();
@@ -23,18 +26,20 @@ export default function Hero() {
                 sizes="(min-width: 45em) 50vw, 100vw"
               />
             </div>
-            <div className="flex items-center justify-center">
+            <Flex align="stretch" justify="center">
               <ProductSummary />
-            </div>
+            </Flex>
           </div>
         </div>
       </div>
       <div
         id="hero-background"
-        className="z-10 absolute pointer-events-none top-0 left-0 w-full h-full flex"
+        className="z-0 absolute pointer-events-none inset-0 grid grid-cols-2"
       >
-        <div className="bg-accent w-full h-full"></div>
-        <div className="bg-lightGray w-full h-full"></div>
+        <Background>
+          <div className="bg-accent"></div>
+          <div className="bg-lightGray"></div>
+        </Background>
       </div>
     </section>
   );
@@ -43,6 +48,27 @@ export default function Hero() {
 function ProductSummary() {
   const {product, variants} = useLoaderData();
   const {selectedVariant, title, description} = product;
+
+  const accordionData = [
+    {
+      id: '1',
+      title: 'Materials',
+      content:
+        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias debitis illo unde itaque eius eos necessitatibus assumenda, quos nisi cum reprehenderit aut placeat modi corrupti repudiandae mollitia corporis et labore?',
+    },
+    {
+      id: '2',
+      title: 'Care Instructions',
+      content:
+        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias debitis illo unde itaque eius eos necessitatibus assumenda, quos nisi cum reprehenderit aut placeat modi corrupti repudiandae mollitia corporis et labore?',
+    },
+    {
+      id: '3',
+      title: 'Fit',
+      content:
+        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias debitis illo unde itaque eius eos necessitatibus assumenda, quos nisi cum reprehenderit aut placeat modi corrupti repudiandae mollitia corporis et labore?',
+    },
+  ];
 
   return (
     <div
@@ -83,42 +109,36 @@ function ProductSummary() {
           </Await>
         </Suspense>
       </div>
-      <div
+      {/* <div
         id="product-details"
         className="bg-lighterGray flex flex-col content-center gap-4 px-10 min-h-80 py-8"
+      > */}
+      <Flex
+        direction="column"
+        justify="center"
+        gap={4}
+        className="px-10 min-h-80 py-8 bg-lighterGray"
       >
         <div className="grid gap-3">
-          <div className="flex gap-3">
+          <Flex gap={3}>
             {/* <IconBox /> */}
             <Text>
               Receive it by{' '}
               <strong className="font-medium">{businessDaysFromNow(7)}</strong>
             </Text>
-          </div>
-          <div className="flex gap-3">
+          </Flex>
+          <Flex gap={3}>
             {/* <IconShipping /> */}
             <Text>Free shipping over $50</Text>
-          </div>
-          <div className="flex gap-3">
+          </Flex>
+          <Flex gap={3}>
             {/* <IconReturns /> */}
             <Text>Free 30-day returns</Text>
-          </div>
+          </Flex>
         </div>
-        <div className="">
-          <div className=" h-12 border-t border-primary/10 flex justify-between items-center">
-            <Text>Materials</Text>
-            <Text>+</Text>
-          </div>
-          <div className=" h-12 border-t border-primary/10 flex justify-between items-center">
-            <Text>Care Instructions</Text>
-            <Text>+</Text>
-          </div>
-          <div className=" h-12 border-t border-primary/10 flex justify-between items-center">
-            <Text>Fit</Text>
-            <Text>+</Text>
-          </div>
-        </div>
-      </div>
+        <Accordion data={accordionData} />
+      </Flex>
+      {/* </div> */}
     </div>
   );
 }
@@ -216,7 +236,7 @@ function ProductForm({product, selectedVariant, variants}) {
         )}
       </VariantSelector>
 
-      <div className="flex gap-3">
+      <Flex gap={3}>
         <ShopPayButton
           className="w-full flex items-center justify-center"
           variant={selectedVariant}
@@ -242,7 +262,7 @@ function ProductForm({product, selectedVariant, variants}) {
         >
           {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
         </AddToCartButton>
-      </div>
+      </Flex>
     </div>
   );
 }
