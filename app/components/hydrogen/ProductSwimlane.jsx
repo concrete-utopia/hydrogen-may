@@ -1,4 +1,4 @@
-import {Section} from '@h2/Section';
+import {Section} from '@h2/new/Layout';
 import {ProductCard} from '@h2/ProductCard';
 
 const mockProducts = {

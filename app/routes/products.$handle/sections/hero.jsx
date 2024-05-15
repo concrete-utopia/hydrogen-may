@@ -5,7 +5,7 @@ import {AddToCartButton} from '@h2/Button';
 import {Heading, Text} from '@h2/Text';
 import {Price, PriceCompareAt} from '@h2/Price';
 import {ShopPayButton} from '@h2/ShopPayButton';
-import {Background, Flex, Grid} from '@h2/new/Layout';
+import {Background, Flex, Grid, Section} from '@h2/new/Layout';
 import Link from '@h2/Link';
 import Accordion from '@h2/new/Accordion';
 
@@ -13,7 +13,7 @@ export default function Hero() {
   const {product} = useLoaderData();
   const {selectedVariant} = product;
   return (
-    <section className="relative w-full p-4">
+    <Section className="relative">
       <div className="z-20 relative h-full">
         <div>
           <div className={'grid grid-cols-2 py-16'}>
@@ -32,16 +32,11 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div
-        id="hero-background"
-        className="z-0 absolute pointer-events-none inset-0 grid grid-cols-2"
-      >
-        <Background>
-          <div className="bg-accent"></div>
-          <div className="bg-lightGray"></div>
-        </Background>
-      </div>
-    </section>
+      <Background>
+        <div className="bg-accent"></div>
+        <div className="bg-lightGray"></div>
+      </Background>
+    </Section>
   );
 }
 

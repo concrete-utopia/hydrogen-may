@@ -42,7 +42,21 @@ interface FlexProps {
    * - `4`: `gap-4` (CSS: `gap: 1rem`)
    * - `5`: `gap-5` (CSS: `gap: 1.25rem`)
    */
-  gap?: 1 | 2 | 3 | 4 | 5;
+  gap?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  /**
+   * Controls the horizontal resizing behavior.
+   * - `'hug'`: `w-auto` (CSS: `width: auto`)
+   * - `'fill'`: `w-full` (CSS: `width: 100%`)
+   * - `'fixed'`: No additional class (CSS: `width: auto`)
+   */
+  resizeX?: 'hug' | 'fill' | 'fixed';
+  /**
+   * Controls the vertical resizing behavior.
+   * - `'hug'`: `h-auto` (CSS: `height: auto`)
+   * - `'fill'`: `h-full` (CSS: `height: 100%`)
+   * - `'fixed'`: No additional class (CSS: `height: auto`)
+   */
+  resizeY?: 'hug' | 'fill' | 'fixed';
 }
 
 /**
@@ -54,6 +68,10 @@ const flex = cva({
     direction: {
       row: 'flex-row',
       column: 'flex-col',
+      right: 'flex-row',
+      down: 'flex-col',
+      left: 'flex-row-reverse',
+      up: 'flex-col-reverse',
     },
     align: {
       start: 'items-start',
@@ -74,7 +92,27 @@ const flex = cva({
       3: 'gap-3',
       4: 'gap-4',
       5: 'gap-5',
+      6: 'gap-6',
+      7: 'gap-7',
+      8: 'gap-8',
     },
+    resizeX: {
+      hug: 'w-auto',
+      fill: 'w-full',
+      fixed: '',
+    },
+    resizeY: {
+      hug: 'h-auto',
+      fill: 'h-full',
+      fixed: '',
+    },
+  },
+  defaultVariants: {
+    direction: 'row',
+    align: 'start',
+    justify: 'start',
+    resizeX: 'hug',
+    resizeY: 'hug',
   },
 });
 
@@ -109,6 +147,9 @@ interface GridProps {
   className?: string;
   columns?: 1 | 2 | 3 | 4 | 5;
   rows?: 1 | 2 | 3 | 4 | 5;
+  gap?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  resizeX?: 'hug' | 'fill' | 'fixed';
+  resizeY?: 'hug' | 'fill' | 'fixed';
 }
 
 const grid = cva({
@@ -138,6 +179,21 @@ const grid = cva({
       7: 'gap-7',
       8: 'gap-8',
     },
+    resizeX: {
+      hug: 'w-auto',
+      fill: 'w-full',
+      fixed: '',
+    },
+    resizeY: {
+      hug: 'h-auto',
+      fill: 'h-full',
+      fixed: '',
+    },
+  },
+  defaultVariants: {
+    gap: 4,
+    resizeX: 'hug',
+    resizeY: 'hug',
   },
 });
 
@@ -196,42 +252,80 @@ export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
   },
 );
 
-// /**
-//  * Grid
-//  */
-// const grid = cva({
-//   base: 'grid',
-//   variants: {
-//     gridTemplateColumns: {
-//       three: 'grid-cols-3',
-//     },
-//   },
-//   defaultVariants: {
-//     gridTemplateColumns: 'three',
-//   },
-// });
+interface ContainerProps {
+  as?: React.ElementType;
+  children?: React.ReactNode;
+  className?: string;
+  fluid?: boolean; // If true, the container will take the full width of the viewport
+  resizeX?: 'hug' | 'fill' | 'fixed'; // Controls the horizontal resizing behavior
+  resizeY?: 'hug' | 'fill' | 'fixed'; // Controls the vertical resizing behavior
+}
 
-// export const Grid = React.forwardRef((props, ref) => (
-//   <div ref={ref} className={grid(props)} {...props} />
-// ));
+const container = cva({
+  base: ['mx-auto', 'px-4', 'md:px-8', 'lg:px-10', 'w-full'],
+  variants: {
+    fluid: {
+      true: 'max-w-none',
+      false: 'max-w-7xl',
+    },
+    resizeX: {
+      hug: 'w-auto',
+      fill: 'w-full',
+      fixed: '',
+    },
+    resizeY: {
+      hug: 'h-auto',
+      fill: 'h-full',
+      fixed: '',
+    },
+  },
+  defaultVariants: {
+    fluid: false,
+    resizeX: 'hug',
+    resizeY: 'hug',
+  },
+});
 
-// // export const Section = React.forwardRef((props, ref) => (
-// //   <section ref={ref} className={box(props)} {...props} />
-// // ));
+export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
+  ({as: Component = 'div', children, className, ...props}, ref) => {
+    const classes = cx(container(props), className);
 
-// const container = cva({
-//   base: 'container mx-auto px-4',
-//   variants: {
-//     size: {
-//       small: 'max-w-sm',
-//       large: 'max-w-7xl',
-//     },
-//   },
-//   defaultVariants: {
-//     size: 'large',
-//   },
-// });
+    return (
+      <Component ref={ref} className={classes} {...props}>
+        {children}
+      </Component>
+    );
+  },
+);
 
-// export const Container = React.forwardRef((props, ref) => (
-//   <div ref={ref} className={container(props)} {...props} />
-// ));
+interface SectionProps {
+  as?: React.ElementType;
+  children?: React.ReactNode;
+  className?: string;
+  padded?: boolean; // Controls whether the section has padding
+}
+
+const section = cva({
+  base: ['w-full', 'relative', 'min-h-8'],
+  variants: {
+    padded: {
+      true: 'py-8', // Tailwind classes for padding (you can change as needed)
+      false: '',
+    },
+  },
+  defaultVariants: {
+    padded: true,
+  },
+});
+
+export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
+  ({as: Component = 'section', children, className, ...props}, ref) => {
+    const classes = cx(section(props), className);
+
+    return (
+      <Component ref={ref} className={classes} {...props}>
+        {children}
+      </Component>
+    );
+  },
+);

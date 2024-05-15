@@ -4,7 +4,6 @@ import {Suspense, useEffect, useMemo} from 'react';
 import {CartForm} from '@shopify/hydrogen';
 
 import {Text, Heading} from '@h2/Text';
-import {Section} from '@h2/Section';
 
 import {Cart} from '@h2/Cart';
 import {CartLoading} from '@h2/CartLoading';

@@ -1,4 +1,4 @@
-import {Container} from '@h2/Section';
+import {Container} from '@h2/new/Layout';
 import {Heading, Text} from '@h2/Text';
 import {Button} from '@h2/Button';
 
