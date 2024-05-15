@@ -5,7 +5,7 @@ import {AddToCartButton} from '@h2/Button';
 import {Heading, Text} from '@h2/Text';
 import {Price, PriceCompareAt} from '@h2/Price';
 import {ShopPayButton} from '@h2/ShopPayButton';
-import {Background, Flex} from '@h2/new/Layout';
+import {Background, Flex, Grid} from '@h2/new/Layout';
 import Link from '@h2/Link';
 import Accordion from '@h2/new/Accordion';
 
@@ -109,10 +109,6 @@ function ProductSummary() {
           </Await>
         </Suspense>
       </div>
-      {/* <div
-        id="product-details"
-        className="bg-lighterGray flex flex-col content-center gap-4 px-10 min-h-80 py-8"
-      > */}
       <Flex
         direction="column"
         justify="center"
@@ -138,7 +134,6 @@ function ProductSummary() {
         </div>
         <Accordion data={accordionData} />
       </Flex>
-      {/* </div> */}
     </div>
   );
 }
@@ -236,11 +231,8 @@ function ProductForm({product, selectedVariant, variants}) {
         )}
       </VariantSelector>
 
-      <Flex gap={3}>
-        <ShopPayButton
-          className="w-full flex items-center justify-center"
-          variant={selectedVariant}
-        />
+      <Grid columns={2} gap={3}>
+        <ShopPayButton variant={selectedVariant} />
 
         <AddToCartButton
           color="accent"
@@ -262,7 +254,7 @@ function ProductForm({product, selectedVariant, variants}) {
         >
           {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
         </AddToCartButton>
-      </Flex>
+      </Grid>
     </div>
   );
 }

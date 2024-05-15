@@ -1,4 +1,3 @@
-import {Text} from './Text';
 import {Button} from './Button';
 
 export function ShopPayButton({variant, className}) {
@@ -15,11 +14,10 @@ export function ShopPayButton({variant, className}) {
       )}:1?payment=shop_pay`}
       className={`flex items-center justify-center ${className}`}
     >
-      <Text color="contrast">Buy with </Text>
       <svg
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
-        className="h-5"
+        className="h-[18px]"
         viewBox="0 0 424 102"
         fill="none"
       >

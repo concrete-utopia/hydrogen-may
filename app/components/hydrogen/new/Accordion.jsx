@@ -6,11 +6,8 @@ const Accordion = ({data}) => {
   const [openPanel, setOpenPanel] = useState(null);
 
   const handleToggle = (index) => {
-    if (openPanel === index) {
-      setOpenPanel(null);
-    } else {
-      setOpenPanel(index);
-    }
+    // Toggle functionality to open or close panels
+    setOpenPanel(openPanel === index ? null : index);
   };
 
   return (
@@ -33,7 +30,7 @@ const Accordion = ({data}) => {
                   &times;
                 </span>
               </DisclosureButton>
-              <DisclosurePanel>{item.content}</DisclosurePanel>
+              <DisclosurePanel className="pb-4">{item.content}</DisclosurePanel>
             </>
           )}
         </Disclosure>

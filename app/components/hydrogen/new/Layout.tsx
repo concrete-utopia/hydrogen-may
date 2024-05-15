@@ -103,9 +103,58 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
   },
 );
 
+interface GridProps {
+  as?: React.ElementType;
+  children?: React.ReactNode;
+  className?: string;
+  columns?: 1 | 2 | 3 | 4 | 5;
+  rows?: 1 | 2 | 3 | 4 | 5;
+}
+
+const grid = cva({
+  base: ['grid'],
+  variants: {
+    columns: {
+      1: 'grid-cols-1',
+      2: 'grid-cols-2',
+      3: 'grid-cols-3',
+      4: 'grid-cols-4',
+      5: 'grid-cols-5',
+    },
+    rows: {
+      1: 'grid-rows-1',
+      2: 'grid-rows-2',
+      3: 'grid-rows-3',
+      4: 'grid-rows-4',
+      5: 'grid-rows-5',
+    },
+    gap: {
+      1: 'gap-1',
+      2: 'gap-2',
+      3: 'gap-3',
+      4: 'gap-4',
+      5: 'gap-5',
+      6: 'gap-6',
+      7: 'gap-7',
+      8: 'gap-8',
+    },
+  },
+});
+
+export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
+  ({children, className, ...props}, ref) => {
+    const classes = cx(grid(props), className);
+
+    return (
+      <div ref={ref} className={classes} {...props}>
+        {children}
+      </div>
+    );
+  },
+);
+
 interface BackgroundProps {
   as?: React.ElementType;
-  asChild?: boolean;
   children?: React.ReactNode;
   className?: string;
   columns?: 1 | 2 | 3 | 4 | 5;
