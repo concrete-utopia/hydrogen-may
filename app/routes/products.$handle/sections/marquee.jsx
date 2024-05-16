@@ -1,3 +1,4 @@
+import React from 'react'
 import Marquee from '/app/components/hydrogen/Marquee';
 
 export default function Banner() {

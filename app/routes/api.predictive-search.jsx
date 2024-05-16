@@ -1,3 +1,4 @@
+import React from 'react'
 import {json} from '@shopify/remix-oxygen';
 import {NO_PREDICTIVE_SEARCH_RESULTS} from '~/components/Search';
 import {applyTrackingParams} from '~/lib/search';

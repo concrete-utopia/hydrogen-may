@@ -1,3 +1,4 @@
+import React from 'react'
 import {Heading, Text} from '/app/components/hydrogen/Text';
 import {useLoaderData} from '@remix-run/react';
 import {Button} from '~/components/hydrogen/Button';

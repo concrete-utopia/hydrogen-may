@@ -1,3 +1,4 @@
+import React from 'react'
 import {Await} from '@remix-run/react';
 import {Suspense} from 'react';
 import {Aside} from '~/components/Aside';

@@ -1,3 +1,4 @@
+import React from 'react'
 import clsx from 'clsx';
 import {flattenConnection, Image, Money} from '@shopify/hydrogen';
 

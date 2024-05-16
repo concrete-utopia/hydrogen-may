@@ -1,3 +1,4 @@
+import React from 'react'
 import {defer, redirect} from '@shopify/remix-oxygen';
 import {getSelectedProductOptions} from '@shopify/hydrogen';
 import {getVariantUrl} from '~/lib/variants';

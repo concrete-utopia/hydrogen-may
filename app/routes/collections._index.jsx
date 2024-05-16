@@ -1,3 +1,4 @@
+import React from 'react'
 import {useLoaderData, Link} from '@remix-run/react';
 import {json} from '@shopify/remix-oxygen';
 import {Pagination, getPaginationVariables, Image} from '@shopify/hydrogen';

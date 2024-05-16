@@ -1,3 +1,4 @@
+import React from 'react'
 import {redirect} from '@shopify/remix-oxygen';
 
 // if we dont implement this, /account/logout will get caught by account.$.tsx to do login

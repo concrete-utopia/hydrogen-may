@@ -1,3 +1,4 @@
+import React from 'react'
 import {redirect} from '@shopify/remix-oxygen';
 
 /**

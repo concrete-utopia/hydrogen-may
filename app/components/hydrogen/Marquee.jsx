@@ -1,3 +1,4 @@
+import React from 'react'
 // Using https://www.react-fast-marquee.com/, but it didn't work initially
 
 import {

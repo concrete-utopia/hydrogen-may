@@ -1,3 +1,4 @@
+import React from 'react'
 import {json} from '@shopify/remix-oxygen';
 import {Link, useLoaderData} from '@remix-run/react';
 

@@ -1,55 +1,60 @@
-import {Link, Form, useParams, useFetcher} from '@remix-run/react';
-import {Image, Money, Pagination} from '@shopify/hydrogen';
-import React, {useRef, useEffect} from 'react';
-import {applyTrackingParams} from '~/lib/search';
+import {
+  Link,
+  Form,
+  useParams,
+  useFetcher,
+} from '@remix-run/react'
+import { Image, Money, Pagination } from '@shopify/hydrogen'
+import React, { useRef, useEffect } from 'react'
+import { applyTrackingParams } from '~/lib/search'
 
 export const NO_PREDICTIVE_SEARCH_RESULTS = [
-  {type: 'queries', items: []},
-  {type: 'products', items: []},
-  {type: 'collections', items: []},
-  {type: 'pages', items: []},
-  {type: 'articles', items: []},
-];
+  { type: 'queries', items: [] },
+  { type: 'products', items: [] },
+  { type: 'collections', items: [] },
+  { type: 'pages', items: [] },
+  { type: 'articles', items: [] },
+]
 
 /**
  * @param {{searchTerm: string}}
  */
-export function SearchForm({searchTerm}) {
-  const inputRef = useRef(null);
+export function SearchForm({ searchTerm }) {
+  const inputRef = useRef(null)
 
   // focus the input when cmd+k is pressed
   useEffect(() => {
     function handleKeyDown(event) {
       if (event.key === 'k' && event.metaKey) {
-        event.preventDefault();
-        inputRef.current?.focus();
+        event.preventDefault()
+        inputRef.current?.focus()
       }
 
       if (event.key === 'Escape') {
-        inputRef.current?.blur();
+        inputRef.current?.blur()
       }
     }
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   return (
-    <Form method="get">
+    <Form method='get'>
       <input
         defaultValue={searchTerm}
-        name="q"
-        placeholder="Search…"
+        name='q'
+        placeholder='Search…'
         ref={inputRef}
-        type="search"
+        type='search'
       />
       &nbsp;
-      <button type="submit">Search</button>
+      <button type='submit'>Search</button>
     </Form>
-  );
+  )
 }
 
 /**
@@ -57,70 +62,87 @@ export function SearchForm({searchTerm}) {
  *   searchTerm: string;
  * }}
  */
-export function SearchResults({results, searchTerm}) {
+export function SearchResults({ results, searchTerm }) {
   if (!results) {
-    return null;
+    return null
   }
-  const keys = Object.keys(results);
+  const keys = Object.keys(results)
   return (
     <div>
       {results &&
         keys.map((type) => {
-          const resourceResults = results[type];
+          const resourceResults = results[type]
 
-          if (resourceResults.nodes[0]?.__typename === 'Page') {
-            const pageResults = resourceResults;
+          if (
+            resourceResults.nodes[0]?.__typename === 'Page'
+          ) {
+            const pageResults = resourceResults
             return resourceResults.nodes.length ? (
-              <SearchResultPageGrid key="pages" pages={pageResults} />
-            ) : null;
+              <SearchResultPageGrid
+                key='pages'
+                pages={pageResults}
+              />
+            ) : null
           }
 
-          if (resourceResults.nodes[0]?.__typename === 'Product') {
-            const productResults = resourceResults;
+          if (
+            resourceResults.nodes[0]?.__typename ===
+            'Product'
+          ) {
+            const productResults = resourceResults
             return resourceResults.nodes.length ? (
               <SearchResultsProductsGrid
-                key="products"
+                key='products'
                 products={productResults}
                 searchTerm={searchTerm}
               />
-            ) : null;
+            ) : null
           }
 
-          if (resourceResults.nodes[0]?.__typename === 'Article') {
-            const articleResults = resourceResults;
+          if (
+            resourceResults.nodes[0]?.__typename ===
+            'Article'
+          ) {
+            const articleResults = resourceResults
             return resourceResults.nodes.length ? (
               <SearchResultArticleGrid
-                key="articles"
+                key='articles'
                 articles={articleResults}
               />
-            ) : null;
+            ) : null
           }
 
-          return null;
+          return null
         })}
     </div>
-  );
+  )
 }
 
 /**
  * @param {Pick<SearchQuery, 'products'> & {searchTerm: string}}
  */
-function SearchResultsProductsGrid({products, searchTerm}) {
+function SearchResultsProductsGrid({
+  products,
+  searchTerm,
+}) {
   return (
-    <div className="search-result">
+    <div className='search-result'>
       <h2>Products</h2>
       <Pagination connection={products}>
-        {({nodes, isLoading, NextLink, PreviousLink}) => {
+        {({ nodes, isLoading, NextLink, PreviousLink }) => {
           const ItemsMarkup = nodes.map((product) => {
             const trackingParams = applyTrackingParams(
               product,
               `q=${encodeURIComponent(searchTerm)}`,
-            );
+            )
 
             return (
-              <div className="search-results-item" key={product.id}>
+              <div
+                className='search-results-item'
+                key={product.id}
+              >
                 <Link
-                  prefetch="intent"
+                  prefetch='intent'
                   to={`/products/${product.handle}${trackingParams}`}
                 >
                   {product.variants.nodes[0].image && (
@@ -133,18 +155,26 @@ function SearchResultsProductsGrid({products, searchTerm}) {
                   <div>
                     <p>{product.title}</p>
                     <small>
-                      <Money data={product.variants.nodes[0].price} />
+                      <Money
+                        data={
+                          product.variants.nodes[0].price
+                        }
+                      />
                     </small>
                   </div>
                 </Link>
               </div>
-            );
-          });
+            )
+          })
           return (
             <div>
               <div>
                 <PreviousLink>
-                  {isLoading ? 'Loading...' : <span>↑ Load previous</span>}
+                  {isLoading ? (
+                    'Loading...'
+                  ) : (
+                    <span>↑ Load previous</span>
+                  )}
                 </PreviousLink>
               </div>
               <div>
@@ -153,29 +183,39 @@ function SearchResultsProductsGrid({products, searchTerm}) {
               </div>
               <div>
                 <NextLink>
-                  {isLoading ? 'Loading...' : <span>Load more ↓</span>}
+                  {isLoading ? (
+                    'Loading...'
+                  ) : (
+                    <span>Load more ↓</span>
+                  )}
                 </NextLink>
               </div>
             </div>
-          );
+          )
         }}
       </Pagination>
       <br />
     </div>
-  );
+  )
 }
 
 /**
  * @param {Pick<SearchQuery, 'pages'>}
  */
-function SearchResultPageGrid({pages}) {
+function SearchResultPageGrid({ pages }) {
   return (
-    <div className="search-result">
+    <div className='search-result'>
       <h2>Pages</h2>
       <div>
         {pages?.nodes?.map((page) => (
-          <div className="search-results-item" key={page.id}>
-            <Link prefetch="intent" to={`/pages/${page.handle}`}>
+          <div
+            className='search-results-item'
+            key={page.id}
+          >
+            <Link
+              prefetch='intent'
+              to={`/pages/${page.handle}`}
+            >
               {page.title}
             </Link>
           </div>
@@ -183,20 +223,26 @@ function SearchResultPageGrid({pages}) {
       </div>
       <br />
     </div>
-  );
+  )
 }
 
 /**
  * @param {Pick<SearchQuery, 'articles'>}
  */
-function SearchResultArticleGrid({articles}) {
+function SearchResultArticleGrid({ articles }) {
   return (
-    <div className="search-result">
+    <div className='search-result'>
       <h2>Articles</h2>
       <div>
         {articles?.nodes?.map((article) => (
-          <div className="search-results-item" key={article.id}>
-            <Link prefetch="intent" to={`/blogs/${article.handle}`}>
+          <div
+            className='search-results-item'
+            key={article.id}
+          >
+            <Link
+              prefetch='intent'
+              to={`/blogs/${article.handle}`}
+            >
               {article.title}
             </Link>
           </div>
@@ -204,11 +250,11 @@ function SearchResultArticleGrid({articles}) {
       </div>
       <br />
     </div>
-  );
+  )
 }
 
 export function NoSearchResults() {
-  return <p>No results, try a different search.</p>;
+  return <p>No results, try a different search.</p>
 }
 
 /**
@@ -221,73 +267,83 @@ export function PredictiveSearchForm({
   className = 'predictive-search-form',
   ...props
 }) {
-  const params = useParams();
+  const params = useParams()
   const fetcher = useFetcher({
     key: 'search',
-  });
-  const inputRef = useRef(null);
+  })
+  const inputRef = useRef(null)
 
   function fetchResults(event) {
-    const searchAction = action ?? '/api/predictive-search';
-    const newSearchTerm = event.target.value || '';
+    const searchAction = action ?? '/api/predictive-search'
+    const newSearchTerm = event.target.value || ''
     const localizedAction = params.locale
       ? `/${params.locale}${searchAction}`
-      : searchAction;
+      : searchAction
 
     fetcher.submit(
-      {q: newSearchTerm, limit: '6'},
-      {method: 'GET', action: localizedAction},
-    );
+      { q: newSearchTerm, limit: '6' },
+      { method: 'GET', action: localizedAction },
+    )
   }
 
   // ensure the passed input has a type of search, because SearchResults
   // will select the element based on the input
   useEffect(() => {
-    inputRef?.current?.setAttribute('type', 'search');
-  }, []);
+    inputRef?.current?.setAttribute('type', 'search')
+  }, [])
 
   return (
     <fetcher.Form
       {...props}
       className={className}
       onSubmit={(event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        if (!inputRef?.current || inputRef.current.value === '') {
-          return;
+        event.preventDefault()
+        event.stopPropagation()
+        if (
+          !inputRef?.current ||
+          inputRef.current.value === ''
+        ) {
+          return
         }
-        inputRef.current.blur();
+        inputRef.current.blur()
       }}
     >
-      {children({fetchResults, inputRef, fetcher})}
+      {children({ fetchResults, inputRef, fetcher })}
     </fetcher.Form>
-  );
+  )
 }
 
 export function PredictiveSearchResults() {
-  const {results, totalResults, searchInputRef, searchTerm, state} =
-    usePredictiveSearch();
+  const {
+    results,
+    totalResults,
+    searchInputRef,
+    searchTerm,
+    state,
+  } = usePredictiveSearch()
 
   function goToSearchResult(event) {
-    if (!searchInputRef.current) return;
-    searchInputRef.current.blur();
-    searchInputRef.current.value = '';
+    if (!searchInputRef.current) return
+    searchInputRef.current.blur()
+    searchInputRef.current.value = ''
     // close the aside
-    window.location.href = event.currentTarget.href;
+    window.location.href = event.currentTarget.href
   }
 
   if (state === 'loading') {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   if (!totalResults) {
-    return <NoPredictiveSearchResults searchTerm={searchTerm} />;
+    return (
+      <NoPredictiveSearchResults searchTerm={searchTerm} />
+    )
   }
 
   return (
-    <div className="predictive-search-results">
+    <div className='predictive-search-results'>
       <div>
-        {results.map(({type, items}) => (
+        {results.map(({ type, items }) => (
           <PredictiveSearchResult
             goToSearchResult={goToSearchResult}
             items={items}
@@ -298,7 +354,10 @@ export function PredictiveSearchResults() {
         ))}
       </div>
       {searchTerm.current && (
-        <Link onClick={goToSearchResult} to={`/search?q=${searchTerm.current}`}>
+        <Link
+          onClick={goToSearchResult}
+          to={`/search?q=${searchTerm.current}`}
+        >
           <p>
             View all results for <q>{searchTerm.current}</q>
             &nbsp; →
@@ -306,7 +365,7 @@ export function PredictiveSearchResults() {
         </Link>
       )}
     </div>
-  );
+  )
 }
 
 /**
@@ -314,29 +373,38 @@ export function PredictiveSearchResults() {
  *   searchTerm: React.MutableRefObject<string>;
  * }}
  */
-function NoPredictiveSearchResults({searchTerm}) {
+function NoPredictiveSearchResults({ searchTerm }) {
   if (!searchTerm.current) {
-    return null;
+    return null
   }
   return (
     <p>
       No results found for <q>{searchTerm.current}</q>
     </p>
-  );
+  )
 }
 
 /**
  * @param {SearchResultTypeProps}
  */
-function PredictiveSearchResult({goToSearchResult, items, searchTerm, type}) {
-  const isSuggestions = type === 'queries';
+function PredictiveSearchResult({
+  goToSearchResult,
+  items,
+  searchTerm,
+  type,
+}) {
+  const isSuggestions = type === 'queries'
   const categoryUrl = `/search?q=${
     searchTerm.current
-  }&type=${pluralToSingularSearchType(type)}`;
+  }&type=${pluralToSingularSearchType(type)}`
 
   return (
-    <div className="predictive-search-result" key={type}>
-      <Link prefetch="intent" to={categoryUrl} onClick={goToSearchResult}>
+    <div className='predictive-search-result' key={type}>
+      <Link
+        prefetch='intent'
+        to={categoryUrl}
+        onClick={goToSearchResult}
+      >
         <h5>{isSuggestions ? 'Suggestions' : type}</h5>
       </Link>
       <ul>
@@ -349,15 +417,18 @@ function PredictiveSearchResult({goToSearchResult, items, searchTerm, type}) {
         ))}
       </ul>
     </div>
-  );
+  )
 }
 
 /**
  * @param {SearchResultItemProps}
  */
-function SearchResultItem({goToSearchResult, item}) {
+function SearchResultItem({ goToSearchResult, item }) {
   return (
-    <li className="predictive-search-result-item" key={item.id}>
+    <li
+      className='predictive-search-result-item'
+      key={item.id}
+    >
       <Link onClick={goToSearchResult} to={item.url}>
         {item.image?.url && (
           <Image
@@ -385,33 +456,41 @@ function SearchResultItem({goToSearchResult, item}) {
         </div>
       </Link>
     </li>
-  );
+  )
 }
 
 /**
  * @return {UseSearchReturn}
  */
 function usePredictiveSearch() {
-  const searchFetcher = useFetcher({key: 'search'});
-  const searchTerm = useRef('');
-  const searchInputRef = useRef(null);
+  const searchFetcher = useFetcher({ key: 'search' })
+  const searchTerm = useRef('')
+  const searchInputRef = useRef(null)
 
   if (searchFetcher?.state === 'loading') {
-    searchTerm.current = searchFetcher.formData?.get('q') || '';
+    searchTerm.current =
+      searchFetcher.formData?.get('q') || ''
   }
 
   const search = searchFetcher?.data?.searchResults || {
     results: NO_PREDICTIVE_SEARCH_RESULTS,
     totalResults: 0,
-  };
+  }
 
   // capture the search input element as a ref
   useEffect(() => {
-    if (searchInputRef.current) return;
-    searchInputRef.current = document.querySelector('input[type="search"]');
-  }, []);
+    if (searchInputRef.current) return
+    searchInputRef.current = document.querySelector(
+      'input[type="search"]',
+    )
+  }, [])
 
-  return {...search, searchInputRef, searchTerm, state: searchFetcher.state};
+  return {
+    ...search,
+    searchInputRef,
+    searchTerm,
+    state: searchFetcher.state,
+  }
 }
 
 /**
@@ -432,13 +511,13 @@ function pluralToSingularSearchType(type) {
     pages: 'PAGE',
     products: 'PRODUCT',
     queries: 'QUERY',
-  };
-
-  if (typeof type === 'string') {
-    return plural[type];
   }
 
-  return type.map((t) => plural[t]).join(',');
+  if (typeof type === 'string') {
+    return plural[type]
+  }
+
+  return type.map((t) => plural[t]).join(',')
 }
 
 /**

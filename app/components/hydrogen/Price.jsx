@@ -1,3 +1,4 @@
+import React from 'react'
 import {Money} from '@shopify/hydrogen';
 
 export function Price({variant, ...props}) {

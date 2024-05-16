@@ -1,3 +1,4 @@
+import React from 'react'
 import {NavLink} from '@remix-run/react';
 import {useRootLoaderData} from '~/lib/root-data';
 

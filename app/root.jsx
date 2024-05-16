@@ -1,3 +1,4 @@
+import React from 'react'
 import { useNonce } from '@shopify/hydrogen'
 import { defer } from '@shopify/remix-oxygen'
 import {

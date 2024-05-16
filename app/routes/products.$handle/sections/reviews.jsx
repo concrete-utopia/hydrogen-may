@@ -1,3 +1,4 @@
+import React from 'react'
 import {Container} from '/app/components/hydrogen/new/Layout';
 import {Heading, Text} from '/app/components/hydrogen/Text';
 import {Button} from '/app/components/hydrogen/Button';

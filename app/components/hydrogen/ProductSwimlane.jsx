@@ -1,3 +1,4 @@
+import React from 'react'
 import {Section} from '/app/components/hydrogen/new/Layout';
 import {ProductCard} from '/app/components/hydrogen/ProductCard';
 

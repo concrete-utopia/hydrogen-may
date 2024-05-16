@@ -1,3 +1,4 @@
+import React from 'react'
 import clsx from 'clsx';
 import {missingClass, formatText} from '~/lib/utils';
 
