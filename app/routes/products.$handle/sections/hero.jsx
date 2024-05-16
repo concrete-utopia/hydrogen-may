@@ -1,48 +1,63 @@
-import {Suspense} from 'react';
-import {Await, useLoaderData} from '@remix-run/react';
-import {Image, VariantSelector} from '@shopify/hydrogen';
-import {AddToCartButton} from '@h2/Button';
-import {Heading, Text} from '@h2/Text';
-import {Price, PriceCompareAt} from '@h2/Price';
-import {ShopPayButton} from '@h2/ShopPayButton';
-import {Background, Flex, Grid, Section} from '@h2/new/Layout';
-import Link from '@h2/Link';
-import Accordion from '@h2/new/Accordion';
+import React from 'react'
+import { Suspense } from 'react'
+import { Await, useLoaderData } from '@remix-run/react'
+import { Image, VariantSelector } from '@shopify/hydrogen'
+import { AddToCartButton } from '/app/components/hydrogen/Button'
+import {
+  Heading,
+  Text,
+} from '/app/components/hydrogen/Text'
+import {
+  Price,
+  PriceCompareAt,
+} from '/app/components/hydrogen/Price'
+import { ShopPayButton } from '/app/components/hydrogen/ShopPayButton'
+import {
+  Background,
+  Flex,
+  Grid,
+  Section,
+} from '/app/components/hydrogen/new/Layout'
+import Link from '/app/components/hydrogen/Link'
+import Accordion from '/app/components/hydrogen/new/Accordion'
 
 export default function Hero() {
-  const {product} = useLoaderData();
-  const {selectedVariant} = product;
+  const { product } = useLoaderData()
+  const { selectedVariant } = product
   return (
-    <Section className="relative">
-      <div className="z-20 relative h-full">
+    <Section className='relative'>
+      <div className='z-20 relative h-full'>
         <div>
           <div className={'grid grid-cols-2 py-16'}>
-            <div className="product-image">
+            <div className='product-image'>
               <Image
-                alt={selectedVariant?.image.altText || 'Product Image'}
-                aspectRatio="1/1"
+                alt={
+                  selectedVariant?.image.altText ||
+                  'Product Image'
+                }
+                aspectRatio='1/1'
                 data={selectedVariant?.image}
                 key={selectedVariant?.image.id}
-                sizes="(min-width: 45em) 50vw, 100vw"
+                sizes='(min-width: 45em) 50vw, 100vw'
               />
             </div>
-            <Flex align="stretch" justify="center">
+            <Flex align='stretch' justify='center'>
               <ProductSummary />
             </Flex>
           </div>
         </div>
       </div>
       <Background>
-        <div className="bg-accent"></div>
-        <div className="bg-lightGray"></div>
+        <div className='bg-accent'></div>
+        <div className='bg-lightGray'></div>
       </Background>
     </Section>
-  );
+  )
 }
 
 function ProductSummary() {
-  const {product, variants} = useLoaderData();
-  const {selectedVariant, title, description} = product;
+  const { product, variants } = useLoaderData()
+  const { selectedVariant, title, description } = product
 
   const accordionData = [
     {
@@ -63,22 +78,33 @@ function ProductSummary() {
       content:
         'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias debitis illo unde itaque eius eos necessitatibus assumenda, quos nisi cum reprehenderit aut placeat modi corrupti repudiandae mollitia corporis et labore?',
     },
-  ];
+  ]
 
   return (
     <div
-      id="product-summary"
-      className="rounded-card max-w-[28rem] overflow-hidden bg-white shadow-card"
+      id='product-summary'
+      className='rounded-card max-w-[28rem] overflow-hidden bg-white shadow-card'
     >
-      <div id="product-info" className="grid gap-4 px-10 min-h-80 py-8">
-        <Heading id="product-info-title">{title}</Heading>
+      <div
+        id='product-info'
+        className='grid gap-4 px-10 min-h-80 py-8'
+      >
+        <Heading id='product-info-title'>{title}</Heading>
 
-        <div id="product-info-content" className="grid gap-3">
-          <div id="product-price" className="flex gap-4">
+        <div
+          id='product-info-content'
+          className='grid gap-3'
+        >
+          <div id='product-price' className='flex gap-4'>
             <Price variant={selectedVariant} />
-            <PriceCompareAt className="strike" variant={selectedVariant} />
+            <PriceCompareAt
+              className='strike'
+              variant={selectedVariant}
+            />
           </div>
-          <Text id="product-description">{description}</Text>
+          <Text id='product-description'>
+            {description}
+          </Text>
         </div>
 
         <Suspense
@@ -91,31 +117,35 @@ function ProductSummary() {
           }
         >
           <Await
-            errorElement="There was a problem loading product variants"
+            errorElement='There was a problem loading product variants'
             resolve={variants}
           >
             {(data) => (
               <ProductForm
                 product={product}
                 selectedVariant={selectedVariant}
-                variants={data.product?.variants.nodes || []}
+                variants={
+                  data.product?.variants.nodes || []
+                }
               />
             )}
           </Await>
         </Suspense>
       </div>
       <Flex
-        direction="column"
-        justify="center"
+        direction='column'
+        justify='center'
         gap={4}
-        className="px-10 min-h-80 py-8 bg-lighterGray"
+        className='px-10 min-h-80 py-8 bg-lighterGray'
       >
-        <div className="grid gap-3">
+        <div className='grid gap-3'>
           <Flex gap={3}>
             {/* <IconBox /> */}
             <Text>
               Receive it by{' '}
-              <strong className="font-medium">{businessDaysFromNow(7)}</strong>
+              <strong className='font-medium'>
+                {businessDaysFromNow(7)}
+              </strong>
             </Text>
           </Flex>
           <Flex gap={3}>
@@ -130,25 +160,25 @@ function ProductSummary() {
         <Accordion data={accordionData} />
       </Flex>
     </div>
-  );
+  )
 }
 
 function businessDaysFromNow(days) {
-  let date = new Date();
-  let addedDays = 0;
+  let date = new Date()
+  let addedDays = 0
 
   while (addedDays < days) {
-    date.setDate(date.getDate() + 1);
+    date.setDate(date.getDate() + 1)
 
     // Check if the current day is a weekday (Monday-Friday)
-    const dayOfWeek = date.getDay();
+    const dayOfWeek = date.getDay()
     if (dayOfWeek !== 0 && dayOfWeek !== 6) {
       // 0 = Sunday, 6 = Saturday
-      addedDays++;
+      addedDays++
     }
   }
 
-  return formatDate(date);
+  return formatDate(date)
 }
 
 function formatDate(date) {
@@ -160,7 +190,7 @@ function formatDate(date) {
     'Thursday',
     'Friday',
     'Saturday',
-  ];
+  ]
   const months = [
     'Jan',
     'Feb',
@@ -174,13 +204,13 @@ function formatDate(date) {
     'Oct',
     'Nov',
     'Dec',
-  ];
+  ]
 
-  let dayName = daysOfWeek[date.getDay()];
-  let monthName = months[date.getMonth()];
-  let day = date.getDate();
+  let dayName = daysOfWeek[date.getDay()]
+  let monthName = months[date.getMonth()]
+  let day = date.getDate()
 
-  return `${dayName}, ${monthName} ${day}`;
+  return `${dayName}, ${monthName} ${day}`
 }
 /**
  * @param {{
@@ -189,38 +219,47 @@ function formatDate(date) {
  *   variants: Array<ProductVariantFragment>;
  * }}
  */
-function ProductForm({product, selectedVariant, variants}) {
+function ProductForm({
+  product,
+  selectedVariant,
+  variants,
+}) {
   return (
-    <div className="product-form">
+    <div className='product-form'>
       <VariantSelector
         handle={product.handle}
         options={product.options}
         variants={variants}
       >
-        {({option}) => (
-          <div className="product-options" key={option.name}>
+        {({ option }) => (
+          <div
+            className='product-options'
+            key={option.name}
+          >
             <h5>{option.name}</h5>
-            <div className="product-options-grid">
-              {option.values.map(({value, isAvailable, isActive, to}) => {
-                return (
-                  <Link
-                    className="product-options-item"
-                    key={option.name + value}
-                    prefetch="intent"
-                    preventScrollReset
-                    replace
-                    to={to}
-                    style={{
-                      border: isActive
-                        ? '1px solid black'
-                        : '1px solid transparent',
-                      opacity: isAvailable ? 1 : 0.3,
-                    }}
-                  >
-                    {value}
-                  </Link>
-                );
-              })}
+            <div className='product-options-grid'>
+              {option.values.map(
+                ({ value, isAvailable, isActive, to }) => {
+                  return (
+                    <Link
+                      className='product-options-item'
+                      key={option.name + value}
+                      prefetch='intent'
+                      preventScrollReset
+                      replace
+                      to={to}
+                      style={{
+                        border: isActive
+                          ? '1px solid black'
+                          : '1px solid transparent',
+                        opacity: isAvailable ? 1 : 0.3,
+                      }}
+                    >
+                      {value}
+                    </Link>
+                  )
+                },
+              )}
             </div>
           </div>
         )}
@@ -230,11 +269,15 @@ function ProductForm({product, selectedVariant, variants}) {
         <ShopPayButton variant={selectedVariant} />
 
         <AddToCartButton
-          color="accent"
-          className="w-full"
-          disabled={!selectedVariant || !selectedVariant.availableForSale}
+          color='accent'
+          className='w-full'
+          disabled={
+            !selectedVariant ||
+            !selectedVariant.availableForSale
+          }
           onClick={() => {
-            window.location.href = window.location.href + '#cart-aside';
+            window.location.href =
+              window.location.href + '#cart-aside'
           }}
           lines={
             selectedVariant
@@ -247,9 +290,11 @@ function ProductForm({product, selectedVariant, variants}) {
               : []
           }
         >
-          {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
+          {selectedVariant?.availableForSale
+            ? 'Add to cart'
+            : 'Sold out'}
         </AddToCartButton>
       </Grid>
     </div>
-  );
+  )
 }

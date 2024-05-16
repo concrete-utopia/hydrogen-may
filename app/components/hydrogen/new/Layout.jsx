@@ -1,63 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 // Import configured class names generator functions with predetermined styles.
-import {cx, cva} from './cva.config';
-
-/**
- * Type definitions for the Flex component props enriched with Tailwind CSS class and CSS mapping details.
- */
-interface FlexProps {
-  as?: React.ElementType;
-  asChild?: boolean;
-  children?: React.ReactNode;
-  className?: string;
-  /**
-   * Controls the flex-direction CSS property.
-   * - `'row'`: `flex-row` (CSS: `flex-direction: row`)
-   * - `'column'`: `flex-col` (CSS: `flex-direction: column`)
-   */
-  direction?: 'row' | 'column';
-  /**
-   * Controls the align-items CSS property.
-   * - `'start'`: `items-start` (CSS: `align-items: flex-start`)
-   * - `'center'`: `items-center` (CSS: `align-items: center`)
-   * - `'end'`: `items-end` (CSS: `align-items: flex-end`)
-   * - `'baseline'`: `items-baseline` (CSS: `align-items: baseline`)
-   * - `'stretch'`: `items-stretch` (CSS: `align-items: stretch`)
-   */
-  align?: 'start' | 'center' | 'end' | 'baseline' | 'stretch';
-  /**
-   * Controls the justify-content CSS property.
-   * - `'center'`: `justify-center` (CSS: `justify-content: center`)
-   * - `'start'`: `justify-start` (CSS: `justify-content: flex-start`)
-   * - `'end'`: `justify-end` (CSS: `justify-content: flex-end`)
-   * - `'between'`: `justify-between` (CSS: `justify-content: space-between`)
-   */
-  justify?: 'center' | 'start' | 'end' | 'between';
-  /**
-   * Controls the gap CSS property.
-   * - `1`: `gap-1` (CSS: `gap: 0.25rem`)
-   * - `2`: `gap-2` (CSS: `gap: 0.5rem`)
-   * - `3`: `gap-3` (CSS: `gap: 0.75rem`)
-   * - `4`: `gap-4` (CSS: `gap: 1rem`)
-   * - `5`: `gap-5` (CSS: `gap: 1.25rem`)
-   */
-  gap?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-  /**
-   * Controls the horizontal resizing behavior.
-   * - `'hug'`: `w-auto` (CSS: `width: auto`)
-   * - `'fill'`: `w-full` (CSS: `width: 100%`)
-   * - `'fixed'`: No additional class (CSS: `width: auto`)
-   */
-  resizeX?: 'hug' | 'fill' | 'fixed';
-  /**
-   * Controls the vertical resizing behavior.
-   * - `'hug'`: `h-auto` (CSS: `height: auto`)
-   * - `'fill'`: `h-full` (CSS: `height: 100%`)
-   * - `'fixed'`: No additional class (CSS: `height: auto`)
-   */
-  resizeY?: 'hug' | 'fill' | 'fixed';
-}
+import { cx, cva } from './cva.config'
 
 /**
  * Configuration for "cva" to generate a dynamic class string based on the provided flex configuration.
@@ -114,7 +58,7 @@ const flex = cva({
     resizeX: 'hug',
     resizeY: 'hug',
   },
-});
+})
 
 /**
  * A highly customizable Flex component designed to facilitate the easier use of CSS flexbox layout
@@ -129,28 +73,25 @@ const flex = cva({
  * @param {'center' | 'start' | 'end' | 'between'} justify - Control the distribution of children along main axis.
  * @returns {React.ReactNode} The React component rendering the Flex container with applied styles.
  */
-export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
-  ({as: Component = 'div', children, className = '', ...props}, ref) => {
-    const classes = cx(flex(props), className);
+export const Flex = React.forwardRef(
+  (
+    {
+      as: Component = 'div',
+      children,
+      className = '',
+      ...props
+    },
+    ref,
+  ) => {
+    const classes = cx(flex(props), className)
 
     return (
       <Component ref={ref} className={classes} {...props}>
         {children}
       </Component>
-    );
+    )
   },
-);
-
-interface GridProps {
-  as?: React.ElementType;
-  children?: React.ReactNode;
-  className?: string;
-  columns?: 1 | 2 | 3 | 4 | 5;
-  rows?: 1 | 2 | 3 | 4 | 5;
-  gap?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-  resizeX?: 'hug' | 'fill' | 'fixed';
-  resizeY?: 'hug' | 'fill' | 'fixed';
-}
+)
 
 const grid = cva({
   base: ['grid'],
@@ -195,30 +136,28 @@ const grid = cva({
     resizeX: 'hug',
     resizeY: 'hug',
   },
-});
+})
 
-export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
-  ({children, className, ...props}, ref) => {
-    const classes = cx(grid(props), className);
+export const Grid = React.forwardRef(
+  ({ children, className, ...props }, ref) => {
+    const classes = cx(grid(props), className)
 
     return (
       <div ref={ref} className={classes} {...props}>
         {children}
       </div>
-    );
+    )
   },
-);
-
-interface BackgroundProps {
-  as?: React.ElementType;
-  children?: React.ReactNode;
-  className?: string;
-  columns?: 1 | 2 | 3 | 4 | 5;
-  rows?: 1 | 2 | 3 | 4 | 5;
-}
+)
 
 const background = cva({
-  base: ['grid', 'absolute', 'z-0', 'inset-0', 'pointer-events-none'],
+  base: [
+    'grid',
+    'absolute',
+    'z-0',
+    'inset-0',
+    'pointer-events-none',
+  ],
   variants: {
     columns: {
       1: 'grid-cols-1',
@@ -238,31 +177,28 @@ const background = cva({
   defaultVariants: {
     columns: 2,
   },
-});
+})
 
-export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
-  ({children, className, ...props}, ref) => {
-    const classes = cx(background(props), className);
+export const Background = React.forwardRef(
+  ({ children, className, ...props }, ref) => {
+    const classes = cx(background(props), className)
 
     return (
       <div ref={ref} className={classes} {...props}>
         {children}
       </div>
-    );
+    )
   },
-);
-
-interface ContainerProps {
-  as?: React.ElementType;
-  children?: React.ReactNode;
-  className?: string;
-  fluid?: boolean; // If true, the container will take the full width of the viewport
-  resizeX?: 'hug' | 'fill' | 'fixed'; // Controls the horizontal resizing behavior
-  resizeY?: 'hug' | 'fill' | 'fixed'; // Controls the vertical resizing behavior
-}
+)
 
 const container = cva({
-  base: ['mx-auto', 'px-4', 'md:px-8', 'lg:px-10', 'w-full'],
+  base: [
+    'mx-auto',
+    'px-4',
+    'md:px-8',
+    'lg:px-10',
+    'w-full',
+  ],
   variants: {
     fluid: {
       true: 'max-w-none',
@@ -284,26 +220,27 @@ const container = cva({
     resizeX: 'hug',
     resizeY: 'hug',
   },
-});
+})
 
-export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  ({as: Component = 'div', children, className, ...props}, ref) => {
-    const classes = cx(container(props), className);
+export const Container = React.forwardRef(
+  (
+    {
+      as: Component = 'div',
+      children,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const classes = cx(container(props), className)
 
     return (
       <Component ref={ref} className={classes} {...props}>
         {children}
       </Component>
-    );
+    )
   },
-);
-
-interface SectionProps {
-  as?: React.ElementType;
-  children?: React.ReactNode;
-  className?: string;
-  padded?: boolean; // Controls whether the section has padding
-}
+)
 
 const section = cva({
   base: ['w-full', 'relative', 'min-h-8'],
@@ -316,16 +253,24 @@ const section = cva({
   defaultVariants: {
     padded: true,
   },
-});
+})
 
-export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({as: Component = 'section', children, className, ...props}, ref) => {
-    const classes = cx(section(props), className);
+export const Section = React.forwardRef(
+  (
+    {
+      as: Component = 'section',
+      children,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const classes = cx(section(props), className)
 
     return (
       <Component ref={ref} className={classes} {...props}>
         {children}
       </Component>
-    );
+    )
   },
-);
+)

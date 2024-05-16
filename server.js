@@ -1,6 +1,6 @@
 // @ts-ignore
 // Virtual entry point for the app
-import * as remixBuild from 'virtual:remix/server-build';
+import * as remixBuild from 'virtual:remix/server-build'
 import {
   cartGetIdDefault,
   cartSetIdDefault,
@@ -8,14 +8,14 @@ import {
   createStorefrontClient,
   storefrontRedirect,
   createCustomerAccountClient,
-} from '@shopify/hydrogen';
+} from '@shopify/hydrogen'
 import {
   createRequestHandler,
   getStorefrontHeaders,
-} from '@shopify/remix-oxygen';
-import {AppSession} from '~/lib/session';
-import {CART_QUERY_FRAGMENT} from '~/lib/fragments';
-import {getLoadContext} from 'server-context-getter';
+} from '@shopify/remix-oxygen'
+import { AppSession } from '~/lib/session'
+import { CART_QUERY_FRAGMENT } from '~/lib/fragments'
+import { getLoadContext } from 'server-context-getter'
 
 /**
  * Export a fetch handler in module format.
@@ -32,11 +32,16 @@ export default {
        * Open a cache instance in the worker and a custom session instance.
        */
       if (!env?.SESSION_SECRET) {
-        throw new Error('SESSION_SECRET environment variable is not set');
+        throw new Error(
+          'SESSION_SECRET environment variable is not set',
+        )
       }
 
       // this is pretty ugly but we need to pre-create the Remix Context to have access to the storefront later in this function
-      const loadContext = getLoadContext(env, executionContext)(request);
+      const loadContext = getLoadContext(
+        env,
+        executionContext,
+      )(request)
 
       /**
        * Create a Remix request handler and pass
@@ -46,9 +51,9 @@ export default {
         build: remixBuild,
         mode: process.env.NODE_ENV,
         getLoadContext: () => loadContext,
-      });
+      })
 
-      const response = await handleRequest(request);
+      const response = await handleRequest(request)
 
       if (response.status === 404) {
         /**
@@ -60,16 +65,18 @@ export default {
           request,
           response,
           storefront: loadContext.storefront,
-        });
+        })
       }
 
-      return response;
+      return response
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error);
-      return new Response('An unexpected error occurred', {status: 500});
+      console.error(error)
+      return new Response('An unexpected error occurred', {
+        status: 500,
+      })
     }
   },
-};
+}
 
 /** @typedef {import('@shopify/remix-oxygen').AppLoadContext} AppLoadContext */
