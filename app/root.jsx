@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNonce } from '@shopify/hydrogen'
 import { defer } from '@shopify/remix-oxygen'
 import {
@@ -13,9 +12,9 @@ import {
   isRouteErrorResponse,
   Links,
 } from '@remix-run/react'
+import favicon from '/app/assets/favicon.svg'
 
 import appStyles from './styles/app.css'
-
 import { Layout } from '~/components/Layout'
 
 /**
@@ -51,7 +50,7 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    // {rel: 'icon', type: 'image/svg+xml', href: favicon},
+    { rel: 'icon', type: 'image/svg+xml', href: favicon },
   ]
 }
 
@@ -112,22 +111,26 @@ export async function loader({ context }) {
 }
 
 export default function App() {
+  const nonce = useNonce()
   const data = useLoaderData()
 
   return (
-    <Root>
-      <Layout {...data}>
-        <Outlet />
-      </Layout>
-    </Root>
-  )
-}
-
-function Root({ children }) {
-  const nonce = useNonce()
-  return (
-    <html lang='en'>
+    <html lang='en' style={{ backgroundColor: '#FFFFFF' }}>
       <head>
+        <link
+          rel='preconnect'
+          href='https://fonts.googleapis.com'
+        />
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin='anonymous'
+        />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&display=swap'
+          rel='stylesheet'
+        />
+
         <meta charSet='utf-8' />
         <meta
           name='viewport'
@@ -137,9 +140,12 @@ function Root({ children }) {
         <Links />
       </head>
       <body style={{ minHeight: 1000 }}>
-        {children}
+        <Layout {...data}>
+          <Outlet />
+        </Layout>
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
+        <LiveReload nonce={nonce} />
       </body>
     </html>
   )
