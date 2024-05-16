@@ -1,8 +1,14 @@
-import {Heading, Text} from '@h2/Text';
+import {Heading, Text} from '/app/components/hydrogen/Text';
 import {useLoaderData} from '@remix-run/react';
 import {Button} from '~/components/hydrogen/Button';
 import {Image} from '@shopify/hydrogen';
-import {Flex, Section, Container, Background, Grid} from '@h2/new/Layout';
+import {
+  Flex,
+  Section,
+  Container,
+  Background,
+  Grid,
+} from '/app/components/hydrogen/new/Layout';
 
 export default function HighlightSolution() {
   const {

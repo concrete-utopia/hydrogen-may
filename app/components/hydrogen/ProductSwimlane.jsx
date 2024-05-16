@@ -1,5 +1,5 @@
-import {Section} from '@h2/new/Layout';
-import {ProductCard} from '@h2/ProductCard';
+import {Section} from '/app/components/hydrogen/new/Layout';
+import {ProductCard} from '/app/components/hydrogen/ProductCard';
 
 const mockProducts = {
   nodes: new Array(12).fill(''),

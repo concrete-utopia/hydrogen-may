@@ -1,4 +1,10 @@
-import {Container, Section, Background, Grid, Flex} from '@h2/new/Layout';
+import {
+  Container,
+  Section,
+  Background,
+  Grid,
+  Flex,
+} from '/app/components/hydrogen/new/Layout';
 import {Heading} from '~/components/hydrogen/Text';
 
 export default function HighlightDetails() {

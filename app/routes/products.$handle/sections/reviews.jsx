@@ -1,6 +1,6 @@
-import {Container} from '@h2/new/Layout';
-import {Heading, Text} from '@h2/Text';
-import {Button} from '@h2/Button';
+import {Container} from '/app/components/hydrogen/new/Layout';
+import {Heading, Text} from '/app/components/hydrogen/Text';
+import {Button} from '/app/components/hydrogen/Button';
 
 export default function Reviews() {
   return (

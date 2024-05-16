@@ -1,4 +1,4 @@
-import Marquee from '@h2/Marquee';
+import Marquee from '/app/components/hydrogen/Marquee';
 
 export default function Banner() {
   const slogan = Array(10)

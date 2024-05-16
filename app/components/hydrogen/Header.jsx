@@ -3,10 +3,10 @@ import useWindowScroll from 'react-use/esm/useWindowScroll';
 import {Suspense, useEffect, useMemo} from 'react';
 import {CartForm} from '@shopify/hydrogen';
 
-import {Text, Heading} from '@h2/Text';
+import {Text, Heading} from '/app/components/hydrogen/Text';
 
-import {Cart} from '@h2/Cart';
-import {CartLoading} from '@h2/CartLoading';
+import {Cart} from '/app/components/hydrogen/Cart';
+import {CartLoading} from '/app/components/hydrogen/CartLoading';
 import {Input} from '~/components/Input';
 import {Drawer, useDrawer} from '~/components/Drawer';
 import {
@@ -21,7 +21,7 @@ import {useIsHydrated} from '~/hooks/useIsHydrated';
 import {useCartFetchers} from '~/hooks/useCartFetchers';
 import {useRootLoaderData} from '~/root';
 
-import Link from '@h2/Link';
+import Link from '/app/components/hydrogen/Link';
 
 export default function Header({title, menu}) {
   const isHome = useIsHomePath();

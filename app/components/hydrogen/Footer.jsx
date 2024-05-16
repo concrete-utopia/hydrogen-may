@@ -1,15 +1,15 @@
 import {Disclosure} from '@headlessui/react';
 import {Suspense} from 'react';
 
-import {Text, Heading} from '@h2/Text';
+import {Text, Heading} from '/app/components/hydrogen/Text';
 import {Section} from './Section';
-import {CountrySelector} from '@h2/CountrySelector';
-import {IconCaret} from '@h2/Icon';
+import {CountrySelector} from '/app/components/hydrogen/CountrySelector';
+import {IconCaret} from '/app/components/hydrogen/Icon';
 import {useIsHomePath} from '~/lib/utils';
 
-import {CountrySelector} from '@h2/CountrySelector';
+import {CountrySelector} from '/app/components/hydrogen/CountrySelector';
 
-import Link from '@h2/Link';
+import Link from '/app/components/hydrogen/Link';
 
 export function Footer({menu}) {
   const isHome = useIsHomePath();
