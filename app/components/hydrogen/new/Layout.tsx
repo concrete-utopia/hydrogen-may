@@ -57,6 +57,9 @@ interface FlexProps {
    * - `'fixed'`: No additional class (CSS: `height: auto`)
    */
   resizeY?: 'hug' | 'fill' | 'fixed';
+  px?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  py?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  p?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 }
 
 /**
@@ -65,6 +68,46 @@ interface FlexProps {
 const flex = cva({
   base: 'flex',
   variants: {
+    wrap: {
+      true: 'flex-wrap',
+      false: 'flex-nowrap',
+    },
+    p: {
+      0: 'p-0',
+      1: 'p-1',
+      2: 'p-2',
+      3: 'p-3',
+      4: 'p-4',
+      5: 'p-6',
+      6: 'p-8',
+      7: 'p-10',
+      8: 'p-12',
+      9: 'p-16',
+    },
+    px: {
+      0: 'px-0',
+      1: 'px-1',
+      2: 'px-2',
+      3: 'px-3',
+      4: 'px-4',
+      5: 'px-6',
+      6: 'px-8',
+      7: 'px-10',
+      8: 'px-12',
+      9: 'px-16',
+    },
+    py: {
+      0: 'py-0',
+      1: 'py-1',
+      2: 'py-2',
+      3: 'py-3',
+      4: 'py-4',
+      5: 'py-6',
+      6: 'py-8',
+      7: 'py-10',
+      8: 'py-12',
+      9: 'py-16',
+    },
     direction: {
       row: 'flex-row',
       column: 'flex-col',
@@ -147,7 +190,7 @@ interface GridProps {
   className?: string;
   columns?: 1 | 2 | 3 | 4 | 5;
   rows?: 1 | 2 | 3 | 4 | 5;
-  gap?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  gap?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   resizeX?: 'hug' | 'fill' | 'fixed';
   resizeY?: 'hug' | 'fill' | 'fixed';
 }
@@ -178,6 +221,10 @@ const grid = cva({
       6: 'gap-6',
       7: 'gap-7',
       8: 'gap-8',
+      9: 'gap-9',
+      10: 'gap-10',
+      11: 'gap-11',
+      12: 'gap-12',
     },
     resizeX: {
       hug: 'w-auto',
@@ -262,7 +309,15 @@ interface ContainerProps {
 }
 
 const container = cva({
-  base: ['mx-auto', 'px-4', 'md:px-8', 'lg:px-10', 'w-full'],
+  base: [
+    'mx-auto',
+    'px-4',
+    'md:px-8',
+    'lg:px-10',
+    'w-full',
+    'relative',
+    'z-10',
+  ],
   variants: {
     fluid: {
       true: 'max-w-none',

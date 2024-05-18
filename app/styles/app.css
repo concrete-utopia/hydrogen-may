@@ -15,7 +15,7 @@
   /* Theme */
   --color-primary: 0 0 0;
   --color-contrast: 255 255 255;
-  --color-accent: 241 255 66;
+  --color-accent: color(display-p3 0.93 1 0.12);
   --color-accentDark: 189 207 0;
 
   --color-black: 0 0 0;

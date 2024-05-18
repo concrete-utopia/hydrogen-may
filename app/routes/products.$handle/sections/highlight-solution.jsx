@@ -10,12 +10,17 @@ export default function HighlightSolution() {
   } = useLoaderData();
   return (
     <Section className="aspect-[2/1]">
-      <Background>
+      <Background className="bg-offWhite">
         <div className="rotate-12 max-w-screen-md">
           <Image className="pointer-events-none" data={selectedVariant.image} />
         </div>
       </Background>
-      <Flex direction="right" justify="center" align="center">
+      <Flex
+        className="z-10 relative"
+        direction="right"
+        justify="center"
+        align="center"
+      >
         <Container>
           <Grid columns={2} justify="center">
             <div></div>

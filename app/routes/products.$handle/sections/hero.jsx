@@ -26,7 +26,7 @@ export default function Hero() {
                 sizes="(min-width: 45em) 50vw, 100vw"
               />
             </div>
-            <Flex align="stretch" justify="center">
+            <Flex align="stretch" justify="center" className="items-center">
               <ProductSummary />
             </Flex>
           </div>
@@ -68,7 +68,7 @@ function ProductSummary() {
   return (
     <div
       id="product-summary"
-      className="rounded-card max-w-[28rem] overflow-hidden bg-white shadow-card"
+      className="rounded-card max-w-[28rem] bg-white shadow-card overflow-hidden"
     >
       <div id="product-info" className="grid gap-4 px-10 min-h-80 py-8">
         <Heading id="product-info-title">{title}</Heading>

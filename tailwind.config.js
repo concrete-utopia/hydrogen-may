@@ -8,7 +8,7 @@ export default {
       colors: {
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         contrast: 'rgb(var(--color-contrast) / <alpha-value>)',
-        accent: 'rgb(var(--color-accent))',
+        accent: 'var(--color-accent)',
         accentDark: 'rgb(var(--color-accentDark))',
         black: 'rgb(var(--color-black))',
         darkGray: 'rgb(var(--color-darkGray))',
