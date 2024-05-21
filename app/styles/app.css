@@ -30,10 +30,6 @@
   --card-radius: 0.625rem;
 }
 
-img {
-  border-radius: 4px;
-}
-
 @layer base {
   * {
     font-variant-ligatures: none;

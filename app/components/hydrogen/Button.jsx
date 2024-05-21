@@ -76,14 +76,7 @@ export const Button = forwardRef(
       className,
     );
 
-    return (
-      <Component
-        preventScrollReset={true}
-        className={styles}
-        {...props}
-        ref={ref}
-      />
-    );
+    return <Component className={styles} {...props} ref={ref} />;
   },
 );
 
@@ -115,7 +108,6 @@ export function AddToCartButton({
                 value={JSON.stringify(analytics)}
               />
               <Button
-                as="button"
                 type="submit"
                 width={width}
                 variant={variant}

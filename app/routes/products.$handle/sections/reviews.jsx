@@ -1,4 +1,4 @@
-import {Container, Flex, Grid, Section} from '@h2/new/Layout';
+import {Container, Flex, Section} from '@h2/new/Layout';
 import {Heading, Text} from '@h2/Text';
 import {Button} from '@h2/Button';
 import {cva, cx} from '@h2/new/cva.config';
@@ -49,20 +49,20 @@ export default function Reviews({data = reviews}) {
         <div>
           <Heading>Don’t take our word for it</Heading>
           <div>
-            <Text>4.8 — 385 Reviews</Text>
+            <Text>4.8 — 385 Reviews</Text>
             <Button>View all reviews</Button>
           </div>
         </div>
       </Container>
       <Container>
-        <div className="ml-auto max-w-3xl">
-          <div className="columns-2 gap-12">
+        <div className="max-w-3xl ml-auto">
+          <div className="gap-12 columns-2">
+            <div className="mt-36" />
             {data.map((review, i) => {
               return (
                 <Review
                   key={review.id}
                   data={review}
-                  offset={i === 0}
                   background={i === 0 ? 'black' : i === 3 ? 'accent' : 'white'}
                 />
               );
@@ -75,12 +75,8 @@ export default function Reviews({data = reviews}) {
 }
 
 const review = cva({
-  base: 'mb-12',
+  base: ['mb-12'],
   variants: {
-    offset: {
-      true: 'mt-36',
-      false: '',
-    },
     background: {
       black: 'bg-black text-white',
       accent: 'bg-accent',
@@ -99,17 +95,22 @@ function Review({data, className, ...props}) {
   const {firstSentence, remainingText} = splitTextIntoSentences(quote);
 
   return (
-    <Flex px={7} py={6} direction="down" gap={5} className={classes}>
-      <span className={`${props.background === 'black' && 'text-accent'}`}>
-        <IconQuote />
-      </span>
-      <Text>
-        <strong>{firstSentence}</strong> {remainingText}
-      </Text>
-      <Text className={props.background === 'black' && 'text-accent'}>
-        &mdash;{customer}
-      </Text>
-    </Flex>
+    <div className="relative inline-block">
+      <Flex px={7} py={6} direction="down" gap={5} className={classes}>
+        <span className={`${props.background === 'black' && 'text-accent'}`}>
+          {props.background === 'black' && (
+            <span className="absolute top-0 left-0 w-6 bg-white aspect-square"></span>
+          )}
+          <IconQuote />
+        </span>
+        <Text>
+          <strong>{firstSentence}</strong> {remainingText}
+        </Text>
+        <Text className={props.background === 'black' && 'text-accent'}>
+          &mdash;{customer}
+        </Text>
+      </Flex>
+    </div>
   );
 }
 

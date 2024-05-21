@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import {flattenConnection, Image, Money} from '@shopify/hydrogen';
 
 import {Text} from '@h2/Text';
-import {Link} from '@h2/Link';
+import Link from '@h2/Link';
 import {Button, AddToCartButton} from '@h2/Button';
 import {isDiscounted, isNewArrival} from '~/lib/utils';
 
