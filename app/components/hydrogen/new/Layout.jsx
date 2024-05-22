@@ -1,11 +1,6 @@
 import React from 'react';
-
-// Import configured class names generator functions with predetermined styles.
 import {cx, cva} from './cva.config';
 
-/**
- * Configuration for "cva" to generate a dynamic class string based on the provided flex configuration.
- */
 const flex = cva({
   base: 'flex',
   variants: {
@@ -98,19 +93,6 @@ const flex = cva({
   },
 });
 
-/**
- * A highly customizable Flex component designed to facilitate the easier use of CSS flexbox layout
- * with additional options to control alignment, distribution, and direction of child components.
- *
- * @component
- * @param {React.ElementType} [as='div'] - The element type to be rendered as the Flex container.
- * @param {React.ReactNode} children - Elements to be included inside the Flex container.
- * @param {string} className - Additional custom classes to enhance or modify the default styling.
- * @param {'row' | 'column'} direction - Direction which children are laid out in the Flex container.
- * @param {'start' | 'center' | 'end' | 'baseline' | 'stretch'} align - Align children vertically or horizontally (dependent on `direction`).
- * @param {'center' | 'start' | 'end' | 'between'} justify - Control the distribution of children along main axis.
- * @returns {React.ReactNode} The React component rendering the Flex container with applied styles.
- */
 export const Flex = React.forwardRef(
   ({as: Component = 'div', children, className = '', ...props}, ref) => {
     const classes = cx(
