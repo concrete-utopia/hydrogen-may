@@ -1,8 +1,7 @@
 import {forwardRef} from 'react';
-import {cx, cva} from './utils';
+import {cx, cva, compose} from './utils';
 
-const flex = cva({
-  base: 'flex',
+const layout = cva({
   variants: {
     p: {
       0: 'p-0',
@@ -40,6 +39,65 @@ const flex = cva({
       8: 'py-12',
       9: 'py-16',
     },
+    m: {
+      0: 'm-0',
+      1: 'm-1',
+      2: 'm-2',
+      3: 'm-3',
+      4: 'm-4',
+      5: 'm-6',
+      6: 'm-8',
+      7: 'm-10',
+      8: 'm-12',
+      9: 'm-16',
+    },
+    mx: {
+      0: 'mx-0',
+      1: 'mx-1',
+      2: 'mx-2',
+      3: 'mx-3',
+      4: 'mx-4',
+      5: 'mx-6',
+      6: 'mx-8',
+      7: 'mx-10',
+      8: 'mx-12',
+      9: 'mx-16',
+    },
+    my: {
+      0: 'my-0',
+      1: 'my-1',
+      2: 'my-2',
+      3: 'my-3',
+      4: 'my-4',
+      5: 'my-6',
+      6: 'my-8',
+      7: 'my-10',
+      8: 'my-12',
+      9: 'my-16',
+    },
+    resizeX: {
+      hug: 'w-auto',
+      fill: 'w-full',
+      fixed: '',
+    },
+    resizeY: {
+      hug: 'h-auto',
+      fill: ['h-inherit', 'min-h-inherit'],
+      fixed: '',
+    },
+    position: {
+      relative: 'relative',
+      absolute: 'absolute',
+      fixed: 'fixed',
+      sticky: 'sticky',
+      static: 'static',
+    },
+  },
+});
+
+const flex = cva({
+  base: 'flex',
+  variants: {
     direction: {
       row: 'flex-row',
       column: 'flex-col',
@@ -73,24 +131,7 @@ const flex = cva({
       8: 'gap-12',
       9: 'gap-16',
     },
-    resizeX: {
-      hug: 'w-auto',
-      fill: 'w-full',
-      fixed: '',
-    },
-    resizeY: {
-      hug: 'h-auto',
-      fill: 'h-full',
-      fixed: '',
-    },
     wrap: 'flex-wrap',
-    position: {
-      relative: 'relative',
-      absolute: 'absolute',
-      fixed: 'fixed',
-      sticky: 'sticky',
-      static: 'static',
-    },
   },
   defaultVariants: {
     direction: 'row',
@@ -103,10 +144,10 @@ const flex = cva({
 
 export const Flex = forwardRef(
   ({as: Component = 'div', children, className, ...props}, ref) => {
-    const classes = cx(flex(props), className);
+    const styles = compose(layout, flex);
 
     return (
-      <Component ref={ref} className={classes} {...props}>
+      <Component ref={ref} className={styles({...props, className})} {...props}>
         {children}
       </Component>
     );
@@ -158,16 +199,6 @@ const grid = cva({
       11: 'gap-11',
       12: 'gap-12',
     },
-    resizeX: {
-      hug: 'w-auto',
-      fill: 'w-full',
-      fixed: '',
-    },
-    resizeY: {
-      hug: 'h-auto',
-      fill: 'h-full',
-      fixed: '',
-    },
   },
   defaultVariants: {
     gap: 4,
@@ -177,10 +208,10 @@ const grid = cva({
 });
 
 export const Grid = forwardRef(({children, className, ...props}, ref) => {
-  const classes = cx(grid(props), className);
+  const styles = compose(layout, grid);
 
   return (
-    <div ref={ref} className={classes} {...props}>
+    <div ref={ref} className={styles({...props, className})} {...props}>
       {children}
     </div>
   );
@@ -250,16 +281,6 @@ export const Container = forwardRef(
         'z-10',
       ],
       variants: {
-        resizeX: {
-          hug: 'w-auto',
-          fill: 'w-full',
-          fixed: '',
-        },
-        resizeY: {
-          hug: 'h-auto',
-          fill: 'h-full',
-          fixed: '',
-        },
         fluid: {
           true: 'max-w-none',
           false: 'max-w-7xl',
@@ -271,12 +292,11 @@ export const Container = forwardRef(
         fluid: false,
       },
     });
+
+    const styles = compose(layout, container);
+
     return (
-      <Component
-        ref={ref}
-        className={container({...props, className})}
-        {...props}
-      >
+      <Component ref={ref} className={styles({...props, className})} {...props}>
         {children}
       </Component>
     );
@@ -295,10 +315,12 @@ const section = cva({
 
 export const Section = forwardRef(
   ({as: Component = 'section', children, className, ...props}, ref) => {
-    const classes = cx(section(props), className);
-
     return (
-      <Component ref={ref} className={classes} {...props}>
+      <Component
+        ref={ref}
+        className={section({...props, className})}
+        {...props}
+      >
         {children}
       </Component>
     );

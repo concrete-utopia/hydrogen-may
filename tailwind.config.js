@@ -45,6 +45,9 @@ export default {
           'calc(var(--screen-height, 100vh) - var(--height-nav))',
         'screen-dynamic': 'var(--screen-height-dynamic, 100vh)',
       },
+      minHeight: {
+        inherit: 'inherit',
+      },
       fontFamily: {
         sans: ['Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         serif: ['"IBMPlexSerif"', 'Palatino', 'ui-serif'],
