@@ -1,10 +1,10 @@
-import clsx from 'clsx';
 import {flattenConnection, Image} from '@shopify/hydrogen';
 
 import {Text} from '@h2/Text';
 import Link from '@h2/Link';
 import {Button, AddToCartButton} from '@h2/Button';
 import {Price, PriceCompareAt} from './Price';
+import {cx} from './new/cva.config';
 
 export function ProductCard({product, className, loading, onClick, quickAdd}) {
   product = {
@@ -42,13 +42,13 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
   const {image} = firstVariant;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className={cx('flex flex-col gap-2', className)}>
       <Link
         onClick={onClick}
         to={`/products/${product.handle}`}
         prefetch="viewport"
       >
-        <div className={clsx('grid gap-4', className)}>
+        <div className={'grid gap-4'}>
           <div className="card-image aspect-[4/5] bg-primary/5">
             {image && (
               <Image

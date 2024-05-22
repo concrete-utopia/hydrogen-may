@@ -60,6 +60,7 @@ interface FlexProps {
   px?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
   py?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
   p?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  wrap?: boolean;
 }
 
 /**
@@ -68,10 +69,6 @@ interface FlexProps {
 const flex = cva({
   base: 'flex',
   variants: {
-    wrap: {
-      true: 'flex-wrap',
-      false: 'flex-nowrap',
-    },
     p: {
       0: 'p-0',
       1: 'p-1',
@@ -176,7 +173,11 @@ const flex = cva({
  */
 export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
   ({as: Component = 'div', children, className = '', ...props}, ref) => {
-    const classes = cx(flex(props), className);
+    const classes = cx(
+      flex(props),
+      props.wrap ? 'flex-wrap' : 'flex-nowrap',
+      className,
+    );
 
     return (
       <Component ref={ref} className={classes} {...props}>
@@ -206,6 +207,13 @@ const grid = cva({
       3: 'grid-cols-3',
       4: 'grid-cols-4',
       5: 'grid-cols-5',
+      6: 'grid-cols-6',
+      7: 'grid-cols-7',
+      8: 'grid-cols-8',
+      9: 'grid-cols-9',
+      10: 'grid-cols-10',
+      11: 'grid-cols-11',
+      12: 'grid-cols-12',
     },
     rows: {
       1: 'grid-rows-1',
@@ -213,6 +221,13 @@ const grid = cva({
       3: 'grid-rows-3',
       4: 'grid-rows-4',
       5: 'grid-rows-5',
+      6: 'grid-rows-6',
+      7: 'grid-rows-7',
+      8: 'grid-rows-8',
+      9: 'grid-rows-9',
+      10: 'grid-rows-10',
+      11: 'grid-rows-11',
+      12: 'grid-rows-12',
     },
     gap: {
       1: 'gap-1',
@@ -321,10 +336,6 @@ const container = cva({
     'z-10',
   ],
   variants: {
-    fluid: {
-      true: 'max-w-none',
-      false: 'max-w-7xl',
-    },
     resizeX: {
       hug: 'w-auto',
       fill: 'w-full',
@@ -337,7 +348,6 @@ const container = cva({
     },
   },
   defaultVariants: {
-    fluid: false,
     resizeX: 'hug',
     resizeY: 'hug',
   },
@@ -345,8 +355,11 @@ const container = cva({
 
 export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   ({as: Component = 'div', children, className, ...props}, ref) => {
-    const classes = cx(container(props), className);
-
+    const classes = cx(
+      container(props),
+      props.fluid ? 'max-w-none' : 'max-w-7xl',
+      className,
+    );
     return (
       <Component ref={ref} className={classes} {...props}>
         {children}
@@ -359,25 +372,17 @@ interface SectionProps {
   as?: React.ElementType;
   children?: React.ReactNode;
   className?: string;
-  padded?: boolean; // Controls whether the section has padding
+  padded?: boolean;
 }
 
 const section = cva({
   base: ['w-full', 'relative', 'min-h-8'],
-  variants: {
-    padded: {
-      true: 'py-8', // Tailwind classes for padding (you can change as needed)
-      false: '',
-    },
-  },
-  defaultVariants: {
-    padded: true,
-  },
+  variants: {},
 });
 
 export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({as: Component = 'section', children, className, ...props}, ref) => {
-    const classes = cx(section(props), className);
+  ({as: Component = 'section', padded, children, className, ...props}, ref) => {
+    const classes = cx(section(props), padded && 'py-8', className);
 
     return (
       <Component ref={ref} className={classes} {...props}>

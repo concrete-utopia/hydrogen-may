@@ -45,7 +45,7 @@ const reviews = [
 export default function Reviews({data = reviews}) {
   return (
     <Section>
-      <Container as="header" className="py-16 -mb-64">
+      <Container as="header" className="py-32 -mb-64">
         <Flex direction="down" gap={8}>
           <Heading>Don’t take our word for it</Heading>
           <Flex direction="down" gap={6}>

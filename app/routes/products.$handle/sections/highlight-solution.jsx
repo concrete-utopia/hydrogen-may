@@ -21,6 +21,7 @@ export default function HighlightSolution() {
             <div></div>
             <Flex
               className="h-full"
+              p={8}
               direction="down"
               align="start"
               justify="center"
@@ -47,10 +48,12 @@ export default function HighlightSolution() {
         </Container>
       </Flex>
       <Background className="bg-offWhite">
-        <Image
-          className="h-full max-w-screen-md scale-110 -translate-y-32 pointer-events-none mix-blend-darken rotate-12"
-          data={selectedVariant.image}
-        />
+        <div className="h-full">
+          <Image
+            className="object-fill w-auto scale-110 -translate-y-32 pointer-events-none mix-blend-darken rotate-12"
+            data={selectedVariant.image}
+          />
+        </div>
       </Background>
       <div className="absolute bottom-0 right-0 flex justify-around w-1/2 translate-y-7">
         <span className="-translate-x-4 translate-y-2 aspect-square w-14 bg-offWhite"></span>

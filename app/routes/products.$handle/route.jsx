@@ -68,7 +68,7 @@ export async function loader({params, request, context}) {
 export default function Product() {
   /** @type {LoaderReturnData} */
   return (
-    <div className="grid">
+    <>
       <Hero />
       <Marquee />
       <HighlightDetails />
@@ -76,7 +76,7 @@ export default function Product() {
       <Reviews />
       <Recommended />
       <Spotlight />
-    </div>
+    </>
   );
 }
 
