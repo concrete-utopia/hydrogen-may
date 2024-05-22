@@ -33,7 +33,6 @@ export function Text({
 
   const styles = clsx(
     missingClass(className, 'max-w-') && widths[width],
-    missingClass(className, 'whitespace-') && 'whitespace-pre-wrap',
     missingClass(className, 'text-') && colors[color],
     sizes[size],
     className,
@@ -69,7 +68,6 @@ export function Heading({
   };
 
   const styles = clsx(
-    missingClass(className, 'whitespace-') && 'whitespace-pre-wrap',
     missingClass(className, 'max-w-') && widths[width],
     missingClass(className, 'font-') && sizes[size],
     className,
