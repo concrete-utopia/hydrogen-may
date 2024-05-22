@@ -4,15 +4,15 @@ export default function Banner() {
   const slogan = Array(10)
     .fill(null)
     .map((_, index) => (
-      <div key={index} className="flex items-center gap-4 p-4 pr-0">
-        <span className="font-accent">For Builders</span>
+      <div key={index} className="flex items-center gap-8 p-8 pr-0">
+        <span className="text-5xl font-accent">For Builders</span>
         <Star />
-        <span className="font-sans">By Builders</span>
+        <span className="font-sans text-5xl">By Builders</span>
         <Star />
       </div>
     ));
 
-  return <Marquee className="bg-black uppercase text-white">{slogan}</Marquee>;
+  return <Marquee className="text-white uppercase bg-black">{slogan}</Marquee>;
 }
 
 const Star = () => {

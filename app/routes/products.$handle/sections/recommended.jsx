@@ -1,6 +1,6 @@
 import {ProductCard} from '@h2/ProductCard';
 import {Heading} from '@h2/Text';
-import {Section} from '@h2/new/Layout';
+import {Container, Section} from '@h2/new/Layout';
 
 const mockProducts = {
   nodes: new Array(12).fill(''),
@@ -13,13 +13,15 @@ export default function Recommended({
   ...props
 }) {
   return (
-    <Section {...props}>
-      <Heading>
-        You may
-        <br />
-        also like
-      </Heading>
-      <div className="swimlane hiddenScroll md:pb-8 md:scroll-px-8 lg:scroll-px-12 md:px-8 lg:px-12">
+    <Section padded className="w-screen" {...props}>
+      <Container className="pb-16">
+        <Heading>
+          You may
+          <br />
+          also like
+        </Heading>
+      </Container>
+      <div className="swimlane">
         {products.nodes.map((product) => (
           <ProductCard
             product={product}

@@ -74,8 +74,8 @@ export default function Product() {
       <HighlightDetails />
       <HighlightSolution />
       <Reviews />
-      <Spotlight />
       <Recommended />
+      <Spotlight />
     </div>
   );
 }

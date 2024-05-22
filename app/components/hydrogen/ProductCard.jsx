@@ -1,35 +1,45 @@
 import clsx from 'clsx';
-import {flattenConnection, Image, Money} from '@shopify/hydrogen';
+import {flattenConnection, Image} from '@shopify/hydrogen';
 
 import {Text} from '@h2/Text';
 import Link from '@h2/Link';
 import {Button, AddToCartButton} from '@h2/Button';
-import {isDiscounted, isNewArrival} from '~/lib/utils';
+import {Price, PriceCompareAt} from './Price';
 
-export function ProductCard({
-  product,
-  label,
-  className,
-  loading,
-  onClick,
-  quickAdd,
-}) {
-  let cardLabel;
+export function ProductCard({product, className, loading, onClick, quickAdd}) {
+  product = {
+    handle: 'builders-tote',
+    title: 'Builders Tote',
+    variants: {
+      nodes: [
+        {
+          availableForSale: true,
+          price: {
+            amount: '38.00',
+            currencyCode: 'CAD',
+          },
+          compareAtPrice: {
+            amount: '42.00',
+            currencyCode: 'CAD',
+          },
+          image: {
+            id: 'gid://Shopify/placeholder/1234',
+            altText: 'Placeholder',
+            height: '600',
+            width: '400',
+            url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
+          },
+        },
+      ],
+    },
+  };
 
   if (!product?.variants?.nodes?.length) return null;
 
   const firstVariant = flattenConnection(product.variants)[0];
 
   if (!firstVariant) return null;
-  const {image, price, compareAtPrice} = firstVariant;
-
-  if (label) {
-    cardLabel = label;
-  } else if (isDiscounted(price, compareAtPrice)) {
-    cardLabel = 'Sale';
-  } else if (isNewArrival(product.publishedAt)) {
-    cardLabel = 'New';
-  }
+  const {image} = firstVariant;
 
   return (
     <div className="flex flex-col gap-2">
@@ -50,13 +60,6 @@ export function ProductCard({
                 loading={loading}
               />
             )}
-            <Text
-              as="label"
-              size="fine"
-              className="absolute top-0 right-0 m-4 text-right text-notice"
-            >
-              {cardLabel}
-            </Text>
           </div>
           <div className="grid gap-1">
             <Text
@@ -67,12 +70,8 @@ export function ProductCard({
             </Text>
             <div className="flex gap-4">
               <Text className="flex gap-4">
-                <Money withoutTrailingZeros data={price} />
-                {isDiscounted(price, compareAtPrice) && (
-                  <span className="strike">
-                    <Money className={'opacity-50'} data={compareAtPrice} />
-                  </span>
-                )}
+                <Price variant={firstVariant} />
+                <PriceCompareAt className="opacity-80" variant={firstVariant} />
               </Text>
             </div>
           </div>
