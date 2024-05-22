@@ -1,4 +1,4 @@
-import {Heading, Text} from '@h2/Text';
+import {Heading, Text} from '@h2/new/Text';
 import {useLoaderData} from '@remix-run/react';
 import {Button} from '~/components/hydrogen/Button';
 import {Image} from '@shopify/hydrogen';
@@ -20,22 +20,24 @@ export default function HighlightSolution() {
           <Grid columns={2} className="h-full">
             <div></div>
             <Flex
-              className="h-full"
-              p={8}
+              className="pl-8"
+              resizeY="fill"
               direction="down"
               align="start"
               justify="center"
               gap={9}
             >
-              <Heading className="uppercase">
+              <Heading className="uppercase" wrap="balance">
                 Your{' '}
-                <span className="p-2 mx-2 rounded-full bg-accent">ideal</span>
-                <span className="px-4 py-2 mx-2 rounded-full bg-accent">
+                <span className="p-2 px-8 mx-2 rounded-full bg-accent">
+                  ideal
+                </span>
+                <span className="px-8 py-2 mx-2 rounded-full bg-accent">
                   &nbsp;
                 </span>{' '}
                 travel companion
               </Heading>
-              <Text>
+              <Text wrap="balance">
                 This is a really nice tote bag, perfect size for carry on travel
                 or day trips. It&rsquo;s the maximum size for “personal” carry
                 on luggage on flights. Lots of pockets in all the right places.

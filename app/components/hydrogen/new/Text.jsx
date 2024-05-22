@@ -2,8 +2,8 @@ import {forwardRef} from 'react';
 import {cva} from './utils';
 
 const text = cva({
+  base: ['text-black/70', 'w-full', 'max-w-prose'],
   variants: {
-    base: ['text-black/70', 'w-full', 'max-w-prose'],
     size: {
       1: 'text-xs', // 12/16 - 0.75rem
       2: 'text-sm', // 14/20 - 0.875rem

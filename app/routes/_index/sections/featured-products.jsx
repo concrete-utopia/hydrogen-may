@@ -41,7 +41,7 @@ function SaleBadge({variant}) {
       gap={2}
       align="center"
       justify="center"
-      className="absolute top-0 right-0 w-40 pb-4 text-center translate-x-16 translate-y-16 bg-white rounded-full rotate-12 shadow-card aspect-square"
+      className="absolute top-0 right-0 w-40 pb-4 text-center translate-x-16 translate-y-16 bg-white rounded-full rotate-12 shadow-badge aspect-square"
     >
       <PriceCompareAt
         align="center"

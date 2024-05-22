@@ -68,6 +68,8 @@ export default {
         darkHeader: 'inset 0px -1px 0px 0px rgba(21, 21, 21, 0.4)',
         lightHeader: 'inset 0px -1px 0px 0px rgba(21, 21, 21, 0.05)',
         card: '0px 4px 72.8px 0px rgba(0, 0, 0, 0.20)',
+        badge:
+          '0px 1px 2px rgba(0, 0, 0, 0.05), 0px 2px 4px rgba(0, 0, 0, 0.05), 0px 4px 8px rgba(0, 0, 0, 0.05), 0px 8px 12px rgba(0, 0, 0, 0.05), 0px 12px 16px rgba(0, 0, 0, 0.05)',
       },
     },
   },
