@@ -1,5 +1,5 @@
-import { useNonce } from '@shopify/hydrogen'
-import { defer } from '@shopify/remix-oxygen'
+import {useNonce} from '@shopify/hydrogen';
+import {defer} from '@shopify/remix-oxygen';
 import {
   Meta,
   Outlet,
@@ -11,37 +11,33 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   Links,
-} from '@remix-run/react'
-import favicon from '/app/assets/favicon.svg'
+} from '@remix-run/react';
+import favicon from '/app/assets/favicon.svg';
 
-import appStyles from './styles/app.css'
-import { Layout } from '~/components/Layout'
+import appStyles from './styles/app-generated.css';
+import {Layout} from '~/components/Layout';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
  * @type {ShouldRevalidateFunction}
  */
-export const shouldRevalidate = ({
-  formMethod,
-  currentUrl,
-  nextUrl,
-}) => {
+export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
   // revalidate when a mutation is performed e.g add to cart, login...
   if (formMethod && formMethod !== 'GET') {
-    return true
+    return true;
   }
 
   // revalidate when manually revalidating via useRevalidator
   if (currentUrl.toString() === nextUrl.toString()) {
-    return true
+    return true;
   }
 
-  return false
-}
+  return false;
+};
 
 export function links() {
   return [
-    { rel: 'stylesheet', href: appStyles },
+    {rel: 'stylesheet', href: appStyles},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -50,37 +46,34 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    { rel: 'icon', type: 'image/svg+xml', href: favicon },
-  ]
+    {rel: 'icon', type: 'image/svg+xml', href: favicon},
+  ];
 }
 
 /**
  * @return {LoaderReturnData}
  */
 export const useRootLoaderData = () => {
-  const [root] = useMatches()
-  return root?.data
-}
+  const [root] = useMatches();
+  return root?.data;
+};
 
 /**
  * @param {LoaderFunctionArgs}
  */
-export async function loader({ context }) {
-  const { storefront, session, cart } = context
-  const customerAccessToken = await session.get(
-    'customerAccessToken',
-  )
-  const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN
+export async function loader({context}) {
+  const {storefront, session, cart} = context;
+  const customerAccessToken = await session.get('customerAccessToken');
+  const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
 
   // validate the customer access token is valid
-  const { isLoggedIn, headers } =
-    await validateCustomerAccessToken(
-      session,
-      customerAccessToken,
-    )
+  const {isLoggedIn, headers} = await validateCustomerAccessToken(
+    session,
+    customerAccessToken,
+  );
 
   // defer the cart query by not awaiting it
-  const cartPromise = cart.get()
+  const cartPromise = cart.get();
 
   // defer the footer query (below the fold)
   const footerPromise = storefront.query(FOOTER_QUERY, {
@@ -88,7 +81,7 @@ export async function loader({ context }) {
     variables: {
       footerMenuHandle: 'footer', // Adjust to your footer menu handle
     },
-  })
+  });
 
   // await the header query (above the fold)
   const headerPromise = storefront.query(HEADER_QUERY, {
@@ -96,7 +89,7 @@ export async function loader({ context }) {
     variables: {
       headerMenuHandle: 'main-menu', // Adjust to your header menu handle
     },
-  })
+  });
 
   return defer(
     {
@@ -106,40 +99,34 @@ export async function loader({ context }) {
       isLoggedIn,
       publicStoreDomain,
     },
-    { headers },
-  )
+    {headers},
+  );
 }
 
 export default function App() {
-  const nonce = useNonce()
-  const data = useLoaderData()
+  const nonce = useNonce();
+  const data = useLoaderData();
 
   return (
-    <html lang='en' style={{ backgroundColor: '#FFFFFF' }}>
+    <html lang="en" style={{backgroundColor: '#FFFFFF'}}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          rel='preconnect'
-          href='https://fonts.googleapis.com'
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
         />
         <link
-          rel='preconnect'
-          href='https://fonts.gstatic.com'
-          crossOrigin='anonymous'
-        />
-        <link
-          href='https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&display=swap'
-          rel='stylesheet'
+          href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&display=swap"
+          rel="stylesheet"
         />
 
-        <meta charSet='utf-8' />
-        <meta
-          name='viewport'
-          content='width=device-width,initial-scale=1'
-        />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body style={{ minHeight: 1000 }}>
+      <body style={{minHeight: 1000}}>
         <Layout {...data}>
           <Outlet />
         </Layout>
@@ -148,36 +135,33 @@ export default function App() {
         <LiveReload nonce={nonce} />
       </body>
     </html>
-  )
+  );
 }
 
 export function ErrorBoundary() {
-  const error = useRouteError()
-  const rootData = useRootLoaderData()
-  const nonce = useNonce()
-  let errorMessage = 'Unknown error'
-  let errorStatus = 500
+  const error = useRouteError();
+  const rootData = useRootLoaderData();
+  const nonce = useNonce();
+  let errorMessage = 'Unknown error';
+  let errorStatus = 500;
 
   if (isRouteErrorResponse(error)) {
-    errorMessage = error?.data?.message ?? error.data
-    errorStatus = error.status
+    errorMessage = error?.data?.message ?? error.data;
+    errorStatus = error.status;
   } else if (error instanceof Error) {
-    errorMessage = error.message
+    errorMessage = error.message;
   }
 
   return (
-    <html lang='en'>
+    <html lang="en">
       <head>
-        <meta charSet='utf-8' />
-        <meta
-          name='viewport'
-          content='width=device-width,initial-scale=1'
-        />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
       </head>
       <body>
         <Layout {...rootData}>
-          <div className='route-error'>
+          <div className="route-error">
             <h1>Oops</h1>
             <h2>{errorStatus}</h2>
             {errorMessage && (
@@ -191,7 +175,7 @@ export function ErrorBoundary() {
         <Scripts nonce={nonce} />
       </body>
     </html>
-  )
+  );
 }
 
 /**
@@ -208,33 +192,25 @@ export function ErrorBoundary() {
  * @param {LoaderFunctionArgs['context']['session']} session
  * @param {CustomerAccessToken} [customerAccessToken]
  */
-async function validateCustomerAccessToken(
-  session,
-  customerAccessToken,
-) {
-  let isLoggedIn = false
-  const headers = new Headers()
-  if (
-    !customerAccessToken?.accessToken ||
-    !customerAccessToken?.expiresAt
-  ) {
-    return { isLoggedIn, headers }
+async function validateCustomerAccessToken(session, customerAccessToken) {
+  let isLoggedIn = false;
+  const headers = new Headers();
+  if (!customerAccessToken?.accessToken || !customerAccessToken?.expiresAt) {
+    return {isLoggedIn, headers};
   }
 
-  const expiresAt = new Date(
-    customerAccessToken.expiresAt,
-  ).getTime()
-  const dateNow = Date.now()
-  const customerAccessTokenExpired = expiresAt < dateNow
+  const expiresAt = new Date(customerAccessToken.expiresAt).getTime();
+  const dateNow = Date.now();
+  const customerAccessTokenExpired = expiresAt < dateNow;
 
   if (customerAccessTokenExpired) {
-    session.unset('customerAccessToken')
-    headers.append('Set-Cookie', await session.commit())
+    session.unset('customerAccessToken');
+    headers.append('Set-Cookie', await session.commit());
   } else {
-    isLoggedIn = true
+    isLoggedIn = true;
   }
 
-  return { isLoggedIn, headers }
+  return {isLoggedIn, headers};
 }
 
 const MENU_FRAGMENT = `#graphql
@@ -261,7 +237,7 @@ const MENU_FRAGMENT = `#graphql
       ...ParentMenuItem
     }
   }
-`
+`;
 
 const HEADER_QUERY = `#graphql
   fragment Shop on Shop {
@@ -292,7 +268,7 @@ const HEADER_QUERY = `#graphql
     }
   }
   ${MENU_FRAGMENT}
-`
+`;
 
 const FOOTER_QUERY = `#graphql
   query Footer(
@@ -305,7 +281,7 @@ const FOOTER_QUERY = `#graphql
     }
   }
   ${MENU_FRAGMENT}
-`
+`;
 
 /** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */
 /** @typedef {import('@remix-run/react').ShouldRevalidateFunction} ShouldRevalidateFunction */
