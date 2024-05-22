@@ -1,5 +1,5 @@
 import {Button} from '@h2/Button';
-import {Heading, Text} from '@h2/Text';
+import {Heading, Text} from '@h2/new/Text';
 import {Flex, Grid, Section} from '@h2/new/Layout';
 import {Image} from '@shopify/hydrogen';
 
@@ -22,7 +22,7 @@ export default function FeaturedProducts() {
             src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png"
           />
           <Flex gap={4} direction="down" align="center" justify="center">
-            <Heading>Builders Tote</Heading>
+            <Heading size={3}>Builders Tote</Heading>
             <Text width="narrow">
               Sofie Pavitt Face is an intentional edit of skincare essentials
               designed for acne-prone skin.

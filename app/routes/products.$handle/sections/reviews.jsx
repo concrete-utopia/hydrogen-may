@@ -1,7 +1,7 @@
 import {Container, Flex, Section} from '@h2/new/Layout';
 import {Heading, Text} from '@h2/Text';
 import {Button} from '@h2/Button';
-import {cva, cx} from '@h2/new/cva.config';
+import {cva, cx} from '@h2/new/utils';
 
 const reviews = [
   {

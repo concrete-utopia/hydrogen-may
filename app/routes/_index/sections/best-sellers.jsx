@@ -1,14 +1,16 @@
 import {ProductCard} from '@h2/ProductCard';
-import {Heading} from '@h2/Text';
-import {Container, Grid, Section} from '@h2/new/Layout';
+import {Heading} from '@h2/new/Text';
+import {Container, Flex, Grid, Section} from '@h2/new/Layout';
 
 export default function BestSellers() {
   return (
     <Section className="py-32">
       <Container as="header">
-        <Heading className="flex justify-between w-full -mb-6 uppercase max-w-none text-7xl">
-          <span>Best</span>
-          <span>Sellers</span>
+        <Heading uppercase size={9} className="-mb-10">
+          <Flex as="span" justify="between">
+            <span>Best</span>
+            <span>Sellers</span>
+          </Flex>
         </Heading>
       </Container>
       <Container>

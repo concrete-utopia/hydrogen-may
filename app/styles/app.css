@@ -93,7 +93,7 @@
       left: -4%;
       top: 50%;
       transform: translateY(-50%);
-      background: rgb(var(--color-primary));
+      background-color: var(--color-black);
     }
   }
 }

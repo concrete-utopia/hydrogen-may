@@ -1,5 +1,5 @@
 import {Button} from '@h2/Button';
-import {Heading, Text} from '@h2/Text';
+import {Heading, Text} from '@h2/new/Text';
 import {Background, Container, Flex, Section} from '@h2/new/Layout';
 import {Image} from '@shopify/hydrogen';
 
@@ -18,11 +18,12 @@ export default function Hero() {
       <Container resizeY="fill" className="py-24">
         <Flex direction="down" resizeY="fill" justify="between">
           <Flex direction="down">
-            <Text className="uppercase text-accent font-display">
+            <Text uppercase size={6} className="text-accent font-display">
               Summer 2024
             </Text>
-            <Heading className="text-white">
-              Building <span className="font-display">Essentials</span>
+            <Heading size="8" color="white" uppercase>
+              Building <br />
+              <span className="font-display">Essentials</span>
             </Heading>
           </Flex>
           <Button to="/">Shop now</Button>

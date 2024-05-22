@@ -1,5 +1,5 @@
-import React from 'react';
-import {cx, cva} from './cva.config';
+import {forwardRef} from 'react';
+import {cx, cva} from './utils';
 
 const flex = cva({
   base: 'flex',
@@ -83,6 +83,7 @@ const flex = cva({
       fill: 'h-full',
       fixed: '',
     },
+    wrap: 'flex-wrap',
   },
   defaultVariants: {
     direction: 'row',
@@ -93,13 +94,9 @@ const flex = cva({
   },
 });
 
-export const Flex = React.forwardRef(
-  ({as: Component = 'div', children, className = '', ...props}, ref) => {
-    const classes = cx(
-      flex(props),
-      props.wrap ? 'flex-wrap' : 'flex-nowrap',
-      className,
-    );
+export const Flex = forwardRef(
+  ({as: Component = 'div', children, className, ...props}, ref) => {
+    const classes = cx(flex(props), className);
 
     return (
       <Component ref={ref} className={classes} {...props}>
@@ -172,7 +169,7 @@ const grid = cva({
   },
 });
 
-export const Grid = React.forwardRef(({children, className, ...props}, ref) => {
+export const Grid = forwardRef(({children, className, ...props}, ref) => {
   const classes = cx(grid(props), className);
 
   return (
@@ -205,53 +202,51 @@ const background = cva({
   },
 });
 
-export const Background = React.forwardRef(
-  ({children, className, ...props}, ref) => {
-    const classes = cx(background(props), className);
+export const Background = forwardRef(({children, className, ...props}, ref) => {
+  const classes = cx(background(props), className);
 
-    return (
-      <div ref={ref} className={classes} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
-
-const container = cva({
-  base: [
-    'mx-auto',
-    'px-4',
-    'md:px-8',
-    'lg:px-10',
-    'w-full',
-    'relative',
-    'z-10',
-  ],
-  variants: {
-    resizeX: {
-      hug: 'w-auto',
-      fill: 'w-full',
-      fixed: '',
-    },
-    resizeY: {
-      hug: 'h-auto',
-      fill: 'h-full',
-      fixed: '',
-    },
-  },
-  defaultVariants: {
-    resizeX: 'hug',
-    resizeY: 'hug',
-  },
+  return (
+    <div ref={ref} className={classes} {...props}>
+      {children}
+    </div>
+  );
 });
 
-export const Container = React.forwardRef(
+export const Container = forwardRef(
   ({as: Component = 'div', children, className, ...props}, ref) => {
-    const classes = cx(
-      container(props),
-      props.fluid ? 'max-w-none' : 'max-w-7xl',
-      className,
-    );
+    const container = cva({
+      base: [
+        'mx-auto',
+        'px-4',
+        'md:px-8',
+        'lg:px-10',
+        'w-full',
+        'relative',
+        'z-10',
+      ],
+      variants: {
+        resizeX: {
+          hug: 'w-auto',
+          fill: 'w-full',
+          fixed: '',
+        },
+        resizeY: {
+          hug: 'h-auto',
+          fill: 'h-full',
+          fixed: '',
+        },
+        fluid: {
+          true: 'max-w-none',
+          false: 'max-w-7xl',
+        },
+      },
+      defaultVariants: {
+        resizeX: 'hug',
+        resizeY: 'hug',
+        fluid: false,
+      },
+    });
+    const classes = cx(container(props), className);
     return (
       <Component ref={ref} className={classes} {...props}>
         {children}
@@ -262,12 +257,17 @@ export const Container = React.forwardRef(
 
 const section = cva({
   base: ['w-full', 'relative', 'min-h-8'],
-  variants: {},
+  variants: {
+    padding: {true: 'py-16', false: ''},
+    defaultVariants: {
+      padding: false,
+    },
+  },
 });
 
-export const Section = React.forwardRef(
-  ({as: Component = 'section', padded, children, className, ...props}, ref) => {
-    const classes = cx(section(props), padded && 'py-8', className);
+export const Section = forwardRef(
+  ({as: Component = 'section', children, className, ...props}, ref) => {
+    const classes = cx(section(props), className);
 
     return (
       <Component ref={ref} className={classes} {...props}>

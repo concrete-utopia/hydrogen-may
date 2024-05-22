@@ -1,8 +1,9 @@
 import {Money} from '@shopify/hydrogen';
-import {cx} from './new/cva.config';
+import {cx} from '@h2/new/utils';
+import {Text} from '@h2/new/Text';
 
-export function Price({variant, ...props}) {
-  return <Money data={variant.price} {...props} />;
+export function Price({variant, as = Text, ...props}) {
+  return <Money data={variant.price} as={as} {...props} />;
 }
 
 export function isDiscounted(price, compareAtPrice) {
@@ -12,11 +13,14 @@ export function isDiscounted(price, compareAtPrice) {
   return false;
 }
 
-export function PriceCompareAt({variant, ...props}) {
+export function PriceCompareAt({variant, as = Text, className, ...props}) {
   return isDiscounted(variant.price, variant.compareAtPrice) ? (
-    <span className={cx('strike', props.className)}>
-      <Money data={variant.compareAtPrice} {...props} />
-    </span>
+    <Money
+      as={as}
+      className={cx('strike', className)}
+      data={variant.compareAtPrice}
+      {...props}
+    />
   ) : null;
 }
 
