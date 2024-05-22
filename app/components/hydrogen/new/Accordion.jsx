@@ -16,7 +16,7 @@ const Accordion = ({ data }) => {
   }
 
   return (
-    <div>
+    <div className="w-full">
       {data.map((item, index) => (
         <Disclosure
           key={item.id}

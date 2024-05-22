@@ -17,20 +17,27 @@ export default function HighlightSolution() {
   } = useLoaderData();
   return (
     <Section className="aspect-[2/1]">
-      <Background>
-        <div className="rotate-12 max-w-screen-md">
-          <Image className="pointer-events-none" data={selectedVariant.image} />
-        </div>
-      </Background>
-      <Flex direction="right" justify="center" align="center">
-        <Container>
-          <Grid columns={2} justify="center">
+      <Flex
+        className="relative z-10 h-full"
+        direction="right"
+        justify="center"
+        align="center"
+      >
+        <Container className="h-full">
+          <Grid columns={2} className="h-full">
             <div></div>
-            <Flex direction="down" align="start" gap={4}>
+            <Flex
+              className="h-full"
+              p={8}
+              direction="down"
+              align="start"
+              justify="center"
+              gap={9}
+            >
               <Heading className="uppercase">
                 Your{' '}
-                <span className="rounded-full p-2 mx-2 bg-accent">ideal</span>
-                <span className="rounded-full px-4 py-2 mx-2 bg-accent">
+                <span className="p-2 mx-2 rounded-full bg-accent">ideal</span>
+                <span className="px-4 py-2 mx-2 rounded-full bg-accent">
                   &nbsp;
                 </span>{' '}
                 travel companion
@@ -47,6 +54,21 @@ export default function HighlightSolution() {
           </Grid>
         </Container>
       </Flex>
+      <Background className="bg-offWhite">
+        <div className="h-full">
+          <Image
+            className="object-fill w-auto scale-110 -translate-y-32 pointer-events-none mix-blend-darken rotate-12"
+            data={selectedVariant.image}
+          />
+        </div>
+      </Background>
+      <div className="absolute bottom-0 right-0 flex justify-around w-1/2 translate-y-7">
+        <span className="-translate-x-4 translate-y-2 aspect-square w-14 bg-offWhite"></span>
+        <span className="translate-x-3 aspect-square w-14 bg-offWhite"></span>
+        <span className="translate-y-14 aspect-square w-14 bg-offWhite"></span>
+        <span className="-translate-x-4 translate-y-4 aspect-square w-14 bg-offWhite"></span>
+        <span className="bg-white aspect-square w-14 -translate-y-7"></span>
+      </div>
     </Section>
   );
 }

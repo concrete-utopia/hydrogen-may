@@ -8,7 +8,7 @@ export default {
       colors: {
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         contrast: 'rgb(var(--color-contrast) / <alpha-value>)',
-        accent: 'rgb(var(--color-accent))',
+        accent: 'var(--color-accent)',
         accentDark: 'rgb(var(--color-accentDark))',
         black: 'rgb(var(--color-black))',
         darkGray: 'rgb(var(--color-darkGray))',
@@ -44,9 +44,6 @@ export default {
         'screen-no-nav':
           'calc(var(--screen-height, 100vh) - var(--height-nav))',
         'screen-dynamic': 'var(--screen-height-dynamic, 100vh)',
-      },
-      width: {
-        mobileGallery: 'calc(100vw - 3rem)',
       },
       fontFamily: {
         sans: ['Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],

@@ -1,5 +1,6 @@
 import React from 'react'
 import {Money} from '@shopify/hydrogen';
+import {cx} from './new/cva.config';
 
 export function Price({variant, ...props}) {
   return <Money data={variant.price} {...props} />;
@@ -14,7 +15,9 @@ export function isDiscounted(price, compareAtPrice) {
 
 export function PriceCompareAt({variant, ...props}) {
   return isDiscounted(variant.price, variant.compareAtPrice) ? (
-    <Money data={variant.compareAtPrice} {...props} />
+    <span className={cx('strike', props.className)}>
+      <Money data={variant.compareAtPrice} {...props} />
+    </span>
   ) : null;
 }
 

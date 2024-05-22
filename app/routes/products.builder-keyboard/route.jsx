@@ -1,25 +1,24 @@
-import React from 'react'
 import {defer, redirect} from '@shopify/remix-oxygen';
 import {getSelectedProductOptions} from '@shopify/hydrogen';
 import {getVariantUrl} from '~/lib/variants';
 import Hero from './sections/hero';
-import HighlightDetails from './sections/highlight-details';
-import HighlightSolution from './sections/highlight-solution';
-import Reviews from './sections/reviews';
-import Spotlight from './sections/spotlight';
-import Recommended from './sections/recommended';
-import Marquee from './sections/marquee';
+import Features from './sections/features';
+import CTA from './sections/cta';
 
 export const meta = ({data}) => {
   return [{title: `Hydrogen | ${data?.product.title ?? ''}`}];
 };
 
 export async function loader({params, request, context}) {
-  const {handle} = params;
+  //   const {handle} = params;
+  const handle = 'builders-tote';
   const {storefront} = context;
 
   const {product} = await storefront.query(PRODUCT_QUERY, {
-    variables: {handle, selectedOptions: getSelectedProductOptions(request)},
+    variables: {
+      handle,
+      selectedOptions: getSelectedProductOptions(request),
+    },
   });
 
   if (!product?.id) {
@@ -71,12 +70,8 @@ export default function Product() {
   return (
     <>
       <Hero />
-      <Marquee />
-      <HighlightDetails />
-      <HighlightSolution />
-      <Reviews />
-      <Recommended />
-      <Spotlight />
+      <Features />
+      <CTA />
     </>
   );
 }
