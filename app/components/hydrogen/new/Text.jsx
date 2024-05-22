@@ -3,7 +3,7 @@ import {cva} from './utils';
 
 const text = cva({
   variants: {
-    base: ['text-black/70'],
+    base: ['text-black/70', 'w-full', 'max-w-prose'],
     size: {
       1: 'text-xs', // 12/16 - 0.75rem
       2: 'text-sm', // 14/20 - 0.875rem
@@ -14,6 +14,11 @@ const text = cva({
       7: 'text-3xl', // 30/36 - 1.875rem
       8: 'text-4xl', // 36/40 - 2.25rem
       9: 'text-5xl', // 48/48 - 3rem
+    },
+    width: {
+      narrow: 'max-w-prose-narrow',
+      wide: 'max-w-prose-wide',
+      full: 'max-w-full',
     },
     weight: {
       light: 'font-light',
@@ -55,34 +60,13 @@ const text = cva({
 });
 
 export const Text = forwardRef(
-  (
-    {
-      as: Component = 'span',
-      align,
-      children,
-      className,
-      color,
-      size,
-      truncate,
-      uppercase,
-      weight,
-      wrap,
-      ...props
-    },
-    ref,
-  ) => {
+  ({as: Component = 'span', children, className, ...props}, ref) => {
     return (
       <Component
         ref={ref}
         className={text({
-          align,
+          ...props,
           className,
-          color,
-          size,
-          truncate,
-          uppercase,
-          weight,
-          wrap,
         })}
         {...props}
       >
@@ -137,38 +121,18 @@ const heading = cva({
     color: 'black',
     size: 5,
     weight: 'bold',
+    wrap: 'pretty',
   },
 });
 
 export const Heading = forwardRef(
-  (
-    {
-      as: Component = 'h2',
-      align,
-      children,
-      className,
-      color,
-      size,
-      truncate,
-      uppercase,
-      weight,
-      wrap,
-      ...props
-    },
-    ref,
-  ) => {
+  ({as: Component = 'h2', children, className, ...props}, ref) => {
     return (
       <Component
         ref={ref}
         className={heading({
-          align,
+          ...props,
           className,
-          color,
-          size,
-          truncate,
-          uppercase,
-          weight,
-          wrap,
         })}
         {...props}
       >

@@ -24,7 +24,7 @@ export async function loader({context: {storefront}}) {
 
 export default function Homepage() {
   /** @type {LoaderReturnData} */
-  const data = useLoaderData();
+  // const data = useLoaderData();
   return (
     <>
       <Hero />

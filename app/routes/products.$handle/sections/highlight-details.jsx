@@ -37,7 +37,7 @@ export default function HighlightDetails() {
           </Flex>
         </Grid>
       </Container>
-      <Background>
+      <Background columns={2}>
         <div className="w-full h-full"></div>
         <div className="w-full h-full bg-accent"></div>
       </Background>

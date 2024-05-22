@@ -14,7 +14,7 @@ export default function Hero() {
   const {selectedVariant} = product;
   return (
     <Section className="relative">
-      <div className="z-20 relative h-full">
+      <div className="relative z-20 h-full">
         <div>
           <div className={'grid grid-cols-2 py-16'}>
             <div className="product-image">
@@ -32,7 +32,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <Background>
+      <Background columns={2}>
         <div className="bg-accent"></div>
         <div className="bg-lightGray"></div>
       </Background>
@@ -70,7 +70,7 @@ function ProductSummary() {
       id="product-summary"
       className="rounded-card max-w-[28rem] bg-white shadow-card overflow-hidden"
     >
-      <div id="product-info" className="grid gap-4 px-10 min-h-80 py-8">
+      <div id="product-info" className="grid gap-4 px-10 py-8 min-h-80">
         <Heading id="product-info-title">{title}</Heading>
 
         <div id="product-info-content" className="grid gap-3">
@@ -108,7 +108,7 @@ function ProductSummary() {
         direction="column"
         justify="center"
         gap={4}
-        className="px-10 min-h-80 py-8 bg-lighterGray"
+        className="px-10 py-8 min-h-80 bg-lighterGray"
       >
         <div className="grid gap-3">
           <Flex gap={3}>

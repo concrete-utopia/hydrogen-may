@@ -6,12 +6,13 @@ import {Image} from '@shopify/hydrogen';
 export default function Hero() {
   return (
     <Section className="aspect-video bg-darkGray">
-      <Background>
+      <Background columns={2}>
         <div></div>
-        <div>
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-darkGray to-transparent to-50% z-0"></div>
           <Image
             src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png"
-            className="w-full h-full"
+            className="w-full h-full -z-10"
           />
         </div>
       </Background>

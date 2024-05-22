@@ -84,6 +84,13 @@ const flex = cva({
       fixed: '',
     },
     wrap: 'flex-wrap',
+    position: {
+      relative: 'relative',
+      absolute: 'absolute',
+      fixed: 'fixed',
+      sticky: 'sticky',
+      static: 'static',
+    },
   },
   defaultVariants: {
     direction: 'row',
@@ -180,8 +187,28 @@ export const Grid = forwardRef(({children, className, ...props}, ref) => {
 });
 
 const background = cva({
-  base: ['grid', 'absolute', 'z-0', 'inset-0', 'pointer-events-none'],
+  base: [
+    'grid',
+    'overflow-hidden',
+    'absolute',
+    'z-0',
+    'inset-0',
+    'pointer-events-none',
+  ],
   variants: {
+    align: {
+      start: 'items-start',
+      center: 'items-center',
+      end: 'items-end',
+      baseline: 'items-baseline',
+      stretch: 'items-stretch',
+    },
+    justify: {
+      center: 'justify-center',
+      start: 'justify-start',
+      end: 'justify-end',
+      between: 'justify-between',
+    },
     columns: {
       1: 'grid-cols-1',
       2: 'grid-cols-2',
@@ -198,15 +225,13 @@ const background = cva({
     },
   },
   defaultVariants: {
-    columns: 2,
+    columns: 1,
   },
 });
 
 export const Background = forwardRef(({children, className, ...props}, ref) => {
-  const classes = cx(background(props), className);
-
   return (
-    <div ref={ref} className={classes} {...props}>
+    <div ref={ref} className={background({...props, className})} {...props}>
       {children}
     </div>
   );
@@ -246,9 +271,12 @@ export const Container = forwardRef(
         fluid: false,
       },
     });
-    const classes = cx(container(props), className);
     return (
-      <Component ref={ref} className={classes} {...props}>
+      <Component
+        ref={ref}
+        className={container({...props, className})}
+        {...props}
+      >
         {children}
       </Component>
     );
@@ -258,7 +286,7 @@ export const Container = forwardRef(
 const section = cva({
   base: ['w-full', 'relative', 'min-h-8'],
   variants: {
-    padding: {true: 'py-16', false: ''},
+    padding: {true: 'py-16', false: null},
     defaultVariants: {
       padding: false,
     },

@@ -6,7 +6,7 @@ export default function BestSellers() {
   return (
     <Section className="py-32">
       <Container as="header">
-        <Heading uppercase size={9} className="-mb-10">
+        <Heading weight="regular" uppercase size={8} className="-mb-8">
           <Flex as="span" justify="between">
             <span>Best</span>
             <span>Sellers</span>

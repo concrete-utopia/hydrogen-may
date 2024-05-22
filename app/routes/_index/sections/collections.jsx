@@ -1,5 +1,5 @@
 import Link from '@h2/Link';
-import {Heading, Text} from '@h2/new/Text';
+import {Heading} from '@h2/new/Text';
 import {Background, Container, Flex, Grid, Section} from '@h2/new/Layout';
 
 export default function Collections() {
@@ -101,7 +101,7 @@ export default function Collections() {
             </Link>
           </Grid>
         </Container>
-        <Background columns={1}>
+        <Background>
           <Globe className="absolute bottom-0 w-full px-8 -translate-x-1/2 max-w-7xl left-1/2" />
         </Background>
       </Section>

@@ -47,7 +47,7 @@ export default function HighlightSolution() {
           </Grid>
         </Container>
       </Flex>
-      <Background className="bg-offWhite">
+      <Background columns={2} className="bg-offWhite">
         <div className="h-full">
           <Image
             className="object-fill w-auto scale-110 -translate-y-32 pointer-events-none mix-blend-darken rotate-12"
