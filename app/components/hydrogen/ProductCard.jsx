@@ -1,10 +1,11 @@
 import {flattenConnection, Image} from '@shopify/hydrogen';
 
-import {Text} from '@h2/Text';
-import Link from '@h2/Link';
 import {Button, AddToCartButton} from '@h2/Button';
-import {Price, PriceCompareAt} from './Price';
-import {cx} from './new/cva.config';
+import {cx} from '@h2/new/utils';
+import {Flex, Grid} from '@h2/new/Layout';
+import {Heading, Text} from '@h2/new/Text';
+import {Price, PriceCompareAt} from '@h2/Price';
+import Link from '@h2/Link';
 
 export function ProductCard({product, className, loading, onClick, quickAdd}) {
   if (!product?.variants?.nodes?.length) return null;
@@ -21,7 +22,7 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
         to={`/products/${product.handle}`}
         prefetch="viewport"
       >
-        <div className={'grid gap-4'}>
+        <Grid gap={4}>
           <div className="card-image aspect-[4/5] bg-primary/5">
             {image && (
               <Image
@@ -34,21 +35,26 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
               />
             )}
           </div>
-          <div className="grid gap-1">
-            <Text
-              className="w-full overflow-hidden whitespace-nowrap text-ellipsis "
-              as="h3"
-            >
+          <Grid gap={1}>
+            <Heading truncate size={3} weight="medium" as="h3">
               {product.title}
-            </Text>
-            <div className="flex gap-4">
-              <Text className="flex gap-4">
-                <Price variant={firstVariant} />
-                <PriceCompareAt className="opacity-80" variant={firstVariant} />
-              </Text>
-            </div>
-          </div>
-        </div>
+            </Heading>
+            <Flex gap={3} align="baseline">
+              <Price
+                color="black"
+                className="opacity-60"
+                as={Text}
+                variant={firstVariant}
+              />
+              <PriceCompareAt
+                as={Text}
+                color="black"
+                className="opacity-60"
+                variant={firstVariant}
+              />
+            </Flex>
+          </Grid>
+        </Grid>
       </Link>
       {quickAdd && firstVariant.availableForSale && (
         <AddToCartButton

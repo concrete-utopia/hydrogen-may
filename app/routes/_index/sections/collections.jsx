@@ -1,36 +1,50 @@
 import Link from '@h2/Link';
-import {Heading, Text} from '@h2/Text';
+import {Heading} from '@h2/new/Text';
 import {Background, Container, Flex, Grid, Section} from '@h2/new/Layout';
 
 export default function Collections() {
   return (
-    <Grid gap={0} as="section" rows={2} className="aspect-[7/4] -mt-96">
+    <Grid
+      gap={0}
+      as="section"
+      rows={2}
+      className="-mt-24 bg-accent md:-mt-40 lg:-mt-96"
+    >
       <Flex
         align="end"
         justify="center"
         as="header"
-        className="bg-gradient-to-b from-white to-accent"
+        className="pb-32 bg-gradient-to-b from-white to-accent"
       >
-        <Heading className="text-center uppercase text-7xl">
+        <Heading uppercase align="center" weight="regular" size={6}>
           Something
           <br />
-          <span className="drop-shadow-[-5px_0_0_rgba(255,255,255,1)">
+          <span className="font-display drop-shadow-[-0.1em_0_0_white]">
             For Everyone
           </span>
         </Heading>
       </Flex>
-      <Section className="bg-accent">
-        <Container>
-          <Grid rows={9} columns={12} className="aspect-[2/1] -translate-y-8">
+      <Section className="bottom-0">
+        <Container className="aspect-[20/7] px-0 lg:px-0">
+          <Grid
+            rows={9}
+            columns={12}
+            className="absolute w-full max-w-7xl bottom-0 aspect-[20/7] -translate-y-8"
+          >
             <Link className="col-span-2 col-start-3 row-start-4">
               <Grid
                 className="items-center justify-center"
                 columns={1}
                 rows={1}
               >
-                <Text className="z-20 col-span-1 col-start-1 row-span-1 row-start-1 text-center">
+                <Heading
+                  align="center"
+                  size={6}
+                  weight="regular"
+                  className="z-20 col-span-1 col-start-1 row-span-1 row-start-1 text-center"
+                >
                   Apparel
-                </Text>
+                </Heading>
                 <ApparelBlob className="col-span-1 col-start-1 row-span-1 row-start-1" />
               </Grid>
             </Link>
@@ -40,9 +54,14 @@ export default function Collections() {
                 columns={1}
                 rows={1}
               >
-                <Text className="z-20 col-span-1 col-start-1 row-span-1 row-start-1 text-center">
+                <Heading
+                  align="center"
+                  size={6}
+                  weight="regular"
+                  className="z-20 col-span-1 col-start-1 row-span-1 row-start-1 text-center"
+                >
                   Bags
-                </Text>
+                </Heading>
                 <BagsBlob className="col-span-1 col-start-1 row-span-1 row-start-1" />
               </Grid>
             </Link>
@@ -52,9 +71,14 @@ export default function Collections() {
                 columns={1}
                 rows={1}
               >
-                <Text className="z-10 col-span-1 col-start-1 row-span-1 row-start-1 text-center">
+                <Heading
+                  align="center"
+                  size={6}
+                  weight="regular"
+                  className="z-10 col-span-1 col-start-1 row-span-1 row-start-1 text-center"
+                >
                   Tech
-                </Text>
+                </Heading>
                 <TechBlob className="col-span-1 col-start-1 row-span-1 row-start-1" />
               </Grid>
             </Link>
@@ -64,16 +88,21 @@ export default function Collections() {
                 columns={1}
                 rows={1}
               >
-                <Text className="z-10 col-span-1 col-start-1 row-span-1 row-start-1 text-center">
+                <Heading
+                  align="center"
+                  size={6}
+                  weight="regular"
+                  className="z-10 col-span-1 col-start-1 row-span-1 row-start-1 text-center"
+                >
                   Misc
-                </Text>
+                </Heading>
                 <MiscBlob className="col-span-1 col-start-1 row-span-1 row-start-1" />
               </Grid>
             </Link>
           </Grid>
         </Container>
-        <Background columns={1}>
-          <Globe className="absolute bottom-0 scale-125 -translate-x-1/2 -translate-y-8 max-w-7xl left-1/2" />
+        <Background>
+          <Globe className="absolute bottom-0 w-full px-8 -translate-x-1/2 max-w-7xl left-1/2" />
         </Background>
       </Section>
     </Grid>

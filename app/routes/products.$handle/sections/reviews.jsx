@@ -1,7 +1,7 @@
 import {Container, Flex, Section} from '@h2/new/Layout';
-import {Heading, Text} from '@h2/Text';
+import {Heading, Text} from '@h2/new/Text';
 import {Button} from '@h2/Button';
-import {cva, cx} from '@h2/new/cva.config';
+import {cva, cx} from '@h2/new/utils';
 
 const reviews = [
   {
@@ -47,7 +47,9 @@ export default function Reviews({data = reviews}) {
     <Section>
       <Container as="header" className="py-32 -mb-64">
         <Flex direction="down" gap={8}>
-          <Heading>Don’t take our word for it</Heading>
+          <Heading size={9} uppercase weight="regular" wrap="balance">
+            Don’t take our word for it
+          </Heading>
           <Flex direction="down" gap={6}>
             <Text>4.8 — 385 Reviews</Text>
             <Button>View all reviews</Button>

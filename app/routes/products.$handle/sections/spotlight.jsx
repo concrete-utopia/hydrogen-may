@@ -1,17 +1,23 @@
 import {Button} from '@h2/Button';
-import {Heading, Text} from '@h2/Text';
+import {Heading, Text} from '@h2/new/Text';
 import {Container, Flex, Grid, Section} from '@h2/new/Layout';
 import {Image} from '@shopify/hydrogen';
 
 export default function Spotlight() {
   return (
-    <Section>
-      <Container as="header" className="py-16">
-        <Heading>New</Heading>
-        <Text>Just Dropped</Text>
+    <Section padding>
+      <Container as="header" py={9}>
+        <Flex gap={4} direction="down">
+          <Heading size={9} uppercase weight="regular">
+            New
+          </Heading>
+          <Text size={6} color="gray">
+            Just Dropped
+          </Text>
+        </Flex>
       </Container>
       <Container>
-        <div className="absolute top-0 right-0 flex items-center justify-center w-40 text-6xl translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-card aspect-square">
+        <div className="absolute top-0 flex items-center justify-center w-40 text-6xl translate-x-1/2 -translate-y-1/2 bg-white rounded-full right-10 shadow-badge aspect-square">
           👀
         </div>
         <Grid columns={2} gap={0}>
