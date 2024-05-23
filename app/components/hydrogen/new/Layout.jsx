@@ -1,5 +1,6 @@
-import {forwardRef} from 'react';
-import {cx, cva, compose} from './utils';
+import React from 'react'
+import { forwardRef } from 'react'
+import { cx, cva, compose } from './utils'
 
 const layout = cva({
   variants: {
@@ -93,7 +94,7 @@ const layout = cva({
       static: 'static',
     },
   },
-});
+})
 
 const flex = cva({
   base: 'flex',
@@ -140,19 +141,31 @@ const flex = cva({
     resizeX: 'hug',
     resizeY: 'hug',
   },
-});
+})
 
 export const Flex = forwardRef(
-  ({as: Component = 'div', children, className, ...props}, ref) => {
-    const styles = compose(layout, flex);
+  (
+    {
+      as: Component = 'div',
+      children,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const styles = compose(layout, flex)
 
     return (
-      <Component ref={ref} className={styles({...props, className})} {...props}>
+      <Component
+        ref={ref}
+        className={styles({ ...props, className })}
+        {...props}
+      >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
 const grid = cva({
   base: ['grid'],
@@ -205,17 +218,23 @@ const grid = cva({
     resizeX: 'hug',
     resizeY: 'hug',
   },
-});
+})
 
-export const Grid = forwardRef(({children, className, ...props}, ref) => {
-  const styles = compose(layout, grid);
+export const Grid = forwardRef(
+  ({ children, className, ...props }, ref) => {
+    const styles = compose(layout, grid)
 
-  return (
-    <div ref={ref} className={styles({...props, className})} {...props}>
-      {children}
-    </div>
-  );
-});
+    return (
+      <div
+        ref={ref}
+        className={styles({ ...props, className })}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
 const background = cva({
   base: [
@@ -258,18 +277,32 @@ const background = cva({
   defaultVariants: {
     columns: 1,
   },
-});
+})
 
-export const Background = forwardRef(({children, className, ...props}, ref) => {
-  return (
-    <div ref={ref} className={background({...props, className})} {...props}>
-      {children}
-    </div>
-  );
-});
+export const Background = forwardRef(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={background({ ...props, className })}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
 export const Container = forwardRef(
-  ({as: Component = 'div', children, className, ...props}, ref) => {
+  (
+    {
+      as: Component = 'div',
+      children,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
     const container = cva({
       base: [
         'mx-auto',
@@ -291,38 +324,50 @@ export const Container = forwardRef(
         resizeY: 'hug',
         fluid: false,
       },
-    });
+    })
 
-    const styles = compose(layout, container);
+    const styles = compose(layout, container)
 
-    return (
-      <Component ref={ref} className={styles({...props, className})} {...props}>
-        {children}
-      </Component>
-    );
-  },
-);
-
-const section = cva({
-  base: ['w-full', 'relative', 'min-h-8'],
-  variants: {
-    padding: {true: 'py-16', false: null},
-    defaultVariants: {
-      padding: false,
-    },
-  },
-});
-
-export const Section = forwardRef(
-  ({as: Component = 'section', children, className, ...props}, ref) => {
     return (
       <Component
         ref={ref}
-        className={section({...props, className})}
+        className={styles({ ...props, className })}
         {...props}
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
+
+const section = cva({
+  base: ['w-full', 'relative', 'min-h-8'],
+  variants: {
+    padding: { true: 'py-16', false: null },
+    defaultVariants: {
+      padding: false,
+    },
+  },
+})
+
+export const Section = forwardRef(
+  (
+    {
+      as: Component = 'section',
+      children,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    return (
+      <Component
+        ref={ref}
+        className={section({ ...props, className })}
+        {...props}
+      >
+        {children}
+      </Component>
+    )
+  },
+)

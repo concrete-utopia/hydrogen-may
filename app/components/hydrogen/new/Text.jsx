@@ -1,5 +1,6 @@
-import {forwardRef} from 'react';
-import {cva} from './utils';
+import React from 'react'
+import { forwardRef } from 'react'
+import { cva } from './utils'
 
 const text = cva({
   base: ['text-black/70', 'w-full', 'max-w-prose'],
@@ -57,10 +58,18 @@ const text = cva({
     uppercase: false,
     size: 3,
   },
-});
+})
 
 export const Text = forwardRef(
-  ({as: Component = 'span', children, className, ...props}, ref) => {
+  (
+    {
+      as: Component = 'span',
+      children,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <Component
         ref={ref}
@@ -72,9 +81,9 @@ export const Text = forwardRef(
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
 const heading = cva({
   variants: {
@@ -123,10 +132,13 @@ const heading = cva({
     weight: 'bold',
     wrap: 'pretty',
   },
-});
+})
 
 export const Heading = forwardRef(
-  ({as: Component = 'h2', children, className, ...props}, ref) => {
+  (
+    { as: Component = 'h2', children, className, ...props },
+    ref,
+  ) => {
     return (
       <Component
         ref={ref}
@@ -138,6 +150,6 @@ export const Heading = forwardRef(
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
