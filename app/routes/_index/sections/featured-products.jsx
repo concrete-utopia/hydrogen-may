@@ -1,148 +1,186 @@
-import {Button} from '@h2/Button';
-import {Heading, Text} from '@h2/new/Text';
-import {Background, Flex, Grid, Section} from '@h2/new/Layout';
-import {Image} from '@shopify/hydrogen';
-import {Price, PriceCompareAt} from '@h2/Price';
-import {cx} from '@h2/new/utils';
+import { Button } from '@h2/Button'
+import { Heading, Text } from '@h2/new/Text'
+import {
+  Background,
+  Flex,
+  Grid,
+  Section,
+} from '@h2/new/Layout'
+import { Image } from '@shopify/hydrogen'
+import { Price, PriceCompareAt } from '@h2/Price'
+import { cx } from '@h2/new/utils'
 
-function SaleCard({className, ...props}) {
+function SaleCard({ className, ...props }) {
   return (
     <div className={cx('relative', className)} {...props}>
       <Flex
-        direction="down"
-        align="center"
-        justify="center"
+        direction='down'
+        align='center'
+        justify='center'
         gap={6}
-        position="relative"
-        className="z-10"
+        position='relative'
+        className='z-10'
         p={8}
         {...props}
       >
         {props.children}
       </Flex>
-      <Background justify="center" align="center">
+      <Background justify='center' align='center'>
         <Heading
-          color="white"
+          color='white'
           uppercase
-          className="text-[25rem] z-0 absolute left-1/2 -translate-x-1/2"
-          align="center"
+          className='text-[25rem] z-0 absolute left-1/2 -translate-x-1/2'
+          align='center'
         >
           Sale
         </Heading>
       </Background>
     </div>
-  );
+  )
 }
 
-function SaleBadge({variant}) {
+function SaleBadge({ variant }) {
   return (
     <Flex
-      direction="down"
+      direction='down'
       gap={2}
-      align="center"
-      justify="center"
-      className="absolute top-0 right-0 w-40 pb-4 text-center translate-x-16 translate-y-16 bg-white rounded-full rotate-12 shadow-badge aspect-square"
+      align='center'
+      justify='center'
+      className='absolute top-0 right-0 w-40 pb-4 text-center translate-x-16 translate-y-16 bg-white rounded-full rotate-12 shadow-badge aspect-square'
     >
       <PriceCompareAt
-        align="center"
+        align='center'
         as={Heading}
-        className="opacity-40"
+        className='opacity-40'
         size={3}
         variant={variant}
         withoutTrailingZeros
       />
       <Price
-        align="center"
+        align='center'
         as={Heading}
         size={4}
         variant={variant}
         withoutTrailingZeros
       />
     </Flex>
-  );
+  )
 }
 
 export default function FeaturedProducts() {
+  const variant = {
+    availableForSale: true,
+    price: {
+      amount: '38.00',
+      currencyCode: 'CAD',
+    },
+    compareAtPrice: {
+      amount: '42.00',
+      currencyCode: 'CAD',
+    },
+    image: {
+      id: 'gid://Shopify/placeholder/1234',
+      altText: 'Placeholder',
+      height: '600',
+      width: '400',
+      url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
+    },
+  }
+
   return (
     <Section>
       <Grid columns={2} gap={0}>
-        <SaleCard className="bg-lightGray">
-          <div className="relative">
-            <SaleBadge variant={null} />
+        <SaleCard className='bg-lightGray'>
+          <div className='relative'>
+            <SaleBadge variant={variant} />
             <Image
-              aspectRatio="1/1"
-              crop="center"
+              aspectRatio='1/1'
+              crop='center'
               width={380}
-              src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png"
+              src='https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png'
             />
           </div>
-          <Flex gap={4} direction="down" align="center" justify="center">
+          <Flex
+            gap={4}
+            direction='down'
+            align='center'
+            justify='center'
+          >
             <Heading size={4}>Builders Tote</Heading>
-            <Text width="narrow">
-              Sofie Pavitt Face is an intentional edit of skincare essentials
-              designed for acne-prone skin.
+            <Text width='narrow'>
+              Sofie Pavitt Face is an intentional edit of
+              skincare essentials designed for acne-prone
+              skin.
             </Text>
           </Flex>
-          <Button color="accent">Add to cart</Button>
+          <Button color='accent'>Add to cart</Button>
         </SaleCard>
-        <div className="bg-black">
+        <div className='bg-black'>
           <Image
-            className="object-cover h-full"
+            className='object-cover h-full'
             width={633}
             height={555}
-            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png"
+            src='https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png'
           />
         </div>
       </Grid>
       <Grid columns={2} gap={0}>
-        <div className="bg-black">
+        <div className='bg-black'>
           <Image
-            className="object-cover h-full"
+            className='object-cover h-full'
             width={633}
             height={555}
-            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png"
+            src='https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png'
           />
         </div>
-        <SaleCard className="bg-accent">
-          <div className="relative">
+        <SaleCard className='bg-accent'>
+          <div className='relative'>
             <Flex
-              direction="down"
+              direction='down'
               gap={2}
-              align="center"
-              justify="center"
-              className="absolute top-0 right-0 w-40 pb-4 text-center translate-x-16 translate-y-16 bg-white rounded-full rotate-12 shadow-card aspect-square"
+              align='center'
+              justify='center'
+              className='absolute top-0 right-0 w-40 pb-4 text-center translate-x-16 translate-y-16 bg-white rounded-full rotate-12 shadow-card aspect-square'
             >
               <PriceCompareAt
                 as={Heading}
+                variant={variant}
                 size={3}
-                align="center"
-                className="opacity-40"
+                align='center'
+                className='opacity-40'
                 withoutTrailingZeros
               />
               <Price
                 as={Heading}
+                variant={variant}
                 size={4}
-                align="center"
+                align='center'
                 withoutTrailingZeros
               />
             </Flex>
             <Image
-              aspectRatio="1/1"
-              crop="center"
+              aspectRatio='1/1'
+              crop='center'
               width={380}
-              src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png"
+              src='https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png'
             />
           </div>
-          <Flex gap={4} direction="down" align="center" justify="center">
+          <Flex
+            gap={4}
+            direction='down'
+            align='center'
+            justify='center'
+          >
             <Heading size={4}>Builders Tote</Heading>
-            <Text width="narrow">
-              Sofie Pavitt Face is an intentional edit of skincare essentials
-              designed for acne-prone skin.
+            <Text width='narrow'>
+              Sofie Pavitt Face is an intentional edit of
+              skincare essentials designed for acne-prone
+              skin.
             </Text>
           </Flex>
           <Button>Add to cart</Button>
         </SaleCard>
       </Grid>
     </Section>
-  );
+  )
 }

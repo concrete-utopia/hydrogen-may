@@ -1,39 +1,25 @@
 import React from 'react'
-import {Money} from '@shopify/hydrogen';
-import {cx} from '@h2/new/utils';
-import {Text} from '@h2/new/Text';
+import { Money } from '@shopify/hydrogen'
+import { cx } from '@h2/new/utils'
+import { Text } from '@h2/new/Text'
 
-export function Price({variant, as = Text, ...props}) {
-  variant = variant || {
-    availableForSale: true,
-    price: {
-      amount: '38.00',
-      currencyCode: 'CAD',
-    },
-    compareAtPrice: {
-      amount: '42.00',
-      currencyCode: 'CAD',
-    },
-    image: {
-      id: 'gid://Shopify/placeholder/1234',
-      altText: 'Placeholder',
-      height: '600',
-      width: '400',
-      url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
-    },
-  };
-
-  return <Money data={variant.price} as={as} {...props} />;
+export function Price({ variant, as = Text, ...props }) {
+  return <Money data={variant.price} as={as} {...props} />
 }
 
 export function isDiscounted(price, compareAtPrice) {
   if (compareAtPrice?.amount > price?.amount) {
-    return true;
+    return true
   }
-  return false;
+  return false
 }
 
-export function PriceCompareAt({variant, as = Text, className, ...props}) {
+export function PriceCompareAt({
+  variant,
+  as = Text,
+  className,
+  ...props
+}) {
   variant = variant || {
     availableForSale: true,
     price: {
@@ -51,16 +37,19 @@ export function PriceCompareAt({variant, as = Text, className, ...props}) {
       width: '400',
       url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
     },
-  };
+  }
 
-  return isDiscounted(variant.price, variant.compareAtPrice) ? (
+  return isDiscounted(
+    variant.price,
+    variant.compareAtPrice,
+  ) ? (
     <Money
       as={as}
       className={cx('strike', className)}
       data={variant.compareAtPrice}
       {...props}
     />
-  ) : null;
+  ) : null
 }
 
 export function PriceRange({
@@ -70,10 +59,11 @@ export function PriceRange({
   className,
   ...props
 }) {
-  const {minVariantPrice, maxVariantPrice} = product.priceRange;
+  const { minVariantPrice, maxVariantPrice } =
+    product.priceRange
 
   if (!minVariantPrice || !maxVariantPrice) {
-    return null;
+    return null
   }
 
   return (
@@ -82,5 +72,5 @@ export function PriceRange({
       {` ${separator} `}
       <Money data={maxVariantPrice} />
     </Component>
-  );
+  )
 }
