@@ -52,6 +52,9 @@
       "/",
       "/blogs/news"
     ],
-    "pageTemplates": []
+    "pageTemplates": [{
+      "label": "Featured Product Page",
+      "path": "/app/routes/builders-bag-template.jsx"
+    }]
   }
 }
