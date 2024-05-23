@@ -16,7 +16,7 @@ const Accordion = ({ data }) => {
   }
 
   return (
-    <div className="w-full">
+    <div className='w-full'>
       {data.map((item, index) => (
         <Disclosure
           key={item.id}
@@ -25,7 +25,10 @@ const Accordion = ({ data }) => {
         >
           {({ open }) => (
             <>
-              <DisclosureButton className='h-12 border-t border-primary/10 flex justify-between items-center w-full'>
+              <DisclosureButton
+                key={`${item.id}-button`}
+                className='h-12 border-t border-primary/10 flex justify-between items-center w-full'
+              >
                 <Text>{item.title}</Text>
                 <span
                   className={`${
@@ -35,7 +38,10 @@ const Accordion = ({ data }) => {
                   &times;
                 </span>
               </DisclosureButton>
-              <DisclosurePanel className='pb-4'>
+              <DisclosurePanel
+                key={`${item.id}-panel`}
+                className='pb-4'
+              >
                 {item.content}
               </DisclosurePanel>
             </>
