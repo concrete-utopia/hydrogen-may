@@ -25,7 +25,7 @@ export default function Homepage() {
   const data = useLoaderData();
   return (
     <div className="home">
-      
+      <span>Sample text</span>
     </div>
   );
 }
