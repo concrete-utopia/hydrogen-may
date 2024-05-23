@@ -17,7 +17,7 @@ const Components = {
       inspector: [],
       variants: [
         {
-          label: 'Accordion',
+          label: 'Accordion with sample data',
           imports:
             "import Accordion from '/app/components/hydrogen/new/Accordion'",
           code: `<Accordion data={[
