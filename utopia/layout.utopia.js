@@ -1,5 +1,5 @@
 import * as Utopia from 'utopia-api'
-import { Background } from '@h2/new/Layout'
+import { Background, Flex } from '@h2/new/Layout'
 
 const annotations = {
   Background: {
@@ -61,6 +61,92 @@ const annotations = {
         <Placeholder />
         <Placeholder />
       </Background>`,
+      },
+    ],
+  },
+  Flex: {
+    component: Flex,
+    properties: {
+      direction: Utopia.popupListControl([
+        {
+          label: 'row',
+          value: 'row',
+        },
+        {
+          label: 'column',
+          value: 'column',
+        },
+        {
+          label: 'right',
+          value: 'right',
+        },
+        {
+          label: 'down',
+          value: 'down',
+        },
+        {
+          label: 'left',
+          value: 'left',
+        },
+        {
+          label: 'up',
+          value: 'up',
+        },
+      ]),
+      align: Utopia.popupListControl([
+        {
+          label: 'start',
+          value: 'start',
+        },
+        {
+          label: 'center',
+          value: 'center',
+        },
+        {
+          label: 'end',
+          value: 'end',
+        },
+        {
+          label: 'baseline',
+          value: 'baseline',
+        },
+        {
+          label: 'stretch',
+          value: 'stretch',
+        },
+      ]),
+      justify: Utopia.popupListControl([
+        {
+          label: 'start',
+          value: 'start',
+        },
+        {
+          label: 'center',
+          value: 'center',
+        },
+        {
+          label: 'end',
+          value: 'end',
+        },
+        {
+          label: 'between',
+          value: 'between',
+        },
+      ]),
+      gap: Utopia.sliderControl(0, 9, 1),
+      wrap: Utopia.checkboxControl(),
+    },
+    focus: 'never',
+    inspector: 'hidden',
+    variants: [
+      {
+        label: 'Flex row with placeholders',
+        imports: `import { Flex } from '@h2/new/Layout'
+          import { Placeholder } from 'utopia-api'`,
+        code: `<Flex>
+        <Placeholder />
+        <Placeholder />
+      </Flex>`,
       },
     ],
   },
