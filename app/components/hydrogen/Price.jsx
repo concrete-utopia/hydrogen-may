@@ -55,7 +55,7 @@ export function PriceCompareAt({variant, as = Text, className, ...props}) {
   return isDiscounted(variant.price, variant.compareAtPrice) ? (
     <Money
       as={as}
-      className={cx('strike', className)}
+      className={cx('line-through', className)}
       data={variant.compareAtPrice}
       {...props}
     />

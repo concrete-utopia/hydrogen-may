@@ -65,7 +65,7 @@ function SaleBadge({variant}) {
 export default function FeaturedProducts() {
   return (
     <Section>
-      <Grid columns={2} gap={0}>
+      <Grid columns={2} gap={0} justify="stretch">
         <SaleCard className="bg-lightGray">
           <div className="relative">
             <SaleBadge variant={null} />
@@ -85,7 +85,7 @@ export default function FeaturedProducts() {
           </Flex>
           <Button color="accent">Add to cart</Button>
         </SaleCard>
-        <div className="bg-black">
+        <div className="h-full bg-black">
           <Image
             className="object-cover h-full"
             width={633}
@@ -95,7 +95,7 @@ export default function FeaturedProducts() {
         </div>
       </Grid>
       <Grid columns={2} gap={0}>
-        <div className="bg-black">
+        <div className="h-full bg-black">
           <Image
             className="object-cover h-full"
             width={633}
@@ -115,6 +115,7 @@ export default function FeaturedProducts() {
               <PriceCompareAt
                 as={Heading}
                 size={3}
+                fontStyle="lineThrough"
                 align="center"
                 className="opacity-40"
                 withoutTrailingZeros
