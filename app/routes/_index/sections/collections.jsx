@@ -7,14 +7,16 @@ export default function Collections() {
     <Grid
       gap={0}
       as="section"
+      justify="stretch"
       rows={2}
-      className="-mt-24 bg-accent md:-mt-40 lg:-mt-96"
+      className="-mt-24 bg-accent md:-mt-40 lg:-mt-96 bg-gradient-to-b from-white to-accent to-50%"
     >
       <Flex
+        resizeY="fill"
         align="end"
         justify="center"
         as="header"
-        className="pb-32 bg-gradient-to-b from-white to-accent"
+        className="pb-32"
       >
         <Heading uppercase align="center" weight="regular" size={6}>
           Something
@@ -24,7 +26,7 @@ export default function Collections() {
           </span>
         </Heading>
       </Flex>
-      <Section className="bottom-0">
+      <Section>
         <Container className="aspect-[20/7] px-0 lg:px-0">
           <Grid
             rows={9}
@@ -101,7 +103,7 @@ export default function Collections() {
             </Link>
           </Grid>
         </Container>
-        <Background>
+        <Background overflow="visible">
           <Globe className="absolute bottom-0 w-full px-8 -translate-x-1/2 max-w-7xl left-1/2" />
         </Background>
       </Section>

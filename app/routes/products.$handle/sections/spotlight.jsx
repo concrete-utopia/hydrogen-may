@@ -6,7 +6,7 @@ import {Image} from '@shopify/hydrogen';
 export default function Spotlight() {
   return (
     <Section padding>
-      <Container as="header" py={9}>
+      <Container as="header" className="pb-16">
         <Flex gap={4} direction="down">
           <Heading size={9} uppercase weight="regular">
             New
@@ -29,7 +29,7 @@ export default function Spotlight() {
             className="bg-offWhite"
             p={8}
           >
-            <div className="w-[30rem] h-[15rem] flex items-end justify-center">
+            <div className="w-[22rem] h-[15rem] flex items-end justify-center">
               <Image
                 aspectRatio="1/1"
                 crop="center"
@@ -38,7 +38,9 @@ export default function Spotlight() {
               />
             </div>
             <Flex gap={4} direction="down" align="center" justify="center">
-              <Heading>Builders Tote</Heading>
+              <Heading size="l" weight="medium">
+                Builders Tote
+              </Heading>
               <Text width="narrow">
                 Sofie Pavitt Face is an intentional edit of skincare essentials
                 designed for acne-prone skin.
@@ -46,7 +48,7 @@ export default function Spotlight() {
             </Flex>
             <Button>Add to cart</Button>
           </Flex>
-          <div className="bg-accent">
+          <div className="self-stretch bg-accent">
             <Image
               className="object-cover h-full"
               width={633}

@@ -2,7 +2,7 @@ import {Heading, Text} from '@h2/new/Text';
 import {Container, Flex, Grid, Section} from '@h2/new/Layout';
 import {cx} from '@h2/new/utils';
 
-function PromiseCard({heading, description, icon, color, className}) {
+function PromiseCard({heading, description, icon, color = 'gray', className}) {
   const bg = {
     black: 'bg-black',
     accent: 'bg-accent',
@@ -27,7 +27,7 @@ function PromiseCard({heading, description, icon, color, className}) {
       >
         {heading}
       </Heading>
-      <Text color={color === 'black' && 'white'} width="narrow">
+      <Text color={color === 'black' ? 'white' : undefined} width="narrow">
         {description}
       </Text>
     </Flex>

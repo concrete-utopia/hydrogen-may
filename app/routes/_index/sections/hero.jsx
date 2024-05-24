@@ -6,6 +6,20 @@ import {Image} from '@shopify/hydrogen';
 export default function Hero() {
   return (
     <Section className="aspect-video bg-darkGray">
+      <Container resizeY="fill" className="py-24">
+        <Flex direction="down" resizeY="fill" justify="between" align="start">
+          <Flex direction="down">
+            <Text uppercase size={6} className="text-accent font-display">
+              Summer 2024
+            </Text>
+            <Heading size="8" color="white">
+              Building <br />
+              <span className="uppercase font-display">Essentials</span>
+            </Heading>
+          </Flex>
+          <Button to="/">Shop now</Button>
+        </Flex>
+      </Container>
       <Background columns={2}>
         <div></div>
         <div className="relative">
@@ -16,20 +30,6 @@ export default function Hero() {
           />
         </div>
       </Background>
-      <Container resizeY="fill" className="py-24">
-        <Flex direction="down" resizeY="fill" justify="between">
-          <Flex direction="down">
-            <Text uppercase size={6} className="text-accent font-display">
-              Summer 2024
-            </Text>
-            <Heading size="8" color="white" uppercase>
-              Building <br />
-              <span className="font-display">Essentials</span>
-            </Heading>
-          </Flex>
-          <Button to="/">Shop now</Button>
-        </Flex>
-      </Container>
     </Section>
   );
 }

@@ -1,7 +1,7 @@
 import {forwardRef} from 'react';
-import {cx, cva, compose} from './utils';
+import {cva, compose} from './utils';
 
-const layout = cva({
+const layoutCore = cva({
   variants: {
     p: {
       0: 'p-0',
@@ -14,6 +14,15 @@ const layout = cva({
       7: 'p-10',
       8: 'p-12',
       9: 'p-16',
+      xs: 'p-2',
+      s: 'p-4',
+      m: 'p-6',
+      l: 'p-8',
+      xl: 'p-12',
+      '2xl': 'p-16',
+      '3xl': 'p-24',
+      '4xl': 'p-32',
+      '5xl': 'p-40',
     },
     px: {
       0: 'px-0',
@@ -26,6 +35,15 @@ const layout = cva({
       7: 'px-10',
       8: 'px-12',
       9: 'px-16',
+      xs: 'px-2',
+      s: 'px-4',
+      m: 'px-6',
+      l: 'px-8',
+      xl: 'px-12',
+      '2xl': 'px-16',
+      '3xl': 'px-24',
+      '4xl': 'px-32',
+      '5xl': 'px-40',
     },
     py: {
       0: 'py-0',
@@ -38,6 +56,15 @@ const layout = cva({
       7: 'py-10',
       8: 'py-12',
       9: 'py-16',
+      xs: 'py-2',
+      s: 'py-4',
+      m: 'py-6',
+      l: 'py-8',
+      xl: 'py-12',
+      '2xl': 'py-16',
+      '3xl': 'py-24',
+      '4xl': 'py-32',
+      '5xl': 'py-40',
     },
     m: {
       0: 'm-0',
@@ -50,6 +77,15 @@ const layout = cva({
       7: 'm-10',
       8: 'm-12',
       9: 'm-16',
+      xs: 'm-2',
+      s: 'm-4',
+      m: 'm-6',
+      l: 'm-8',
+      xl: 'm-12',
+      '2xl': 'm-16',
+      '3xl': 'm-24',
+      '4xl': 'm-32',
+      '5xl': 'm-40',
     },
     mx: {
       0: 'mx-0',
@@ -62,6 +98,15 @@ const layout = cva({
       7: 'mx-10',
       8: 'mx-12',
       9: 'mx-16',
+      xs: 'mx-2',
+      s: 'mx-4',
+      m: 'mx-6',
+      l: 'mx-8',
+      xl: 'mx-12',
+      '2xl': 'mx-16',
+      '3xl': 'mx-24',
+      '4xl': 'mx-32',
+      '5xl': 'mx-40',
     },
     my: {
       0: 'my-0',
@@ -74,16 +119,68 @@ const layout = cva({
       7: 'my-10',
       8: 'my-12',
       9: 'my-16',
+      xs: 'my-2',
+      s: 'my-4',
+      m: 'my-6',
+      l: 'my-8',
+      xl: 'my-12',
+      '2xl': 'my-16',
+      '3xl': 'my-24',
+      '4xl': 'my-32',
+      '5xl': 'my-40',
     },
     resizeX: {
       hug: 'w-auto',
-      fill: 'w-full',
+      fill: ['min-w-inherit', 'w-full'],
       fixed: '',
     },
     resizeY: {
       hug: 'h-auto',
-      fill: ['h-inherit', 'min-h-inherit'],
+      fill: ['min-h-inherit', 'h-full'],
       fixed: '',
+    },
+    gap: {
+      0: 'gap-0',
+      1: 'gap-1',
+      2: 'gap-2',
+      3: 'gap-3',
+      4: 'gap-4',
+      5: 'gap-6',
+      6: 'gap-8',
+      7: 'gap-10',
+      8: 'gap-12',
+      9: 'gap-16',
+      xs: 'gap-2',
+      s: 'gap-4',
+      m: 'gap-6',
+      l: 'gap-8',
+      xl: 'gap-12',
+      '2xl': 'gap-16',
+      '3xl': 'gap-20',
+      '4xl': 'gap-24',
+      '5xl': 'gap-32',
+    },
+    gapX: {
+      xs: 'gap-2',
+      s: 'gap-4',
+      m: 'gap-6',
+      l: 'gap-8',
+      xl: 'gap-12',
+      '2xl': 'gap-16',
+      '3xl': 'gap-20',
+      '4xl': 'gap-24',
+      '5xl': 'gap-32',
+    },
+    gapY: {
+      xs: 'gap-2',
+      s: 'gap-4',
+      m: 'gap-6',
+      l: 'gap-8',
+      xl: 'gap-12',
+      '2xl': 'gap-16',
+      '3xl': 'gap-20',
+      '4xl': 'gap-24',
+      '5xl': 'gap-32',
     },
     position: {
       relative: 'relative',
@@ -92,6 +189,32 @@ const layout = cva({
       sticky: 'sticky',
       static: 'static',
     },
+  },
+  defaultVariants: {
+    resizeX: 'hug',
+    resizeY: 'hug',
+  },
+});
+
+const layoutFlex = cva({
+  variants: {
+    align: {
+      start: 'items-start',
+      center: 'items-center',
+      end: 'items-end',
+      baseline: 'items-baseline',
+      stretch: 'items-stretch',
+    },
+    justify: {
+      center: 'justify-center',
+      start: 'justify-start',
+      end: 'justify-end',
+      between: 'justify-between',
+    },
+  },
+  defaultVariants: {
+    align: 'start',
+    justify: 'start',
   },
 });
 
@@ -106,48 +229,39 @@ const flex = cva({
       left: 'flex-row-reverse',
       up: 'flex-col-reverse',
     },
-    align: {
-      start: 'items-start',
-      center: 'items-center',
-      end: 'items-end',
-      baseline: 'items-baseline',
-      stretch: 'items-stretch',
+    wrap: {
+      true: 'flex-wrap',
+      false: null,
     },
-    justify: {
-      center: 'justify-center',
-      start: 'justify-start',
-      end: 'justify-end',
-      between: 'justify-between',
-    },
-    gap: {
-      0: 'gap-0',
-      1: 'gap-1',
-      2: 'gap-2',
-      3: 'gap-3',
-      4: 'gap-4',
-      5: 'gap-6',
-      6: 'gap-8',
-      7: 'gap-10',
-      8: 'gap-12',
-      9: 'gap-16',
-    },
-    wrap: 'flex-wrap',
   },
   defaultVariants: {
     direction: 'row',
-    align: 'start',
-    justify: 'start',
-    resizeX: 'hug',
-    resizeY: 'hug',
+    wrap: false,
   },
 });
 
 export const Flex = forwardRef(
-  ({as: Component = 'div', children, className, ...props}, ref) => {
-    const styles = compose(layout, flex);
+  (
+    {
+      as: Component = 'div',
+      children,
+      wrap,
+      resizeX,
+      resizeY,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const styles = compose(layoutCore, layoutFlex, flex);
 
     return (
-      <Component ref={ref} className={styles({...props, className})} {...props}>
+      <Component
+        ref={ref}
+        className={styles({...props, resizeX, resizeY, wrap, className})}
+        data-h2="Flex"
+        {...props}
+      >
         {children}
       </Component>
     );
@@ -185,48 +299,33 @@ const grid = cva({
       11: 'grid-rows-11',
       12: 'grid-rows-12',
     },
-    gap: {
-      1: 'gap-1',
-      2: 'gap-2',
-      3: 'gap-3',
-      4: 'gap-4',
-      5: 'gap-5',
-      6: 'gap-6',
-      7: 'gap-7',
-      8: 'gap-8',
-      9: 'gap-9',
-      10: 'gap-10',
-      11: 'gap-11',
-      12: 'gap-12',
-    },
-  },
-  defaultVariants: {
-    gap: 4,
-    resizeX: 'hug',
-    resizeY: 'hug',
   },
 });
 
-export const Grid = forwardRef(({children, className, ...props}, ref) => {
-  const styles = compose(layout, grid);
+export const Grid = forwardRef(
+  ({children, className, gap = 'm', resizeX, resizeY, ...props}, ref) => {
+    const styles = compose(layoutCore, layoutFlex, grid);
 
-  return (
-    <div ref={ref} className={styles({...props, className})} {...props}>
-      {children}
-    </div>
-  );
-});
+    return (
+      <div
+        ref={ref}
+        className={styles({...props, gap, resizeX, resizeY, className})}
+        data-h2="Grid"
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
 
 const background = cva({
-  base: [
-    'grid',
-    'overflow-hidden',
-    'absolute',
-    'z-0',
-    'inset-0',
-    'pointer-events-none',
-  ],
+  base: ['grid', 'absolute', 'z-0', 'inset-0', 'pointer-events-none'],
   variants: {
+    overflow: {
+      hidden: 'overflow-hidden',
+      visible: 'overflow-visible',
+    },
     align: {
       start: 'items-start',
       center: 'items-center',
@@ -257,46 +356,66 @@ const background = cva({
   },
   defaultVariants: {
     columns: 1,
+    overflow: 'hidden',
   },
 });
 
 export const Background = forwardRef(({children, className, ...props}, ref) => {
   return (
-    <div ref={ref} className={background({...props, className})} {...props}>
+    <div
+      ref={ref}
+      className={background({...props, className})}
+      data-h2="Background"
+      {...props}
+    >
       {children}
     </div>
   );
 });
 
-export const Container = forwardRef(
-  ({as: Component = 'div', children, className, ...props}, ref) => {
-    const container = cva({
-      base: [
-        'mx-auto',
-        'px-4',
-        'md:px-8',
-        'lg:px-10',
-        'w-full',
-        'relative',
-        'z-10',
-      ],
-      variants: {
-        fluid: {
-          true: 'max-w-none',
-          false: 'max-w-7xl',
-        },
-      },
-      defaultVariants: {
-        resizeX: 'hug',
-        resizeY: 'hug',
-        fluid: false,
-      },
-    });
+const container = cva({
+  base: [
+    'mx-auto',
+    'px-4',
+    'md:px-8',
+    'lg:px-10',
+    'w-full',
+    'relative',
+    'z-10',
+  ],
+  variants: {
+    fluid: {
+      true: 'max-w-none',
+      false: 'max-w-7xl',
+    },
+  },
+  defaultVariants: {
+    fluid: false,
+  },
+});
 
-    const styles = compose(layout, container);
+export const Container = forwardRef(
+  (
+    {
+      as: Component = 'div',
+      fluid,
+      resizeX,
+      resizeY,
+      children,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const styles = compose(layoutCore, container);
 
     return (
-      <Component ref={ref} className={styles({...props, className})} {...props}>
+      <Component
+        ref={ref}
+        className={styles({fluid, resizeX, resizeY, ...props, className})}
+        data-h2="Container"
+        {...props}
+      >
         {children}
       </Component>
     );
@@ -314,11 +433,15 @@ const section = cva({
 });
 
 export const Section = forwardRef(
-  ({as: Component = 'section', children, className, ...props}, ref) => {
+  (
+    {as: Component = 'section', children, padding, className, ...props},
+    ref,
+  ) => {
     return (
       <Component
         ref={ref}
-        className={section({...props, className})}
+        data-h2="Section"
+        className={section({padding, className})}
         {...props}
       >
         {children}

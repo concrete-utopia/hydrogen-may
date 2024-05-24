@@ -14,7 +14,7 @@ export default function BestSellers() {
         </Heading>
       </Container>
       <Container>
-        <Grid columns={12} rows={12} className="aspect-[4/6]">
+        <Grid columns={12} rows={12} gap="m" className="aspect-[4/6]">
           <ProductCard className="col-span-5 col-start-1 row-start-1" />
           <ProductCard className="col-span-3 col-start-7 row-start-3" />
           <ProductCard className="col-span-3 col-start-10 row-start-1" />
