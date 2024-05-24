@@ -63,8 +63,14 @@
   "utopia": {
     "featuredRoutes": [
       "/",
-      "/blogs/news"
+      "/blogs/news",
+      "/page-yellow-tuesday"
     ],
-    "pageTemplates": []
+    "pageTemplates": [
+      {
+        "label": "Featured Product Page",
+        "path": "/app/routes/featured-products-template.jsx"
+      }
+    ]
   }
 }
