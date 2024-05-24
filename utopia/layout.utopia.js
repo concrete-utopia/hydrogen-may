@@ -49,7 +49,7 @@ const annotations = {
       rows: Utopia.sliderControl(1, 5, 1),
     },
     focus: 'never',
-    inspector: [],
+    inspector: 'hidden',
     variants: [
       {
         label: 'Background with placeholders',

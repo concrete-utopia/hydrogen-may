@@ -14,7 +14,7 @@ const Components = {
       },
       focus: 'never',
       children: 'not-supported',
-      inspector: [],
+      inspector: 'hidden',
       variants: [
         {
           label: 'Accordion with sample data',
