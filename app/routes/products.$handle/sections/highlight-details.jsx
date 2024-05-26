@@ -8,7 +8,7 @@ export default function HighlightDetails() {
         <Grid resizeY="fill">
           <Flex resizeY="fill" justify="center" direction="down" gap={9}>
             <Flex direction="down" gap={5}>
-              <Heading size={4} color="white">
+              <Heading font="text" size={4} color="white">
                 Materials and care
               </Heading>
               <Flex as="ul" gap={2} direction="down">
@@ -28,7 +28,7 @@ export default function HighlightDetails() {
             </Flex>
 
             <Flex direction="down" gap={5}>
-              <Heading size={4} color="white">
+              <Heading font="text" size={4} color="white">
                 Size
               </Heading>
               <Flex as="ul" gap={2} direction="down">

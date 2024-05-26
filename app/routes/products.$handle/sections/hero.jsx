@@ -88,8 +88,8 @@ function ProductSummary() {
       id="product-summary"
       className="rounded-card max-w-[28rem] bg-white shadow-card overflow-hidden"
     >
-      <div id="product-info" className="grid gap-4 px-10 pt-12 pb-9 min-h-80">
-        <Heading align="left" id="product-info-title">
+      <div id="product-info" className="grid gap-6 px-10 pt-14 pb-9 min-h-80">
+        <Heading align="left" className="-mt-2 -mb-5">
           {title}
         </Heading>
 

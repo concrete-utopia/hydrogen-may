@@ -8,7 +8,7 @@ export default function Banner() {
         <span className="text-5xl font-display">For Builders</span>
         <Star />
         <span className="font-sans text-5xl">By Builders</span>
-        <Star />˝
+        <Star />
       </div>
     ));
 

@@ -1,5 +1,5 @@
 import {forwardRef} from 'react';
-import {compose, cva} from './utils';
+import {compose, cva, cx} from './utils';
 
 const typography = cva({
   base: ['max-w-prose'],
