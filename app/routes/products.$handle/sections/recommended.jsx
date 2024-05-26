@@ -17,7 +17,9 @@ export default function Recommended({
       <Container as="header" className="-mb-10">
         <Flex gap="m" direction="down">
           <Heading size={9} uppercase weight="regular" wrap="balance">
-            You may also like
+            You may
+            <br />
+            also like
           </Heading>
         </Flex>
       </Container>
