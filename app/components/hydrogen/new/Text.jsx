@@ -4,14 +4,6 @@ import {compose, cva} from './utils';
 const typography = cva({
   base: ['max-w-prose'],
   variants: {
-    leading: {
-      none: 'leading-none', // 1
-      tight: 'leading-tight', // 1.25
-      snug: 'leading-snug', // 1.375
-      normal: 'leading-normal', // 1.5
-      relaxed: 'leading-relaxed', // 1.625
-      loose: 'leading-loose', // 2
-    },
     width: {
       narrow: 'max-w-prose-narrow', // 45ch / 720px / 28.125rem
       base: 'max-w-prose', // 65ch / 1040px / 65rem
@@ -64,37 +56,44 @@ const typography = cva({
       text: 'font-text',
       display: 'font-display',
     },
+    leading: {
+      none: 'leading-none', // 1
+      tight: 'leading-tight', // 1.25
+      snug: 'leading-snug', // 1.375
+      normal: 'leading-normal', // 1.5
+      relaxed: 'leading-relaxed', // 1.625
+      loose: 'leading-loose', // 2
+    },
   },
   defaultVariants: {
     truncate: false,
     uppercase: false,
     wrap: 'pretty',
-    color: 'base',
   },
 });
 
 const text = cva({
   variants: {
     size: {
-      1: 'text-xs', // 12/16 - 0.75rem
-      2: 'text-sm', // 14/20 - 0.875rem
-      3: 'text-base', // 16/24 - 1rem
-      4: 'text-lg', // 18/28 - 1.125rem
-      5: 'text-xl', // 20/28 - 1.25rem
-      6: 'text-2xl', // 24/32 - 1.5rem
-      7: 'text-3xl', // 30/36 - 1.875rem
-      8: 'text-4xl', // 36/40 - 2.25rem
-      9: 'text-5xl', // 48/48 - 3rem
-      xs: 'text-xs', // 12/16 - 0.75rem
-      s: 'text-sm', // 14/20 - 0.875rem
-      m: 'text-base', // 16/24 - 1rem
-      l: 'text-lg', // 18/28 - 1.125rem
-      xl: 'text-xl', // 20/28 - 1.25rem
-      '2xl': 'text-2xl', // 24/32 - 1.5rem
-      '3xl': 'text-3xl', // 30/36 - 1.875rem
-      '4xl': 'text-4xl', // 36/40 - 2.25rem
-      '5xl': 'text-5xl', // 48/48 - 3rem
-      '6xl': 'text-6xl', // 60/60 - 3.75rem
+      1: ['text-xs', 'leading-normal'], // 12/16 - 0.75rem
+      2: ['text-sm', 'leading-normal'], // 14/20 - 0.875rem
+      3: ['text-base', 'leading-normal'], // 16/24 - 1rem
+      4: ['text-lg', 'leading-normal'], // 18/28 - 1.125rem
+      5: ['text-xl', 'leading-normal'], // 20/28 - 1.25rem
+      6: ['text-2xl', 'leading-tight'], // 24/32 - 1.5rem
+      7: ['text-3xl', 'leading-tight'], // 30/36 - 1.875rem
+      8: ['text-4xl', 'leading-tight'], // 36/40 - 2.25rem
+      9: ['text-5xl', 'leading-tight'], // 48/48 - 3rem
+      xs: ['text-xs', 'leading-normal'], // 12/16 - 0.75rem
+      s: ['text-sm', 'leading-normal'], // 14/20 - 0.875rem
+      m: ['text-base', 'leading-normal'], // 16/24 - 1rem
+      l: ['text-lg', 'leading-normal'], // 18/28 - 1.125rem
+      xl: ['text-xl', 'leading-normal'], // 20/28 - 1.25rem
+      '2xl': ['text-2xl', 'laeding-normal'], // 24/32 - 1.5rem
+      '3xl': ['text-3xl', 'laeding-tight'], // 30/36 - 1.875rem
+      '4xl': ['text-4xl', 'laeding-tight'], // 36/40 - 2.25rem
+      '5xl': ['text-5xl', 'laeding-tight'], // 48/48 - 3rem
+      '6xl': ['text-6xl', 'laeding-tight'], // 60/60 - 3.75rem
     },
   },
   defaultVariants: {
@@ -109,6 +108,8 @@ export const Text = forwardRef(
       children,
       truncate = false,
       uppercase = false,
+      leading = 'snug',
+      color = 'text',
       className,
       ...props
     },
@@ -119,10 +120,14 @@ export const Text = forwardRef(
     return (
       <Component
         ref={ref}
+        data-h2="Text"
         className={styles({
           ...props,
           truncate,
           uppercase,
+          leading,
+          color,
+          text,
           className,
         })}
         {...props}
@@ -136,24 +141,24 @@ export const Text = forwardRef(
 const heading = cva({
   variants: {
     size: {
-      1: 'text-base', // 16/24 - 1rem
-      2: 'text-lg', // 18/28 - 1.125rem
-      3: 'text-xl', // 20/28 - 1.25rem
-      4: 'text-4xl', // 36/40 - 2.25rem
-      5: 'text-5xl', // 48/48 - 3rem
-      6: 'text-6xl', // 60/60 - 3.75rem
-      7: 'text-7xl', // 72/72 - 4.5rem
-      8: 'text-8xl', // 96/96 - 6rem
-      9: 'text-9xl', // 128/128 - 8rem
-      xs: 'text-base', // 16/24 - 1rem
-      s: 'text-lg', // 18/28 - 1.125rem
-      m: 'text-xl', // 20/28 - 1.25rem
-      l: 'text-3xl', // 30/36 - 1.875rem
-      xl: 'text-4xl', // 36/40 - 2.25rem
-      '2xl': 'text-5xl', // 48/48 - 3rem
-      '3xl': 'text-6xl', // 60/60 - 3.75rem
-      '4xl': 'text-7xl', // 72/72 - 4.5rem
-      '5xl': 'text-8xl', // 96/96 - 6rem
+      1: ['text-base', 'leading-normal'], // 16 - 1rem
+      2: ['text-lg', 'leading-normal'], // 18 - 1.125rem
+      3: ['text-xl', 'leading-normal'], // 20 - 1.25rem
+      4: ['text-4xl', 'leading-tight'], // 36 - 2.25rem
+      5: ['text-5xl', 'leading-tight'], // 48 - 3rem
+      6: ['text-6xl', 'leading-none'], // 60 - 3.75rem
+      7: ['text-7xl', 'leading-none'], // 72 - 4.5rem
+      8: ['text-8xl', 'leading-none'], // 96 - 6rem
+      9: ['text-9xl', 'leading-none'], // 128 - 8rem
+      xs: ['text-base', 'leading-normal'], // 16 - 1rem
+      s: ['text-lg', 'leading-normal'], // 18 - 1.125rem
+      m: ['text-xl', 'leading-normal'], // 20 - 1.25rem
+      l: ['text-3xl', 'leading-tight'], // 30 - 1.875rem
+      xl: ['text-4xl', 'leading-tight'], // 36 - 2.25rem
+      '2xl': ['text-5xl', 'leading-none'], // 48 - 3rem
+      '3xl': ['text-6xl', 'leading-none'], // 60 - 3.75rem
+      '4xl': ['text-7xl', 'leading-none'], // 72 - 4.5rem
+      '5xl': ['text-8xl', 'leading-none'], // 96 - 6rem
     },
   },
   defaultVariants: {
@@ -168,7 +173,7 @@ export const Heading = forwardRef(
       children,
       truncate = false,
       uppercase = false,
-      leading,
+      leading = 'tight',
       width,
       weight,
       align,

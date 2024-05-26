@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/react';
-import {Text} from '@h2/Text';
+import {Text} from '@h2/new/Text';
 
 const Accordion = ({data}) => {
   const [openPanel, setOpenPanel] = useState(null);
@@ -20,7 +20,7 @@ const Accordion = ({data}) => {
         >
           {({open}) => (
             <>
-              <DisclosureButton className="h-12 border-t border-primary/10 flex justify-between items-center w-full">
+              <DisclosureButton className="flex items-center justify-between w-full h-12 border-t border-primary/10">
                 <Text>{item.title}</Text>
                 <span
                   className={`${
@@ -30,7 +30,11 @@ const Accordion = ({data}) => {
                   &times;
                 </span>
               </DisclosureButton>
-              <DisclosurePanel className="pb-4">{item.content}</DisclosurePanel>
+              <DisclosurePanel className="pb-4">
+                <Text as="p" align="left">
+                  {item.content}
+                </Text>
+              </DisclosurePanel>
             </>
           )}
         </Disclosure>

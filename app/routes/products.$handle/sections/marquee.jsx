@@ -5,10 +5,10 @@ export default function Banner() {
     .fill(null)
     .map((_, index) => (
       <div key={index} className="flex items-center gap-8 p-8 pr-0">
-        <span className="text-5xl font-accent">For Builders</span>
+        <span className="text-5xl font-display">For Builders</span>
         <Star />
         <span className="font-sans text-5xl">By Builders</span>
-        <Star />
+        <Star />˝
       </div>
     ));
 

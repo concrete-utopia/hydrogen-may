@@ -115,7 +115,6 @@ export default function FeaturedProducts() {
               <PriceCompareAt
                 as={Heading}
                 size={3}
-                fontStyle="lineThrough"
                 align="center"
                 className="opacity-40"
                 withoutTrailingZeros

@@ -1,4 +1,4 @@
-import {Button} from '@h2/Button';
+import {AddToCartButton} from '@h2/new/Button';
 import {Heading, Text} from '@h2/new/Text';
 import {Container, Flex, Grid, Section} from '@h2/new/Layout';
 import {Image} from '@shopify/hydrogen';
@@ -11,7 +11,7 @@ export default function Spotlight() {
           <Heading size={9} uppercase weight="regular">
             New
           </Heading>
-          <Text size={6} color="gray">
+          <Text size={6} color="black" weight="medium" className="opacity-50">
             Just Dropped
           </Text>
         </Flex>
@@ -46,7 +46,7 @@ export default function Spotlight() {
                 designed for acne-prone skin.
               </Text>
             </Flex>
-            <Button>Add to cart</Button>
+            <AddToCartButton>Add to cart</AddToCartButton>
           </Flex>
           <div className="self-stretch bg-accent">
             <Image

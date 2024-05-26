@@ -1,6 +1,6 @@
 import {flattenConnection, Image} from '@shopify/hydrogen';
 
-import {Button, AddToCartButton} from '@h2/Button';
+import {Button, AddToCartButton} from '@h2/new/Button';
 import {cx} from '@h2/new/utils';
 import {Flex, Grid} from '@h2/new/Layout';
 import {Heading, Text} from '@h2/new/Text';
@@ -50,7 +50,7 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
         prefetch="viewport"
       >
         <Grid gap={4}>
-          <div className="card-image aspect-[4/5] bg-primary/5">
+          <div className="card-image aspect-[4/5] bg-offWhite">
             {image && (
               <Image
                 className="object-cover w-full fadeIn"

@@ -17,7 +17,7 @@ export default function Hero() {
             <Text uppercase color="accent" font="display">
               Coming Soon
             </Text>
-            <Heading size="5xl">
+            <Heading size="5xl" leading="tight">
               Builder
               <br />
               <Span font="display" uppercase>

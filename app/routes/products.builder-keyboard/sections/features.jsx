@@ -6,13 +6,22 @@ function Feature({number, title, description, image}) {
   return (
     <Grid columns={9}>
       <div className="col-span-2">
-        <Heading>{number}</Heading>
+        <Heading
+          leading="none"
+          size="5xl"
+          color="white"
+          className="-mt-[0.125em]"
+        >
+          {number}
+        </Heading>
       </div>
       <Flex direction="down" gap="m" className="col-span-3">
         <Heading size="m" color="accent">
           {title}
         </Heading>
-        <Text>{description}</Text>
+        <Text className="text-white/70" as="p">
+          {description}
+        </Text>
       </Flex>
       <div className="col-span-3 col-start-7 bg-gray">
         <Image src={image.src} width={370} height={257} crop="center" />
@@ -53,7 +62,7 @@ const data = [
 
 export default function Features() {
   return (
-    <Section className="text-white bg-darkGray">
+    <Section className="bg-darkGray">
       <Container>
         <Flex direction="down" gap={9} py="3xl">
           {data.map((feature) => (

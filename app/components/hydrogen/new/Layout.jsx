@@ -210,6 +210,7 @@ const layoutFlex = cva({
       start: 'justify-start',
       end: 'justify-end',
       between: 'justify-between',
+      around: 'justify-around',
     },
   },
   defaultVariants: {

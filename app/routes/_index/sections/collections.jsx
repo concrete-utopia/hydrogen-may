@@ -1,5 +1,5 @@
 import Link from '@h2/Link';
-import {Heading} from '@h2/new/Text';
+import {Heading, Span} from '@h2/new/Text';
 import {Background, Container, Flex, Grid, Section} from '@h2/new/Layout';
 
 export default function Collections() {
@@ -21,9 +21,9 @@ export default function Collections() {
         <Heading uppercase align="center" weight="regular" size={6}>
           Something
           <br />
-          <span className="font-display drop-shadow-[-0.1em_0_0_white]">
+          <Span font="display" className="drop-shadow-[-0.1em_0_0_white]">
             For Everyone
-          </span>
+          </Span>
         </Heading>
       </Flex>
       <Section>
