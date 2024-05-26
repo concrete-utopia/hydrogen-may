@@ -63,7 +63,7 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
             )}
           </div>
           <Grid gap={1} justify="start">
-            <Heading truncate size={3} weight="medium" as="h3">
+            <Heading font="text" truncate size={3} weight="medium" as="h3">
               {product.title}
             </Heading>
             <Flex gap={3} justify="start" align="baseline">
