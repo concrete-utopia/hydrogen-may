@@ -23,7 +23,7 @@ function Feature({number, title, description, image}) {
           {description}
         </Text>
       </Flex>
-      <div className="col-span-3 col-start-7 bg-gray">
+      <div className="col-span-3 col-start-7 bg-offWhite">
         <Image src={image.src} width={370} height={257} crop="center" />
       </div>
     </Grid>

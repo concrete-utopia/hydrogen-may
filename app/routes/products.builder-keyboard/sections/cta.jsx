@@ -17,11 +17,17 @@ export default function CTA() {
         >
           <Heading weight="regular" leading="normal">
             <Span font="display">
-              <Span pill>CTRL</Span> YOUR PRODUCTIVITY,
+              <Span pill className="bg-white">
+                CTRL
+              </Span>{' '}
+              YOUR PRODUCTIVITY,
             </Span>
             <br />
             <Span font="sans">
-              <Span pill>ALT</Span> YOUR WORK GAME.
+              <Span pill className="bg-white">
+                ALT
+              </Span>{' '}
+              YOUR WORK GAME.
             </Span>
           </Heading>
           <Button>Pre-order</Button>

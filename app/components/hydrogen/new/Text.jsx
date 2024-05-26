@@ -159,6 +159,7 @@ const heading = cva({
       '3xl': ['text-6xl', 'leading-none'], // 60 - 3.75rem
       '4xl': ['text-7xl', 'leading-none'], // 72 - 4.5rem
       '5xl': ['text-8xl', 'leading-none'], // 96 - 6rem
+      '6xl': ['text-9xl', 'leading-none'], // 128 - 8rem
     },
   },
   defaultVariants: {
@@ -174,6 +175,7 @@ export const Heading = forwardRef(
       truncate = false,
       uppercase = false,
       leading = 'tight',
+      font = 'display',
       width,
       weight,
       align,
@@ -197,6 +199,7 @@ export const Heading = forwardRef(
           leading,
           width,
           weight,
+          font,
           align,
           wrap,
           color,
@@ -215,7 +218,7 @@ export const Heading = forwardRef(
 const span = cva({
   variants: {
     pill: {
-      true: ['px-[0.4em]', 'py-[0.1em]', 'bg-white', 'rounded-full'],
+      true: ['px-5', 'rounded-full'],
       false: null,
     },
   },

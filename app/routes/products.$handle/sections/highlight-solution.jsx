@@ -1,4 +1,4 @@
-import {Heading, Text} from '@h2/new/Text';
+import {Heading, Span, Text} from '@h2/new/Text';
 import {useLoaderData} from '@remix-run/react';
 import {Button} from '@h2/new/Button';
 import {Image} from '@shopify/hydrogen';
@@ -29,10 +29,13 @@ export default function HighlightSolution() {
             >
               <Heading uppercase wrap="balance">
                 Your{' '}
-                <span className="px-5 mx-2 rounded-full bg-accent">ideal</span>
-                <span className="px-5 mx-2 rounded-full bg-accent">
+                <Span pill className="bg-accent">
+                  ideal
+                </Span>
+                &nbsp;
+                <Span pill className="w-[1em] px-6 bg-accent">
                   &nbsp;
-                </span>{' '}
+                </Span>{' '}
                 travel companion
               </Heading>
               <Text wrap="balance" size="xl" className="opacity-70">

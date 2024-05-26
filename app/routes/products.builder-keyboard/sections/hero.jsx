@@ -1,4 +1,4 @@
-import {Button} from '@h2/Button';
+import {Button} from '@h2/new/Button';
 import Link from '@h2/Link';
 import {Price} from '@h2/Price';
 import {Heading, Span, Text} from '@h2/new/Text';
@@ -24,11 +24,18 @@ export default function Hero() {
                 Keyboard
               </Span>
             </Heading>
-            <Price as={Text} size="6xl" variant={selectedVariant} />
+            <Price
+              color="white"
+              className="opacity-60"
+              font="display"
+              as={Text}
+              size="6xl"
+              variant={selectedVariant}
+            />
           </Flex>
           <Flex direction="down" gap={4}>
-            <Button>Pre-order</Button>
-            <Text width="narrow" className="opacity-70">
+            <Button color="accent">Pre-order</Button>
+            <Text width="narrow" color="white" className="opacity-70">
               See{' '}
               <Link className="border-b border-white/45" to="/">
                 FAQs

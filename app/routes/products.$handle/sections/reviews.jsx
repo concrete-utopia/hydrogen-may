@@ -45,9 +45,9 @@ const reviews = [
 export default function Reviews({data = reviews}) {
   return (
     <Section>
-      <Container as="header" className="py-56 -mb-64">
+      <Container as="header" className="py-56 -mb-96">
         <Flex direction="down" gap={8}>
-          <Heading size={9} uppercase weight="regular" wrap="balance">
+          <Heading size="6xl" uppercase weight="regular" wrap="balance">
             Don’t take our word for it
           </Heading>
           <Flex direction="down" gap={6}>
@@ -71,7 +71,7 @@ export default function Reviews({data = reviews}) {
         </Flex>
       </Container>
       <Container className="pb-16">
-        <div className="max-w-3xl ml-auto">
+        <div className="max-w-[52rem] ml-auto">
           <div className="gap-12 columns-2">
             <div className="mt-36" />
             {data.map((review, i) => {
@@ -120,8 +120,13 @@ function Review({data, className, ...props}) {
           <IconQuote />
         </span>
         <Text>
-          <Strong>{firstSentence}</Strong>{' '}
-          <Span weight="medium" color="text">
+          <Strong color={props.background === 'black' ? 'white' : 'text'}>
+            {firstSentence}
+          </Strong>{' '}
+          <Span
+            color={props.background === 'black' ? 'white' : 'black'}
+            className="opacity-70"
+          >
             {remainingText}
           </Span>
         </Text>

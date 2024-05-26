@@ -57,6 +57,7 @@ export default {
         inherit: 'inherit',
       },
       fontFamily: {
+        display: 'Synchro',
         sans: ['Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         serif: ['"IBMPlexSerif"', 'Palatino', 'ui-serif'],
       },
