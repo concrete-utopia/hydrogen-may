@@ -19,7 +19,7 @@ export default function Hero() {
         resizeY="fill"
         align="center"
         gap={0}
-        py="5xl"
+        py="3xl"
         className="z-20"
       >
         <div className="product-image">
@@ -43,7 +43,7 @@ export default function Hero() {
         <Flex
           direction="down"
           align="center"
-          justify="around"
+          justify="center"
           className="absolute w-full h-full -translate-x-1/2 left-50"
         >
           <span className="leading-none text-white whitespace-nowrap font-display text-[25rem]">
@@ -134,7 +134,7 @@ function ProductSummary() {
       <Flex
         direction="column"
         justify="center"
-        gap={4}
+        gap={5}
         className="px-10 py-8 min-h-80 bg-lighterGray"
       >
         <div className="grid gap-3">

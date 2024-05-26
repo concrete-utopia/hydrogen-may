@@ -1,4 +1,4 @@
-import {Button} from '@h2/Button';
+import {AddToCartButton} from '@h2/new/Button';
 import {Heading, Text} from '@h2/new/Text';
 import {Background, Flex, Grid, Section} from '@h2/new/Layout';
 import {Image} from '@shopify/hydrogen';
@@ -77,13 +77,15 @@ export default function FeaturedProducts() {
             />
           </div>
           <Flex gap={4} direction="down" align="center" justify="center">
-            <Heading size={4}>Builders Tote</Heading>
-            <Text width="narrow">
+            <Heading font="text" weight="medium" size={4}>
+              Builders Tote
+            </Heading>
+            <Text width="narrow" color="black" className="opacity-60">
               Sofie Pavitt Face is an intentional edit of skincare essentials
               designed for acne-prone skin.
             </Text>
           </Flex>
-          <Button color="accent">Add to cart</Button>
+          <AddToCartButton color="accent">Add to cart</AddToCartButton>
         </SaleCard>
         <div className="h-full bg-black">
           <Image
@@ -134,13 +136,15 @@ export default function FeaturedProducts() {
             />
           </div>
           <Flex gap={4} direction="down" align="center" justify="center">
-            <Heading size={4}>Builders Tote</Heading>
-            <Text width="narrow">
+            <Heading font="text" weight="medium" size={4}>
+              Builders Tote
+            </Heading>
+            <Text width="narrow" color="black" className="opacity-60">
               Sofie Pavitt Face is an intentional edit of skincare essentials
               designed for acne-prone skin.
             </Text>
           </Flex>
-          <Button>Add to cart</Button>
+          <AddToCartButton color="white">Add to cart</AddToCartButton>
         </SaleCard>
       </Grid>
     </Section>

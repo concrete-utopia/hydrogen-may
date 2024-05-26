@@ -43,14 +43,14 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
   const {image} = firstVariant;
 
   return (
-    <div className={cx('flex flex-col gap-2', className)}>
+    <div className={cx('flex w-full flex-col gap-2', className)}>
       <Link
         onClick={onClick}
         to={`/products/${product.handle}`}
         prefetch="viewport"
       >
-        <Grid gap={4}>
-          <div className="card-image aspect-[4/5] bg-offWhite">
+        <Flex direction="down" gap={4} resizeX="fill">
+          <div className="aspect-[4/5] bg-offWhite w-full">
             {image && (
               <Image
                 className="object-cover w-full fadeIn"
@@ -81,7 +81,7 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
               />
             </Flex>
           </Grid>
-        </Grid>
+        </Flex>
       </Link>
       {quickAdd && firstVariant.availableForSale && (
         <AddToCartButton

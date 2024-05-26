@@ -21,7 +21,9 @@ const Accordion = ({data}) => {
           {({open}) => (
             <>
               <DisclosureButton className="flex items-center justify-between w-full h-12 border-t border-primary/10">
-                <Text>{item.title}</Text>
+                <Text color="black" weight="medium">
+                  {item.title}
+                </Text>
                 <span
                   className={`${
                     open ? `rotate-0` : `rotate-45`

@@ -23,7 +23,7 @@ export default function CTA() {
               YOUR PRODUCTIVITY,
             </Span>
             <br />
-            <Span font="sans">
+            <Span font="sans" className="block mt-2 scale-95">
               <Span pill className="bg-white">
                 ALT
               </Span>{' '}

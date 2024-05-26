@@ -24,10 +24,17 @@ function PromiseCard({heading, description, icon, color = 'gray', className}) {
         size={3}
         uppercase
         weight="regular"
+        className="tracking-wide"
+        font="text"
       >
         {heading}
       </Heading>
-      <Text color={color === 'black' ? 'white' : undefined} width="narrow">
+      <Text
+        color={color === 'black' ? 'white' : undefined}
+        width="narrow"
+        className="opacity-60"
+        wrap="balance"
+      >
         {description}
       </Text>
     </Flex>
@@ -37,7 +44,7 @@ function PromiseCard({heading, description, icon, color = 'gray', className}) {
 export default function OurPromise() {
   return (
     <Section className="py-16">
-      <Container as="header" className="z-20 pt-16 -mb-8">
+      <Container as="header" className="z-20 pt-16 -mb-6">
         <Heading uppercase size={9}>
           Our
           <br />

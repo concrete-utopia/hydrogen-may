@@ -16,7 +16,7 @@ function Feature({number, title, description, image}) {
         </Heading>
       </div>
       <Flex direction="down" gap="m" className="col-span-3">
-        <Heading size="m" color="accent">
+        <Heading font="text" size="m" color="accent">
           {title}
         </Heading>
         <Text className="text-white/70" as="p">

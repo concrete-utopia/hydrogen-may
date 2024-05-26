@@ -18,8 +18,8 @@ export default function Collections() {
         as="header"
         className="pb-32"
       >
-        <Heading uppercase align="center" weight="regular" size={6}>
-          Something
+        <Heading font="text" uppercase align="center" weight="regular" size={6}>
+          <Span className="relative inline-block scale-90">Something</Span>
           <br />
           <Span font="display" className="drop-shadow-[-0.1em_0_0_white]">
             For Everyone
@@ -40,6 +40,7 @@ export default function Collections() {
                 rows={1}
               >
                 <Heading
+                  font="text"
                   align="center"
                   size={6}
                   weight="regular"
@@ -57,6 +58,7 @@ export default function Collections() {
                 rows={1}
               >
                 <Heading
+                  font="text"
                   align="center"
                   size={6}
                   weight="regular"
@@ -74,6 +76,7 @@ export default function Collections() {
                 rows={1}
               >
                 <Heading
+                  font="text"
                   align="center"
                   size={6}
                   weight="regular"
@@ -91,6 +94,7 @@ export default function Collections() {
                 rows={1}
               >
                 <Heading
+                  font="text"
                   align="center"
                   size={6}
                   weight="regular"

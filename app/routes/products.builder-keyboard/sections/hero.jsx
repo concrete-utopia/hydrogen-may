@@ -14,10 +14,16 @@ export default function Hero() {
       <Container resizeY="fill">
         <Flex direction="down" justify="between" py="3xl" resizeY="fill">
           <Flex direction="down" gap={6}>
-            <Text uppercase color="accent" font="display">
+            <Text
+              size="3xl"
+              uppercase
+              color="accent"
+              font="display"
+              className="pl-1"
+            >
               Coming Soon
             </Text>
-            <Heading size="5xl" leading="tight">
+            <Heading font="text" size="5xl" leading="tight">
               Builder
               <br />
               <Span font="display" uppercase>

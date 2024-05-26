@@ -59,9 +59,9 @@ export default function HighlightSolution() {
         </div>
       </Background>
       <div className="absolute bottom-0 right-0 flex justify-around w-1/2 translate-y-7">
-        <span className="-translate-x-4 translate-y-2 aspect-square w-14 bg-offWhite"></span>
-        <span className="translate-x-3 aspect-square w-14 bg-offWhite"></span>
-        <span className="translate-y-14 aspect-square w-14 bg-offWhite"></span>
+        <span className="-translate-x-4 translate-y-4 aspect-square w-14 bg-offWhite"></span>
+        <span className="-translate-x-2 aspect-square w-14 bg-offWhite"></span>
+        <span className="-translate-x-11 translate-y-14 aspect-square w-14 bg-offWhite"></span>
         <span className="-translate-x-4 translate-y-4 aspect-square w-14 bg-offWhite"></span>
         <span className="bg-white aspect-square w-14 -translate-y-7"></span>
       </div>
