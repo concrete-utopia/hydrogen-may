@@ -9,7 +9,7 @@ export default function Collections() {
       as="section"
       justify="stretch"
       rows={2}
-      className="-mt-24 bg-accent md:-mt-40 lg:-mt-96 bg-gradient-to-b from-white to-accent to-50%"
+      className="bg-accent -mt-[28rem] bg-gradient-to-b from-white to-accent to-50%"
     >
       <Flex
         resizeY="fill"

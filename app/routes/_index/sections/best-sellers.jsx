@@ -4,9 +4,14 @@ import {Container, Flex, Grid, Section} from '@h2/new/Layout';
 
 export default function BestSellers() {
   return (
-    <Section className="py-32">
+    <Section className="pt-32">
       <Container as="header" className="z-20 pointer-events-none">
-        <Heading weight="regular" uppercase size={8} className="relative -mb-8">
+        <Heading
+          weight="regular"
+          uppercase
+          size={8}
+          className="relative -mx-1 -mb-8"
+        >
           <Flex as="span" justify="between">
             <Span font="display">Best</Span>
             <Span font="sans" className="-mr-2 scale-95 translate-y-1">

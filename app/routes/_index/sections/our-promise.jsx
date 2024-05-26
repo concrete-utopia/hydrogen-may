@@ -12,7 +12,7 @@ function PromiseCard({heading, description, icon, color = 'gray', className}) {
   return (
     <Flex
       p={7}
-      gap={4}
+      gap={2}
       direction="down"
       className={cx(bg[color], 'aspect-square', 'overflow-hidden', className)}
     >
