@@ -5,10 +5,10 @@ import {Image} from '@shopify/hydrogen';
 
 export default function Hero() {
   return (
-    <Section className="aspect-[8/5] bg-darkGray">
-      <Container resizeY="fill" className="py-24">
+    <Section className="h-svh max-h-[64rem] bg-darkGray">
+      <Container resizeY="fill" className="pb-24 pt-36">
         <Flex direction="down" resizeY="fill" justify="between" align="start">
-          <Flex direction="down" gap="s">
+          <Flex direction="down" gap="s" justify="center" className="pt-[10vh]">
             <Text
               uppercase
               size={6}

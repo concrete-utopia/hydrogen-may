@@ -17,7 +17,7 @@ export default function Spotlight() {
         </Flex>
       </Container>
       <Container>
-        <div className="absolute top-0 flex items-center justify-center w-40 text-6xl translate-x-1/2 -translate-y-1/2 bg-white rounded-full right-10 shadow-badge aspect-square">
+        <div className="absolute top-0 flex items-center justify-center w-40 translate-x-1/2 -translate-y-1/2 bg-white rounded-full text-7xl -rotate-12 right-10 shadow-badge aspect-square">
           👀
         </div>
         <Grid columns={2} gap={0}>

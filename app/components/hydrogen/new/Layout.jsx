@@ -304,13 +304,24 @@ const grid = cva({
 });
 
 export const Grid = forwardRef(
-  ({children, className, gap = 'm', resizeX, resizeY, ...props}, ref) => {
+  (
+    {children, className, gap = 'm', gapX, gapY, resizeX, resizeY, ...props},
+    ref,
+  ) => {
     const styles = compose(layoutCore, layoutFlex, grid);
 
     return (
       <div
         ref={ref}
-        className={styles({...props, gap, resizeX, resizeY, className})}
+        className={styles({
+          ...props,
+          gap,
+          gapX,
+          gapY,
+          resizeX,
+          resizeY,
+          className,
+        })}
         data-h2="Grid"
         {...props}
       >

@@ -6,7 +6,6 @@ import {cva, cx} from './utils';
 
 const button = cva({
   base: [
-    'rounded-button',
     'font-medium',
     'whitespace-nowrap',
     'text-center',
@@ -21,6 +20,10 @@ const button = cva({
     'text-sm',
   ],
   variants: {
+    rounded: {
+      base: 'rounded-button',
+      full: 'rounded-full',
+    },
     color: {
       black: 'bg-black text-white',
       accent: 'bg-accent text-black',
@@ -29,11 +32,12 @@ const button = cva({
   },
   defaultVariants: {
     color: 'accent',
+    rounded: 'base',
   },
 });
 
 export const Button = forwardRef(
-  ({as = 'button', children, color, className, ...props}, ref) => {
+  ({as = 'button', children, rounded, color, className, ...props}, ref) => {
     const Component = props?.to ? Link : as;
 
     return (
@@ -42,6 +46,7 @@ export const Button = forwardRef(
         data-h2="Button"
         className={button({
           color,
+          rounded,
           className,
         })}
         {...props}
