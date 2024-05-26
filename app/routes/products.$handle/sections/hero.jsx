@@ -29,6 +29,7 @@ export default function Hero() {
             data={selectedVariant?.image}
             key={selectedVariant?.image.id}
             sizes="(min-width: 45em) 50vw, 100vw"
+            className="object-fill"
           />
         </div>
         <Flex align="stretch" justify="center" className="items-center">
@@ -44,7 +45,7 @@ export default function Hero() {
           direction="down"
           align="center"
           justify="center"
-          className="absolute w-full h-full -translate-x-1/2 left-50"
+          className="absolute w-full h-full -translate-x-1/2 left-1/2"
         >
           <span className="leading-none text-white whitespace-nowrap font-display text-[25rem]">
             BUILDERS BUILDERS
