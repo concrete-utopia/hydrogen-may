@@ -104,7 +104,7 @@ const review = cva({
   },
 });
 
-function Review({data, className, ...props}) {
+export function Review({data, className, ...props}) {
   const {quote, customer} = data;
   const classes = cx(review(props), className);
 
