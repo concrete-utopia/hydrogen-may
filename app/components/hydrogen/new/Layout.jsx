@@ -1,6 +1,6 @@
-import React from 'react';
-import {forwardRef} from 'react';
-import {cva, compose} from './utils';
+import React from 'react'
+import { forwardRef } from 'react'
+import { cva, compose } from './utils'
 
 const layoutCore = cva({
   variants: {
@@ -195,7 +195,7 @@ const layoutCore = cva({
     resizeX: 'hug',
     resizeY: 'hug',
   },
-});
+})
 
 const layoutFlex = cva({
   variants: {
@@ -218,7 +218,7 @@ const layoutFlex = cva({
     align: 'start',
     justify: 'start',
   },
-});
+})
 
 const flex = cva({
   base: 'flex',
@@ -240,7 +240,7 @@ const flex = cva({
     direction: 'row',
     wrap: false,
   },
-});
+})
 
 export const Flex = forwardRef(
   (
@@ -255,20 +255,26 @@ export const Flex = forwardRef(
     },
     ref,
   ) => {
-    const styles = compose(layoutCore, layoutFlex, flex);
+    const styles = compose(layoutCore, layoutFlex, flex)
 
     return (
       <Component
         ref={ref}
-        className={styles({...props, resizeX, resizeY, wrap, className})}
-        data-h2="Flex"
+        className={styles({
+          ...props,
+          resizeX,
+          resizeY,
+          wrap,
+          className,
+        })}
+        data-h2='Flex'
         {...props}
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
 const grid = cva({
   base: ['grid'],
@@ -302,14 +308,23 @@ const grid = cva({
       12: 'grid-rows-12',
     },
   },
-});
+})
 
 export const Grid = forwardRef(
   (
-    {children, className, gap = 'm', gapX, gapY, resizeX, resizeY, ...props},
+    {
+      children,
+      className,
+      gap = 'm',
+      gapX,
+      gapY,
+      resizeX,
+      resizeY,
+      ...props
+    },
     ref,
   ) => {
-    const styles = compose(layoutCore, layoutFlex, grid);
+    const styles = compose(layoutCore, layoutFlex, grid)
 
     return (
       <div
@@ -323,17 +338,23 @@ export const Grid = forwardRef(
           resizeY,
           className,
         })}
-        data-h2="Grid"
+        data-h2='Grid'
         {...props}
       >
         {children}
       </div>
-    );
+    )
   },
-);
+)
 
 const background = cva({
-  base: ['grid', 'absolute', 'z-0', 'inset-0', 'pointer-events-none'],
+  base: [
+    'grid',
+    'absolute',
+    'z-0',
+    'inset-0',
+    'pointer-events-none',
+  ],
   variants: {
     overflow: {
       hidden: 'overflow-hidden',
@@ -371,20 +392,22 @@ const background = cva({
     columns: 1,
     overflow: 'hidden',
   },
-});
+})
 
-export const Background = forwardRef(({children, className, ...props}, ref) => {
-  return (
-    <div
-      ref={ref}
-      className={background({...props, className})}
-      data-h2="Background"
-      {...props}
-    >
-      {children}
-    </div>
-  );
-});
+export const Background = forwardRef(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={background({ ...props, className })}
+        data-h2='Background'
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
 const container = cva({
   base: [
@@ -405,7 +428,7 @@ const container = cva({
   defaultVariants: {
     fluid: false,
   },
-});
+})
 
 export const Container = forwardRef(
   (
@@ -420,69 +443,57 @@ export const Container = forwardRef(
     },
     ref,
   ) => {
-    const styles = compose(layoutCore, container);
+    const styles = compose(layoutCore, container)
 
     return (
       <Component
         ref={ref}
-        className={styles({fluid, resizeX, resizeY, ...props, className})}
-        data-h2="Container"
+        className={styles({
+          fluid,
+          resizeX,
+          resizeY,
+          ...props,
+          className,
+        })}
+        data-h2='Container'
         {...props}
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
 const section = cva({
   base: ['w-full', 'relative', 'min-h-8'],
   variants: {
-    padding: {true: 'py-16', false: null},
+    padding: { true: 'py-16', false: null },
     defaultVariants: {
       padding: false,
     },
   },
-});
+})
 
 export const Section = forwardRef(
   (
-    {as: Component = 'section', children, padding, className, ...props},
+    {
+      as: Component = 'section',
+      children,
+      padding,
+      className,
+      ...props
+    },
     ref,
   ) => {
     return (
       <Component
         ref={ref}
-        data-h2="Section"
-        className={section({padding, className})}
+        data-h2='Section'
+        className={section({ padding, className })}
         {...props}
       >
         {children}
       </Component>
-    );
+    )
   },
-);
-
-const section = cva({
-  base: ['w-full', 'relative', 'min-h-8'],
-  variants: {
-    padding: {true: 'py-16', false: null},
-    defaultVariants: {
-      padding: false,
-    },
-  },
-});
-
-export const Section = forwardRef(
-  ({as: Component = 'section', children, className, ...props}, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={section({...props, className})}
-        {...props}
-      >
-        {children}
-      </Component>
-    );
-  },
-);
+)
