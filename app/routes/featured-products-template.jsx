@@ -82,10 +82,7 @@ export default function Product() {
     <FlexCol
       style={{ gap: 24, padding: '16px 16px 16px 16px' }}
     >
-      <h1 style={{ fontSize: 24, fontWeight: 800 }}>
-        Featured Product
-      </h1>
-      <Placeholder padded />
+      <Placeholder padded style={{ height: 500 }} />
     </FlexCol>
   )
 }
