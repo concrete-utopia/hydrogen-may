@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Synchro';
+  src: url('/synchro.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,13 +26,13 @@
   --color-accent: color(display-p3 0.93 1 0.12);
   --color-accentDark: 189 207 0;
 
-  --color-black: rgb(0 0 0);
-  --color-darkGray: rgb(26 28 28);
-  --color-gray: rgb(102 102 102);
-  --color-lightGray: rgb(210 210 210);
-  --color-lighterGray: rgb(248 248 248);
-  --color-offWhite: rgb(241 241 236);
-  --color-white: rgb(255 255 255);
+  --color-black: 0 0 0;
+  --color-darkGray: 26 28 28;
+  --color-gray: 102 102 102;
+  --color-lightGray: 210 210 210;
+  --color-lighterGray: 248 248 248;
+  --color-offWhite: 241 241 236;
+  --color-white: 255 255 255;
 
   --button-radius: 1rem;
   --card-radius: 0.625rem;
@@ -228,12 +236,6 @@ aside li {
   position: sticky;
   top: 0;
   z-index: 100;
-}
-
-.header-menu-mobile-toggle {
-  @media (min-width: 48em) {
-    display: none;
-  }
 }
 
 .header-menu-mobile {

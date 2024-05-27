@@ -1,6 +1,6 @@
 import {flattenConnection, Image} from '@shopify/hydrogen';
 
-import {Button, AddToCartButton} from '@h2/Button';
+import {Button, AddToCartButton} from '@h2/new/Button';
 import {cx} from '@h2/new/utils';
 import {Flex, Grid} from '@h2/new/Layout';
 import {Heading, Text} from '@h2/new/Text';
@@ -16,14 +16,14 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
   const {image} = firstVariant;
 
   return (
-    <div className={cx('flex flex-col gap-2', className)}>
+    <div className={cx('flex w-full flex-col gap-2', className)}>
       <Link
         onClick={onClick}
         to={`/products/${product.handle}`}
         prefetch="viewport"
       >
-        <Grid gap={4}>
-          <div className="card-image aspect-[4/5] bg-primary/5">
+        <Flex direction="down" gap={4} resizeX="fill">
+          <div className="aspect-[4/5] bg-offWhite w-full">
             {image && (
               <Image
                 className="object-cover w-full fadeIn"
@@ -35,11 +35,11 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
               />
             )}
           </div>
-          <Grid gap={1}>
-            <Heading truncate size={3} weight="medium" as="h3">
+          <Grid gap={1} justify="start">
+            <Heading font="text" truncate size={3} weight="medium" as="h3">
               {product.title}
             </Heading>
-            <Flex gap={3} align="baseline">
+            <Flex gap={3} justify="start" align="baseline">
               <Price
                 color="black"
                 className="opacity-60"
@@ -54,7 +54,7 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
               />
             </Flex>
           </Grid>
-        </Grid>
+        </Flex>
       </Link>
       {quickAdd && firstVariant.availableForSale && (
         <AddToCartButton

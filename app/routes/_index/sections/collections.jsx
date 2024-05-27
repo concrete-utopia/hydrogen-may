@@ -1,5 +1,5 @@
 import Link from '@h2/Link';
-import {Heading} from '@h2/new/Text';
+import {Heading, Span} from '@h2/new/Text';
 import {Background, Container, Flex, Grid, Section} from '@h2/new/Layout';
 
 export default function Collections() {
@@ -7,24 +7,26 @@ export default function Collections() {
     <Grid
       gap={0}
       as="section"
+      justify="stretch"
       rows={2}
-      className="-mt-24 bg-accent md:-mt-40 lg:-mt-96"
+      className="bg-accent -mt-[28rem] bg-gradient-to-b from-white to-accent to-50%"
     >
       <Flex
+        resizeY="fill"
         align="end"
         justify="center"
         as="header"
-        className="pb-32 bg-gradient-to-b from-white to-accent"
+        className="pb-32"
       >
-        <Heading uppercase align="center" weight="regular" size={6}>
-          Something
+        <Heading font="text" uppercase align="center" weight="regular" size={6}>
+          <Span className="relative inline-block scale-90">Something</Span>
           <br />
-          <span className="font-display drop-shadow-[-0.1em_0_0_white]">
+          <Span font="display" className="drop-shadow-[-0.1em_0_0_white]">
             For Everyone
-          </span>
+          </Span>
         </Heading>
       </Flex>
-      <Section className="bottom-0">
+      <Section>
         <Container className="aspect-[20/7] px-0 lg:px-0">
           <Grid
             rows={9}
@@ -38,6 +40,7 @@ export default function Collections() {
                 rows={1}
               >
                 <Heading
+                  font="text"
                   align="center"
                   size={6}
                   weight="regular"
@@ -55,6 +58,7 @@ export default function Collections() {
                 rows={1}
               >
                 <Heading
+                  font="text"
                   align="center"
                   size={6}
                   weight="regular"
@@ -72,6 +76,7 @@ export default function Collections() {
                 rows={1}
               >
                 <Heading
+                  font="text"
                   align="center"
                   size={6}
                   weight="regular"
@@ -89,6 +94,7 @@ export default function Collections() {
                 rows={1}
               >
                 <Heading
+                  font="text"
                   align="center"
                   size={6}
                   weight="regular"
@@ -101,7 +107,7 @@ export default function Collections() {
             </Link>
           </Grid>
         </Container>
-        <Background>
+        <Background overflow="visible">
           <Globe className="absolute bottom-0 w-full px-8 -translate-x-1/2 max-w-7xl left-1/2" />
         </Background>
       </Section>

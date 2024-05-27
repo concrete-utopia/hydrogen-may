@@ -7,7 +7,7 @@ import {Pagination, getPaginationVariables} from '@shopify/hydrogen';
  * @type {MetaFunction}
  */
 export const meta = () => {
-  return [{title: `Hydrogen | Blogs`}];
+  return [{title: `Builder Supply | Blogs`}];
 };
 
 /**

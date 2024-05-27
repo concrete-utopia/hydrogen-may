@@ -13,7 +13,7 @@ import {useVariantUrl} from '~/lib/variants';
  * @type {MetaFunction<typeof loader>}
  */
 export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data?.collection.title ?? ''} Collection`}];
+  return [{title: `Builder Supply | ${data?.collection.title ?? ''} Collection`}];
 };
 
 /**

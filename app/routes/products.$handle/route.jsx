@@ -11,7 +11,7 @@ import Recommended from './sections/recommended';
 import Marquee from './sections/marquee';
 
 export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data?.product.title ?? ''}`}];
+  return [{title: `Builder Supply | ${data?.product.title ?? ''}`}];
 };
 
 export async function loader({params, request, context}) {

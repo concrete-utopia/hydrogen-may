@@ -12,7 +12,7 @@ import OurPromise from './sections/our-promise';
  * @type {MetaFunction}
  */
 export const meta = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [{title: 'Builder Supply | Home'}];
 };
 
 /**

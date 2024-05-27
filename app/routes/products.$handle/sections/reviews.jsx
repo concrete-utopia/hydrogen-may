@@ -1,6 +1,6 @@
 import {Container, Flex, Section} from '@h2/new/Layout';
-import {Heading, Text} from '@h2/new/Text';
-import {Button} from '@h2/Button';
+import {Heading, Span, Strong, Text} from '@h2/new/Text';
+import {Button} from '@h2/new/Button';
 import {cva, cx} from '@h2/new/utils';
 
 const reviews = [
@@ -45,19 +45,33 @@ const reviews = [
 export default function Reviews({data = reviews}) {
   return (
     <Section>
-      <Container as="header" className="py-32 -mb-64">
+      <Container as="header" className="py-56 -mb-[26rem]">
         <Flex direction="down" gap={8}>
-          <Heading size={9} uppercase weight="regular" wrap="balance">
+          <Heading size="6xl" uppercase weight="regular" wrap="balance">
             Don’t take our word for it
           </Heading>
           <Flex direction="down" gap={6}>
-            <Text>4.8 — 385 Reviews</Text>
-            <Button>View all reviews</Button>
+            <Text size="2xl" weight="medium">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="19"
+                height="18"
+                fill="none"
+                className="inline h-[1em]"
+              >
+                <path
+                  fill="#BDCF00"
+                  d="M4 17.3a.8.8 0 0 1-.4-.6l.1-.8 1.6-4.8-4-2.9-.6-.6a.8.8 0 0 1 0-.6c0-.2.2-.4.4-.5l.8-.2h5l1.5-4.7c.1-.3.2-.6.4-.7l.6-.3.6.3.4.7 1.5 4.8h5l.8.1c.2.1.4.3.4.5v.6l-.6.6-4 3 1.5 4.7c.1.3.2.6.1.8l-.3.6c-.2.1-.4.2-.6.1a1 1 0 0 1-.7-.3l-4.1-3-4 3-.8.3-.6-.1Z"
+                />
+              </svg>{' '}
+              4.8 <Span className="opacity-50">&mdash; 385 Reviews</Span>
+            </Text>
+            <Button color="accent">View all reviews</Button>
           </Flex>
         </Flex>
       </Container>
-      <Container>
-        <div className="max-w-3xl ml-auto">
+      <Container className="pb-16">
+        <div className="max-w-[52rem] ml-auto">
           <div className="gap-12 columns-2">
             <div className="mt-36" />
             {data.map((review, i) => {
@@ -65,7 +79,7 @@ export default function Reviews({data = reviews}) {
                 <Review
                   key={review.id}
                   data={review}
-                  background={i === 0 ? 'black' : i === 3 ? 'accent' : 'white'}
+                  background={i === 0 ? 'black' : i === 4 ? 'accent' : 'white'}
                 />
               );
             })}
@@ -106,9 +120,20 @@ function Review({data, className, ...props}) {
           <IconQuote />
         </span>
         <Text>
-          <strong>{firstSentence}</strong> {remainingText}
+          <Strong color={props.background === 'black' ? 'white' : 'text'}>
+            {firstSentence}
+          </Strong>{' '}
+          <Span
+            color={props.background === 'black' ? 'white' : 'black'}
+            className="opacity-70"
+          >
+            {remainingText}
+          </Span>
         </Text>
-        <Text className={props.background === 'black' && 'text-accent'}>
+        <Text
+          weight="medium"
+          className={props.background === 'black' && 'text-accent'}
+        >
           &mdash;{customer}
         </Text>
       </Flex>

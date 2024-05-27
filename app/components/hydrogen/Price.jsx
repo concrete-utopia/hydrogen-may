@@ -45,7 +45,7 @@ export function PriceCompareAt({
   ) ? (
     <Money
       as={as}
-      className={cx('strike', className)}
+      className={cx('line-through', className)}
       data={variant.compareAtPrice}
       {...props}
     />

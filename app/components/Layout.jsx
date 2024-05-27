@@ -3,7 +3,7 @@ import {Await} from '@remix-run/react';
 import {Suspense} from 'react';
 import {Aside} from '~/components/Aside';
 import {Footer} from '~/components/Footer';
-import {Header, HeaderMenu} from '~/components/Header';
+import {Header, NavLinks} from '~/components/Header';
 import {CartMain} from '~/components/Cart';
 import {
   PredictiveSearchForm,
@@ -93,7 +93,7 @@ function MobileMenuAside({menu, shop}) {
     menu &&
     shop?.primaryDomain?.url && (
       <Aside id="mobile-menu-aside" heading="MENU">
-        <HeaderMenu
+        <NavLinks
           menu={menu}
           viewport="mobile"
           primaryDomainUrl={shop.primaryDomain.url}
