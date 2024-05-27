@@ -48,12 +48,30 @@ export default function BestSellers() {
       </Container>
       <Container>
         <Grid columns={12} rows={10} gapY="xl" gap="l" className="aspect-[5/7]">
-          <ProductCard className="col-span-5 col-start-1 row-start-1 pr-12" />
-          <ProductCard className="col-span-3 col-start-7 row-start-2" />
-          <ProductCard className="col-span-3 col-start-10 row-start-1" />
-          <ProductCard className="col-span-3 col-start-1 row-start-6" />
-          <ProductCard className="col-span-3 col-start-4 row-start-5" />
-          <ProductCard className="col-span-4 col-start-9 row-start-5 mt-8" />
+          <ProductCard
+            className="col-span-5 col-start-1 row-start-1 pr-12"
+            product={product}
+          />
+          <ProductCard
+            className="col-span-3 col-start-7 row-start-2"
+            product={product}
+          />
+          <ProductCard
+            className="col-span-3 col-start-10 row-start-1"
+            product={product}
+          />
+          <ProductCard
+            className="col-span-3 col-start-1 row-start-6"
+            product={product}
+          />
+          <ProductCard
+            className="col-span-3 col-start-4 row-start-5"
+            product={product}
+          />
+          <ProductCard
+            className="col-span-4 col-start-9 row-start-5 mt-8"
+            product={product}
+          />
         </Grid>
       </Container>
     </Section>
