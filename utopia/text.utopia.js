@@ -1,5 +1,5 @@
 import * as Utopia from 'utopia-api'
-import { Heading } from '@h2/new/Text'
+import { Heading, Text, Span } from '@h2/new/Text'
 
 const tsirtSizes = [
   'xs',
@@ -54,6 +54,30 @@ const annotations = {
         Lorem ipsum
     </ Text>`,
     })),
+  },
+  Span: {
+    component: Span,
+    properties: {
+      transparent: Utopia.checkboxControl(),
+    },
+    focus: 'never',
+    inspector: 'hidden',
+    variants: [
+      {
+        label: `Span`,
+        imports: `import { Span } from '@h2/new/Layout'`,
+        code: `<Span>
+        Lorem ipsum
+    </ Span>`,
+      },
+      {
+        label: `Span (transparent)`,
+        imports: `import { Span } from '@h2/new/Layout'`,
+        code: `<Span transparent>
+        Lorem ipsum
+    </ Span>`,
+      },
+    ],
   },
 }
 
