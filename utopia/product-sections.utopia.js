@@ -62,7 +62,7 @@ const Components = {
       focus: 'always',
       variants: [
         {
-          label: 'Review',
+          label: 'Review with dummy data',
           imports: `import { Review } from '/app/routes/products.$handle/sections/reviews'`,
           code: `<Review data= {{
             id: '1',
