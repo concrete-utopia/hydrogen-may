@@ -1,68 +1,39 @@
 import * as Utopia from 'utopia-api'
 import { Heading } from '@h2/new/Text'
 
+const tsirtSizes = [
+  'xs',
+  's',
+  'm',
+  'l',
+  'xl',
+  '2xl',
+  '3xl',
+  '4xl',
+  '5xl',
+  '6xl',
+]
+
 const annotations = {
   Heading: {
     component: Heading,
     properties: {
-      size: Utopia.popupListControl([
-        {
-          label: 'xs',
-          value: 'xs',
-        },
-        {
-          label: 's',
-          value: 's',
-        },
-        {
-          label: 'm',
-          value: 'm',
-        },
-        {
-          label: 'l',
-          value: 'l',
-        },
-        {
-          label: 'xl',
-          value: 'xl',
-        },
-        {
-          label: '2xl',
-          value: '2xl',
-        },
-        {
-          label: '3xl',
-          value: '3xl',
-        },
-        {
-          label: '4xl',
-          value: '4xl',
-        },
-        {
-          label: '5xl',
-          value: '5xl',
-        },
-        {
-          label: '6xl',
-          value: '6xl',
-        },
-      ]),
+      size: Utopia.popupListControl(
+        tsirtSizes.map((size) => ({
+          label: size,
+          value: size,
+        })),
+      ),
     },
     focus: 'never',
     inspector: 'hidden',
-    variants: [
-      {
-        label: 'Background with placeholders',
-        imports: `import { Background } from '@h2/new/Layout'
-            import { Placeholder } from 'utopia-api'`,
-        code: `<Background
-          columns={2}
-        >
-          <Placeholder />
-          <Placeholder />
-        </Background>`,
-      },
-    ],
+    variants: tsirtSizes.map((size) => ({
+      label: `Heading (size ${size})`,
+      imports: `import { Heading } from '@h2/new/Layout'`,
+      code: `<Heading size={'${size}'}>
+        Lorem ipsum
+    </ Heading>`,
+    })),
   },
 }
 
