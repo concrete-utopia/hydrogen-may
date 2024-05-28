@@ -158,7 +158,7 @@ const annotations = {
   MultiColumn: {
     component: MultiColumn,
     properties: {
-      columns: Utopia.sliderControl(0, 4, 1),
+      columns: Utopia.sliderControl(1, 4, 1),
       gap: Utopia.checkboxControl(),
       maxWidth: Utopia.checkboxControl(),
     },
