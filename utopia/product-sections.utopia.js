@@ -14,7 +14,6 @@ const Components = {
       component: Hero,
       properties: {},
       inspector: 'hidden',
-      focus: 'always',
     },
   },
   '/app/routes/products.$handle/sections/highlight-details':
@@ -23,7 +22,6 @@ const Components = {
         component: HighlightDetails,
         properties: {},
         inspector: 'hidden',
-        focus: 'always',
       },
     },
   '/app/routes/products.$handle/sections/highlight-solution':
@@ -32,7 +30,6 @@ const Components = {
         component: HighlightSolution,
         properties: {},
         inspector: 'hidden',
-        focus: 'always',
       },
     },
   '/app/routes/products.$handle/sections/recommended': {
@@ -40,7 +37,6 @@ const Components = {
       component: Recommended,
       properties: {},
       inspector: 'hidden',
-      focus: 'always',
     },
   },
   '/app/routes/products.$handle/sections/reviews': {
@@ -92,7 +88,6 @@ const Components = {
       component: Spotlight,
       properties: {},
       inspector: 'hidden',
-      focus: 'always',
     },
   },
 }

@@ -11,7 +11,6 @@ const Components = {
       component: Hero,
       properties: {},
       inspector: 'hidden',
-      focus: 'always',
     },
   },
   '/app/routes/_index/sections/best-sellers': {
@@ -19,7 +18,6 @@ const Components = {
       component: BestSellers,
       properties: {},
       inspector: 'hidden',
-      focus: 'always',
     },
   },
   '/app/routes/_index/sections/collections': {
@@ -27,7 +25,6 @@ const Components = {
       component: Collections,
       properties: {},
       inspector: 'hidden',
-      focus: 'always',
     },
   },
   '/app/routes/_index/sections/featured-products': {
@@ -35,7 +32,6 @@ const Components = {
       component: FeaturedProducts,
       properties: {},
       inspector: 'hidden',
-      focus: 'always',
     },
   },
   '/app/routes/_index/sections/our-promise': {
@@ -43,7 +39,6 @@ const Components = {
       component: OurPromise,
       properties: {},
       inspector: 'hidden',
-      focus: 'always',
     },
   },
 }
