@@ -153,6 +153,15 @@ const annotations = {
         <Placeholder />
       </Flex>`,
       },
+      {
+        label: 'Flex column with placeholders',
+        imports: `import { Flex } from '@h2/new/Layout'
+          import { Placeholder } from 'utopia-api'`,
+        code: `<Flex direction={'column'}>
+        <Placeholder />
+        <Placeholder />
+      </Flex>`,
+      },
     ],
   },
   MultiColumn: {
