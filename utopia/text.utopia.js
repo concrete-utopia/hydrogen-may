@@ -35,6 +35,26 @@ const annotations = {
     </ Heading>`,
     })),
   },
+  Text: {
+    component: Text,
+    properties: {
+      size: Utopia.popupListControl(
+        tsirtSizes.map((size) => ({
+          label: size,
+          value: size,
+        })),
+      ),
+    },
+    focus: 'never',
+    inspector: 'hidden',
+    variants: tsirtSizes.map((size) => ({
+      label: `Text (size ${size})`,
+      imports: `import { Text } from '@h2/new/Layout'`,
+      code: `<Text size={'${size}'}>
+        Lorem ipsum
+    </ Text>`,
+    })),
+  },
 }
 
 const Components = {
