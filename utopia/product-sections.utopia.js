@@ -60,6 +60,18 @@ const Components = {
       },
       inspector: 'hidden',
       focus: 'always',
+      variants: [
+        {
+          label: 'Review',
+          imports: `import { Review } from '/app/routes/products.$handle/sections/reviews'`,
+          code: `<Review data= {{
+            id: '1',
+            quote:
+              'This is a really nice tote bag, perfect size for carry on travel or day trips. I really like that it zips up. Sturdy and the handles don’t slip off your shoulder! I love it.”',
+            customer: 'Lynn W.',
+          }} />`,
+        },
+      ],
     },
   },
   '/app/routes/products.$handle/sections/spotlight': {

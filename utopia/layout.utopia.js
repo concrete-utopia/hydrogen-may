@@ -158,86 +158,23 @@ const annotations = {
   MultiColumn: {
     component: MultiColumn,
     properties: {
-      direction: Utopia.popupListControl([
-        {
-          label: 'row',
-          value: 'row',
-        },
-        {
-          label: 'column',
-          value: 'column',
-        },
-        {
-          label: 'right',
-          value: 'right',
-        },
-        {
-          label: 'down',
-          value: 'down',
-        },
-        {
-          label: 'left',
-          value: 'left',
-        },
-        {
-          label: 'up',
-          value: 'up',
-        },
-      ]),
-      align: Utopia.popupListControl([
-        {
-          label: 'start',
-          value: 'start',
-        },
-        {
-          label: 'center',
-          value: 'center',
-        },
-        {
-          label: 'end',
-          value: 'end',
-        },
-        {
-          label: 'baseline',
-          value: 'baseline',
-        },
-        {
-          label: 'stretch',
-          value: 'stretch',
-        },
-      ]),
-      justify: Utopia.popupListControl([
-        {
-          label: 'start',
-          value: 'start',
-        },
-        {
-          label: 'center',
-          value: 'center',
-        },
-        {
-          label: 'end',
-          value: 'end',
-        },
-        {
-          label: 'between',
-          value: 'between',
-        },
-      ]),
+      columns: Utopia.sliderControl(0, 4, 1),
       gap: Utopia.sliderControl(0, 9, 1),
-      wrap: Utopia.checkboxControl(),
+      maxWidth: Utopia.checkboxControl(),
     },
     focus: 'never',
     inspector: 'hidden',
     variants: [
       {
-        label: 'Flex row with placeholders',
-        imports: `import { Flex } from '@h2/new/Layout'
+        label: 'MultiColumn with placeholders',
+        imports: `import { MultiColumn } from '@h2/new/Layout'
           import { Placeholder } from 'utopia-api'`,
-        code: `<Flex>
+        code: `<MultiColumn columns={2} gap maxWidth>
         <Placeholder />
         <Placeholder />
-      </Flex>`,
+        <Placeholder />
+        <Placeholder />
+      </MultiColumn>`,
       },
     ],
   },
