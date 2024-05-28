@@ -1,7 +1,7 @@
 import * as Utopia from 'utopia-api'
 import { Heading, Text, Span } from '@h2/new/Text'
 
-const tsirtSizes = [
+const tshirtSizes = [
   'xs',
   's',
   'm',
@@ -19,7 +19,7 @@ const annotations = {
     component: Heading,
     properties: {
       size: Utopia.popupListControl(
-        tsirtSizes.map((size) => ({
+        tshirtSizes.map((size) => ({
           label: size,
           value: size,
         })),
@@ -27,7 +27,7 @@ const annotations = {
     },
     focus: 'never',
     inspector: 'hidden',
-    variants: tsirtSizes.map((size) => ({
+    variants: tshirtSizes.map((size) => ({
       label: `Heading (size ${size})`,
       imports: `import { Heading } from '@h2/new/Layout'`,
       code: `<Heading size={'${size}'}>
@@ -39,7 +39,7 @@ const annotations = {
     component: Text,
     properties: {
       size: Utopia.popupListControl(
-        tsirtSizes.map((size) => ({
+        tshirtSizes.map((size) => ({
           label: size,
           value: size,
         })),
@@ -47,7 +47,7 @@ const annotations = {
     },
     focus: 'never',
     inspector: 'hidden',
-    variants: tsirtSizes.map((size) => ({
+    variants: tshirtSizes.map((size) => ({
       label: `Text (size ${size})`,
       imports: `import { Text } from '@h2/new/Layout'`,
       code: `<Text size={'${size}'}>
