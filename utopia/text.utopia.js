@@ -29,7 +29,7 @@ const annotations = {
     inspector: 'hidden',
     variants: tshirtSizes.map((size) => ({
       label: `Heading (size ${size})`,
-      imports: `import { Heading } from '@h2/new/Layout'`,
+      imports: `import { Heading } from '@h2/new/Text'`,
       code: `<Heading size={'${size}'}>
         Lorem ipsum
     </ Heading>`,
@@ -49,7 +49,7 @@ const annotations = {
     inspector: 'hidden',
     variants: tshirtSizes.map((size) => ({
       label: `Text (size ${size})`,
-      imports: `import { Text } from '@h2/new/Layout'`,
+      imports: `import { Text } from '@h2/new/Text'`,
       code: `<Text size={'${size}'}>
         Lorem ipsum
     </ Text>`,
@@ -65,14 +65,14 @@ const annotations = {
     variants: [
       {
         label: `Span`,
-        imports: `import { Span } from '@h2/new/Layout'`,
+        imports: `import { Span } from '@h2/new/Text'`,
         code: `<Span>
         Lorem ipsum
     </ Span>`,
       },
       {
         label: `Span (transparent)`,
-        imports: `import { Span } from '@h2/new/Layout'`,
+        imports: `import { Span } from '@h2/new/Text'`,
         code: `<Span transparent>
         Lorem ipsum
     </ Span>`,
