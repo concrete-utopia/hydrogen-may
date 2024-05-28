@@ -71,10 +71,7 @@ export default function Reviews({ data = reviews }) {
           </Flex>
         </Flex>
       </Container>
-      <Container
-        className='pb-16'
-        style={{ left: 0, top: 79 }}
-      >
+      <Container className='pb-16'>
         <MultiColumn columns={2} gap maxWidth>
           <Spacer height={144} />
           {data.map((review) => {
