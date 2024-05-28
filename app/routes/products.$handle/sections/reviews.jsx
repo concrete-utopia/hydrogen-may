@@ -94,27 +94,29 @@ export default function Reviews({ data = reviews }) {
         </Flex>
       </Container>
       <Container className='pb-16' data-uid='fuc'>
-        <MultiColumn columns={2} gap maxWidth>
-          <Spacer height={144} />
-          {
-            // @utopia/map-count=4
-            data.map((review, i) => {
-              return (
-                <Review
-                  key={review.id}
-                  data={review}
-                  background={
-                    i === 0
-                      ? 'black'
-                      : i === 4
-                      ? 'accent'
-                      : 'white'
-                  }
-                  data-uid='0af'
-                />
-              )
-            })
-          }
+        <MultiColumn
+          columns={2}
+          gap
+          maxWidth
+          data-uid='73b'
+        >
+          <Spacer height={144} data-uid='efd' />
+          {data.map((review, i) => {
+            return (
+              <Review
+                key={review.id}
+                data={review}
+                background={
+                  i === 0
+                    ? 'black'
+                    : i === 4
+                    ? 'accent'
+                    : 'white'
+                }
+                data-uid='0af'
+              />
+            )
+          })}
         </MultiColumn>
       </Container>
     </Section>
