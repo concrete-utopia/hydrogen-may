@@ -57,9 +57,22 @@ const Components = {
           quote: Utopia.stringControl(),
           customer: Utopia.stringControl(),
         }),
+        background: Utopia.radioControl([
+          {
+            label: 'white',
+            value: 'white',
+          },
+          {
+            label: 'accent',
+            value: 'accent',
+          },
+          {
+            label: 'black',
+            value: 'black',
+          },
+        ]),
       },
       inspector: 'hidden',
-      focus: 'always',
       variants: [
         {
           label: 'Review with dummy data',

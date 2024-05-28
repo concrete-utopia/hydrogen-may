@@ -8,6 +8,8 @@ import {
 import { Heading, Span, Strong, Text } from '@h2/new/Text'
 import { Button } from '@h2/new/Button'
 import { cva, cx } from '@h2/new/utils'
+import { Placeholder } from 'utopia-api'
+import * as React from 'react'
 
 const reviews = [
   {
@@ -50,72 +52,45 @@ const reviews = [
 
 export default function Reviews({ data = reviews }) {
   return (
-    <Section data-uid='fuf'>
-      <Container
-        as='header'
-        className='py-56 -mb-[26rem]'
-        data-uid='fsx'
-      >
-        <Flex direction='down' gap={8} data-uid='fss'>
+    <Section>
+      <Container as='header' className='py-56 -mb-[26rem]'>
+        <Flex direction='down' gap={8}>
           <Heading
             size='6xl'
             uppercase
             weight='regular'
             wrap='balance'
-            data-uid='frb'
           >
             Don’t take our word for it
           </Heading>
-          <Flex direction='down' gap={6} data-uid='fsn'>
-            <Text size='2xl' weight='medium' data-uid='fsd'>
+          <Flex direction='down' gap={6}>
+            <Text size='2xl' weight='medium'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='19'
                 height='18'
                 fill='none'
                 className='inline h-[1em]'
-                data-uid='frr'
               >
                 <path
                   fill='#BDCF00'
                   d='M4 17.3a.8.8 0 0 1-.4-.6l.1-.8 1.6-4.8-4-2.9-.6-.6a.8.8 0 0 1 0-.6c0-.2.2-.4.4-.5l.8-.2h5l1.5-4.7c.1-.3.2-.6.4-.7l.6-.3.6.3.4.7 1.5 4.8h5l.8.1c.2.1.4.3.4.5v.6l-.6.6-4 3 1.5 4.7c.1.3.2.6.1.8l-.3.6c-.2.1-.4.2-.6.1a1 1 0 0 1-.7-.3l-4.1-3-4 3-.8.3-.6-.1Z'
-                  data-uid='frj'
                 />
               </svg>{' '}
               4.8{' '}
-              <Span className='opacity-50' data-uid='9af'>
+              <Span className='opacity-50'>
                 &mdash; 385 Reviews
               </Span>
             </Text>
-            <Button color='accent' data-uid='fsi'>
-              View all reviews
-            </Button>
+            <Button color='accent'>View all reviews</Button>
           </Flex>
         </Flex>
       </Container>
-      <Container className='pb-16' data-uid='fuc'>
-        <MultiColumn
-          columns={2}
-          gap
-          maxWidth
-          data-uid='73b'
-        >
-          <Spacer height={144} data-uid='efd' />
-          {data.map((review, i) => {
-            return (
-              <Review
-                key={review.id}
-                data={review}
-                background={
-                  i === 0
-                    ? 'black'
-                    : i === 4
-                    ? 'accent'
-                    : 'white'
-                }
-                data-uid='0af'
-              />
-            )
+      <Container className='pb-16'>
+        <MultiColumn columns={2} gap maxWidth>
+          <Spacer height={144} />
+          {data.map((review) => {
+            return <Review key={review.id} data={review} />
           })}
         </MultiColumn>
       </Container>
@@ -138,55 +113,58 @@ const review = cva({
 })
 
 export function Review({ data, className, ...props }) {
-  const { quote, customer } = data
-  const classes = cx(review(props), className)
+  const { id, quote, customer } = data
 
+  // hack so we have a background from data.id
+  const moduloId = (parseInt(id) - 1) % 6
+  const background =
+    props.background ??
+    (moduloId === 1
+      ? 'black'
+      : moduloId === 5
+      ? 'accent'
+      : 'white')
+
+  const classes = cx(
+    review({ ...props, background }),
+    className,
+  )
   const { firstSentence, remainingText } =
     splitTextIntoSentences(quote)
 
+  console.log(background)
   return (
-    <div className='relative inline-block' data-uid='fwp'>
+    <div className='relative inline-block'>
       <Flex
         px={7}
         py={6}
         direction='down'
         gap={5}
         className={classes}
-        data-uid='fwl'
       >
         <span
           className={`${
-            props.background === 'black' && 'text-accent'
+            background === 'black' && 'text-accent'
           }`}
-          data-uid='fux'
         >
-          {props.background === 'black' && (
-            <span
-              className='absolute top-0 left-0 w-6 bg-white aspect-square'
-              data-uid='fun'
-            />
+          {background === 'black' && (
+            <span className='absolute top-0 left-0 w-6 bg-white aspect-square' />
           )}
-          <IconQuote data-uid='fus' />
+          <IconQuote />
         </span>
-        <Text data-uid='fvu'>
+        <Text>
           <Strong
             color={
-              props.background === 'black'
-                ? 'white'
-                : 'text'
+              background === 'black' ? 'white' : 'text'
             }
-            data-uid='fvg'
           >
             {firstSentence}
           </Strong>{' '}
           <Span
             color={
-              props.background === 'black'
-                ? 'white'
-                : 'black'
+              background === 'black' ? 'white' : 'black'
             }
             className='opacity-70'
-            data-uid='fvr'
           >
             {remainingText}
           </Span>
@@ -194,9 +172,8 @@ export function Review({ data, className, ...props }) {
         <Text
           weight='medium'
           className={
-            props.background === 'black' && 'text-accent'
+            background === 'black' && 'text-accent'
           }
-          data-uid='fwd'
         >
           &mdash;{customer}
         </Text>
@@ -230,12 +207,10 @@ const IconQuote = () => (
     width='42'
     height='26'
     fill='none'
-    data-uid='fxf'
   >
     <path
       fill='currentColor'
       d='m29 12.5-.2-.2c0-.2-.6-.6-1.4-1.3-.4-.4-.8-1-1-1.8C26 8.4 26 7.7 26 7c0-2 .6-3.4 1.9-4.5A8.7 8.7 0 0 1 33.5 1c5 0 7.6 2 7.6 6 0 1.7-.7 3.2-2 4.5a5.5 5.5 0 0 1-4.4 1.5c-1.8 0-2.7.1-2.7.7 0 .2.3.5.9.8A6 6 0 0 1 35 19c0 2-.7 3.4-2 4.5a7 7 0 0 1-5 1.7l-3.3-.1-1.9-.8c-1-.5-1.7-1.2-2.3-2.2a6 6 0 0 1-.8-3c0-1.6.6-3 1.8-4.1a6.5 6.5 0 0 1 4.6-1.8h1.3c1 0 1.4-.2 1.4-.7Zm-19.4 0-.1-.2L8 11c-.5-.4-.8-1-1-1.8-.3-.8-.5-1.5-.5-2.2 0-2 .7-3.4 2-4.5A8.7 8.7 0 0 1 14.2 1c5 0 7.6 2 7.6 6 0 1.7-.7 3.2-2 4.5a5.5 5.5 0 0 1-4.4 1.5c-1.8 0-2.7.1-2.7.7 0 .2.3.5.9.8.6.5 1 1.1 1.4 2 .4.8.6 1.7.6 2.7 0 1.8-.6 3.3-1.8 4.4a7 7 0 0 1-5 1.7l-3.3-.1c-.8-.2-1.4-.5-2-.8-.9-.5-1.6-1.2-2.2-2.2a6 6 0 0 1-.8-3c0-1.6.6-3 1.8-4.1a6.5 6.5 0 0 1 4.6-1.8h1.3c1 0 1.4-.2 1.4-.7Z'
-      data-uid='fwy'
     />
   </svg>
 )
