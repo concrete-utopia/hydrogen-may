@@ -1,6 +1,6 @@
-import React from 'react';
-import {forwardRef} from 'react';
-import {compose, cva, cx} from './utils';
+import React from 'react'
+import { forwardRef } from 'react'
+import { compose, cva, cx } from './utils'
 
 const typography = cva({
   base: ['max-w-prose'],
@@ -71,7 +71,7 @@ const typography = cva({
     uppercase: false,
     wrap: 'pretty',
   },
-});
+})
 
 const text = cva({
   variants: {
@@ -100,7 +100,7 @@ const text = cva({
   defaultVariants: {
     size: 3,
   },
-});
+})
 
 export const Text = forwardRef(
   (
@@ -116,12 +116,12 @@ export const Text = forwardRef(
     },
     ref,
   ) => {
-    const styles = compose(typography, text);
+    const styles = compose(typography, text)
 
     return (
       <Component
         ref={ref}
-        data-h2="Text"
+        data-h2='Text'
         className={styles({
           ...props,
           truncate,
@@ -135,9 +135,9 @@ export const Text = forwardRef(
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
 const heading = cva({
   variants: {
@@ -166,7 +166,7 @@ const heading = cva({
   defaultVariants: {
     size: 5,
   },
-});
+})
 
 export const Heading = forwardRef(
   (
@@ -188,12 +188,12 @@ export const Heading = forwardRef(
     },
     ref,
   ) => {
-    const styles = compose(typography, heading);
+    const styles = compose(typography, heading)
 
     return (
       <Component
         ref={ref}
-        data-h2="Heading"
+        data-h2='Heading'
         className={styles({
           truncate,
           uppercase,
@@ -212,9 +212,9 @@ export const Heading = forwardRef(
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
 const span = cva({
   base: 'inline-block',
@@ -223,8 +223,12 @@ const span = cva({
       true: ['px-5', 'rounded-full'],
       false: null,
     },
+    transparent: {
+      true: ['opacity-50'],
+      false: null,
+    },
   },
-});
+})
 
 export const Span = forwardRef(
   (
@@ -234,12 +238,13 @@ export const Span = forwardRef(
       truncate = false,
       uppercase = false,
       pill = false,
+      transparent = false,
       className,
       ...props
     },
     ref,
   ) => {
-    const styles = compose(span, typography);
+    const styles = compose(span, typography)
 
     return (
       <Component
@@ -248,6 +253,7 @@ export const Span = forwardRef(
           ...props,
           truncate,
           uppercase,
+          transparent,
           pill,
           className,
         })}
@@ -255,9 +261,9 @@ export const Span = forwardRef(
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
 export const Em = forwardRef(
   (
@@ -272,7 +278,7 @@ export const Em = forwardRef(
     },
     ref,
   ) => {
-    const styles = compose(typography);
+    const styles = compose(typography)
 
     return (
       <Component
@@ -288,9 +294,9 @@ export const Em = forwardRef(
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
 export const Strong = forwardRef(
   (
@@ -305,7 +311,7 @@ export const Strong = forwardRef(
     },
     ref,
   ) => {
-    const styles = compose(typography);
+    const styles = compose(typography)
 
     return (
       <Component
@@ -321,6 +327,6 @@ export const Strong = forwardRef(
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)

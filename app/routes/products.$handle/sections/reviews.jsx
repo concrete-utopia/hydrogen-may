@@ -63,9 +63,7 @@ export default function Reviews({ data = reviews }) {
             <Text size='2xl' weight='medium'>
               <Star />
               4.8
-              <Span className='opacity-50'>
-                &mdash; 385 Reviews
-              </Span>
+              <Span transparent>&mdash; 385 Reviews</Span>
             </Text>
             <Button color='accent'>View all reviews</Button>
           </Flex>
