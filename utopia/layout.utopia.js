@@ -159,17 +159,30 @@ const annotations = {
     component: MultiColumn,
     properties: {
       columns: Utopia.sliderControl(0, 4, 1),
-      gap: Utopia.sliderControl(0, 9, 1),
+      gap: Utopia.checkboxControl(),
       maxWidth: Utopia.checkboxControl(),
     },
     focus: 'never',
     inspector: 'hidden',
     variants: [
       {
-        label: 'MultiColumn with placeholders',
+        label: 'MultiColumn with 2 columns',
         imports: `import { MultiColumn } from '@h2/new/Layout'
           import { Placeholder } from 'utopia-api'`,
         code: `<MultiColumn columns={2} gap maxWidth>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </MultiColumn>`,
+      },
+      {
+        label: 'MultiColumn with 3 columns',
+        imports: `import { MultiColumn } from '@h2/new/Layout'
+          import { Placeholder } from 'utopia-api'`,
+        code: `<MultiColumn columns={3} gap maxWidth>
+        <Placeholder />
+        <Placeholder />
         <Placeholder />
         <Placeholder />
         <Placeholder />
@@ -181,7 +194,7 @@ const annotations = {
   Spacer: {
     component: Spacer,
     properties: {
-      height: Utopia.stringControl(),
+      height: Utopia.numberControl(),
     },
     focus: 'never',
     inspector: 'hidden',

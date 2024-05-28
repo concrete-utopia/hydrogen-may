@@ -511,8 +511,8 @@ export const multiColumn = cva({
     maxWidth: { true: 'max-w-[52rem]', false: null },
     defaultVariants: {
       columns: 2,
-      gap: true,
-      maxWidth: true,
+      gap: false,
+      maxWidth: false,
     },
   },
 })
