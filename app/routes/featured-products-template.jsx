@@ -25,7 +25,7 @@ export async function loader({ request, context }) {
     PRODUCT_QUERY,
     {
       variables: {
-        handle: 'builders-tote',
+        handle: 'builder-tote',
         selectedOptions: getSelectedProductOptions(request),
       },
     },
@@ -79,11 +79,15 @@ export async function loader({ request, context }) {
 
 export default function Product() {
   return (
-    <FlexCol
-      style={{ gap: 24, padding: '16px 16px 16px 16px' }}
-    >
-      <Placeholder padded style={{ height: 500 }} />
-    </FlexCol>
+    <>
+      <Hero />
+      <Marquee />
+      <HighlightDetails />
+      <HighlightSolution />
+      <Section />
+      <Recommended />
+      <Spotlight />
+    </>
   )
 }
 
