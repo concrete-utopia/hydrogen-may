@@ -1,11 +1,5 @@
-import * as Utopia from 'utopia-api'
-import {
-  Background,
-  Flex,
-  MultiColumn,
-  Spacer,
-  Section,
-} from '@h2/new/Layout'
+import * as Utopia from 'utopia-api';
+import {Background, Flex, MultiColumn, Spacer, Section} from '@h2/new/Layout';
 
 export const BooleanSegmentControl = Utopia.radioControl([
   {
@@ -16,7 +10,7 @@ export const BooleanSegmentControl = Utopia.radioControl([
     label: 'false',
     value: 'false',
   },
-])
+]);
 
 const annotations = {
   Background: {
@@ -151,7 +145,7 @@ const annotations = {
         },
       ]),
       gap: Utopia.sliderControl(0, 9, 1),
-      wrap: Utopia.checkboxControl(),
+      wrap: BooleanSegmentControl,
     },
     focus: 'never',
     inspector: 'hidden',
@@ -180,8 +174,8 @@ const annotations = {
     component: MultiColumn,
     properties: {
       columns: Utopia.sliderControl(1, 4, 1),
-      gap: Utopia.checkboxControl(),
-      maxWidth: Utopia.checkboxControl(),
+      gap: BooleanSegmentControl,
+      maxWidth: BooleanSegmentControl,
     },
     focus: 'never',
     inspector: 'hidden',
@@ -242,11 +236,11 @@ const annotations = {
     },
     icon: 'dashedframe',
   },
-}
+};
 
 const Components = {
   '/app/components/hydrogen/new/Layout': annotations,
   '@h2/new/Layout': annotations,
-}
+};
 
-export default Components
+export default Components;

@@ -1,5 +1,6 @@
 import * as Utopia from 'utopia-api';
 import {Image, Money} from '@shopify/hydrogen';
+import {BooleanSegmentControl} from './layout.utopia';
 
 const ImageCropControl = Utopia.popupListControl([
   {value: 'center', label: 'center'},
@@ -142,8 +143,8 @@ const Components = {
       component: Money,
       properties: {
         data: MoneyV2Control,
-        withoutCurrency: Utopia.checkboxControl(),
-        withoutTrailingZeros: Utopia.checkboxControl(),
+        withoutCurrency: BooleanSegmentControl,
+        withoutTrailingZeros: BooleanSegmentControl,
         measurement: UnitPriceMeasurementControl,
         measurementSeparator: {
           control: 'jsx',

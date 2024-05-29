@@ -1,5 +1,6 @@
-import * as Utopia from 'utopia-api'
-import { Heading, Text, Span } from '@h2/new/Text'
+import * as Utopia from 'utopia-api';
+import {Heading, Text, Span} from '@h2/new/Text';
+import {BooleanSegmentControl} from './layout.utopia';
 
 const tshirtSizes = [
   'xs',
@@ -12,7 +13,7 @@ const tshirtSizes = [
   '4xl',
   '5xl',
   '6xl',
-]
+];
 
 const annotations = {
   Heading: {
@@ -58,7 +59,7 @@ const annotations = {
   Span: {
     component: Span,
     properties: {
-      transparent: Utopia.checkboxControl(),
+      transparent: BooleanSegmentControl,
     },
     focus: 'never',
     inspector: 'hidden',
@@ -79,11 +80,11 @@ const annotations = {
       },
     ],
   },
-}
+};
 
 const Components = {
   '/app/components/hydrogen/new/Text': annotations,
   '@h2/new/Text': annotations,
-}
+};
 
-export default Components
+export default Components;
