@@ -12,10 +12,18 @@ import { Placeholder } from 'utopia-api'
 import * as React from 'react'
 import { Star } from '/app/components/Star'
 
-export default function Reviews({data}) {
-  const {review_count, review_avg, reviews} = data.reviews;
+export default function Reviews({ data }) {
+  const { review_count, review_avg, reviews } = data.reviews
 
-  const customerReviews = reviews.references.nodes;
+  const customerReviews = reviews.references.nodes.map(
+    (r, i) => {
+      return {
+        ...r,
+        background:
+          i === 0 ? 'black' : i === 4 ? 'accent' : 'white',
+      }
+    },
+  )
 
   return (
     <Section>
@@ -28,7 +36,9 @@ export default function Reviews({data}) {
             <Text size='2xl' weight='medium'>
               <Star />
               {JSON.parse(review_avg.value).value}{' '}
-              <Span transparent>&mdash; {review_count.value}</Span>
+              <Span transparent>
+                &mdash; {review_count.value}
+              </Span>
             </Text>
             <Button color='accent'>View all reviews</Button>
           </Flex>
@@ -61,17 +71,8 @@ const review = cva({
 })
 
 export function Review({ data, className, ...props }) {
-  const { id, quote, customer } = data
-
-  // hack so we have a background from data.id
-  const moduloId = (parseInt(id) - 1) % 6
-  const background =
-    props.background ??
-    (moduloId === 1
-      ? 'black'
-      : moduloId === 5
-      ? 'accent'
-      : 'white')
+  const { id, quote, customer, background } = data
+  console.log(background)
 
   const classes = cx(
     review({ ...props, background }),
