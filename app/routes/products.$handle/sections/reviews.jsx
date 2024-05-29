@@ -80,7 +80,6 @@ export function Review({ data, className, ...props }) {
   const { firstSentence, remainingText } =
     splitTextIntoSentences(quote.value)
 
-  console.log(background)
   return (
     <div className='relative inline-block'>
       <Flex
