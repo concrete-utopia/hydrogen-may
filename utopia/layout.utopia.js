@@ -1,5 +1,12 @@
 import * as Utopia from 'utopia-api';
-import {Background, Flex, MultiColumn, Spacer, Section} from '@h2/new/Layout';
+import {
+  Background,
+  Flex,
+  MultiColumn,
+  Spacer,
+  Section,
+  Container,
+} from '@h2/new/Layout';
 
 export const BooleanSegmentControl = Utopia.radioControl([
   {
@@ -174,8 +181,8 @@ const annotations = {
     component: MultiColumn,
     properties: {
       columns: Utopia.sliderControl(1, 4, 1),
-      gap: BooleanSegmentControl,
-      maxWidth: BooleanSegmentControl,
+      gap: Utopia.checkboxControl(),
+      maxWidth: Utopia.checkboxControl(),
     },
     focus: 'never',
     inspector: 'hidden',
@@ -228,12 +235,84 @@ const annotations = {
     },
     focus: 'never',
     inspector: 'hidden',
-    children: 'not-supported',
-    variants: {
-      label: 'Spacer',
-      imports: "import { Spacer } from '@h2/new/Layout'",
-      code: `<Spacer height={144} />`,
+    variants: [
+      {
+        label: 'Section',
+        imports: "import { Section } from '@h2/new/Layout'",
+        code: `<Section />`,
+      },
+      {
+        label: 'Section (padded)',
+        imports: "import { Section } from '@h2/new/Layout'",
+        code: `<Section padded />`,
+      },
+    ],
+    icon: 'dashedframe',
+  },
+  Container: {
+    component: Container,
+    properties: {
+      fluid: BooleanSegmentControl,
+      paddingY: Utopia.radioControl([
+        {
+          label: 's',
+          value: 's',
+        },
+        {
+          label: 'm',
+          value: 'm',
+        },
+        {
+          label: 'l',
+          value: 'l',
+        },
+      ]),
+      paddingBottom: Utopia.radioControl([
+        {
+          label: 's',
+          value: 's',
+        },
+        {
+          label: 'm',
+          value: 'm',
+        },
+        {
+          label: 'l',
+          value: 'l',
+        },
+      ]),
+      marginBottom: BooleanSegmentControl,
     },
+    focus: 'never',
+    inspector: 'hidden',
+    variants: [
+      {
+        label: 'Container with placeholder',
+        imports: `import { Container } from '@h2/new/Layout'
+          import { Placeholder } from 'utopia-api'`,
+        code: `<Container>
+          <Placeholder />
+        </Container>`,
+      },
+      {
+        label: 'Container (Review Title)',
+        imports: `import { Container } from '@h2/new/Layout'
+          import { Placeholder } from 'utopia-api'`,
+        code: `<Container as='header' paddingY='l' marginBottom>
+          <Placeholder />
+          <Placeholder />
+        </Container>`,
+      },
+      {
+        label: 'Container (Review Content)',
+        imports: `import { Container } from '@h2/new/Layout'
+          import { Placeholder } from 'utopia-api'`,
+        code: `<Container paddingBottom='s' >
+          <Placeholder />
+          <Placeholder />
+        </Container>`,
+      },
+    ],
     icon: 'dashedframe',
   },
 };
