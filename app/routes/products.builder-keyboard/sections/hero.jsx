@@ -12,14 +12,14 @@ export default function Hero() {
   return (
     <Section className="min-h-screen text-white bg-darkGray">
       <Container resizeY="fill">
-        <Flex direction="down" justify="between" py="3xl" resizeY="fill">
+        <Flex direction="down" justify="between" py="2xl" resizeY="fill">
           <Flex direction="down" gap={6}>
             <Text
               size="3xl"
               uppercase
               color="accent"
               font="display"
-              className="pl-1"
+              className="pt-16 pl-1"
             >
               Coming Soon
             </Text>

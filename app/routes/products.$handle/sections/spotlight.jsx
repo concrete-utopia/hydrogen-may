@@ -5,7 +5,7 @@ import {Image} from '@shopify/hydrogen';
 
 export default function Spotlight() {
   return (
-    <Section padding>
+    <Section padding className="mb-24">
       <Container as="header" className="pb-16">
         <Flex gap={4} direction="down">
           <Heading size={9} uppercase weight="regular">

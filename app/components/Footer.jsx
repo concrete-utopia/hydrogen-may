@@ -2,15 +2,21 @@ import Link from '@h2/Link';
 import {Button} from '@h2/new/Button';
 import {Container, Flex, Grid, Section} from '@h2/new/Layout';
 import {Heading, Span, Text} from '@h2/new/Text';
-import {Form, NavLink} from '@remix-run/react';
+import { cx } from '@h2/new/utils';
+import {Form, NavLink, useLocation} from '@remix-run/react';
 import {useRootLoaderData} from '~/lib/root-data';
 
 /**
  * @param {FooterQuery & {shop: HeaderQuery['shop']}}
  */
 export function Footer({menu, shop}) {
+  const {pathname} = useLocation();
+
+  const bgColor =
+    pathname === '/products/builder-keyboard' ? 'bg-accent' : 'bg-white';
+
   return (
-    <Section className="pt-24 mt-24 bg-darkGray" as="footer">
+    <Section className={cx(['pt-24', 'bg-darkGray'])} as="footer">
       {/* {menu && shop?.primaryDomain?.url && (
         <FooterMenu menu={menu} primaryDomainUrl={shop.primaryDomain.url} />
       )} */}
@@ -21,8 +27,10 @@ export function Footer({menu, shop}) {
         </div>
         <div></div>
         <div className="flex translate-x-40">
-          <span className="bg-white aspect-square w-14"></span>
-          <span className="bg-white translate-y-7 aspect-square w-14"></span>
+          <span className={cx([bgColor, 'aspect-square', 'w-14'])}></span>
+          <span
+            className={cx([bgColor, 'translate-y-7', 'aspect-square', 'w-14'])}
+          ></span>
         </div>
       </div>
       <Container className="pb-16 border-b border-white/10">

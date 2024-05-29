@@ -8,12 +8,12 @@ export function Header() {
   const {pathname} = useLocation();
 
   const linkColor =
-    pathname === ('/' || '/products/builder-keyboard')
+    pathname === '/' || pathname === '/products/builder-keyboard'
       ? 'text-white'
       : 'text-black';
 
   const bgColor =
-    pathname === ('/' || '/products/builder-keyboard')
+    pathname === '/' || pathname === '/products/builder-keyboard'
       ? 'bg-white/10'
       : 'bg-white';
 
