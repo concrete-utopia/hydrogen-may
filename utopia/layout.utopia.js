@@ -1,4 +1,4 @@
-import * as Utopia from 'utopia-api';
+import * as Utopia from 'utopia-api'
 import {
   Background,
   Flex,
@@ -6,7 +6,7 @@ import {
   Spacer,
   Section,
   Container,
-} from '@h2/new/Layout';
+} from '@h2/new/Layout'
 
 export const BooleanSegmentControl = Utopia.radioControl([
   {
@@ -17,7 +17,7 @@ export const BooleanSegmentControl = Utopia.radioControl([
     label: 'false',
     value: 'false',
   },
-]);
+])
 
 const annotations = {
   Background: {
@@ -315,11 +315,11 @@ const annotations = {
     ],
     icon: 'dashedframe',
   },
-};
+}
 
 const Components = {
   '/app/components/hydrogen/new/Layout': annotations,
   '@h2/new/Layout': annotations,
-};
+}
 
-export default Components;
+export default Components
