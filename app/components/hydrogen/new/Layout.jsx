@@ -424,6 +424,20 @@ const container = cva({
       true: 'max-w-none',
       false: 'max-w-7xl',
     },
+    paddingY: {
+      s: 'py-16',
+      m: 'py-32',
+      l: 'py-56',
+    },
+    paddingBottom: {
+      s: 'pb-16',
+      m: 'pb-32',
+      l: 'pb-56',
+    },
+    marginBottom: {
+      true: '-mb-[26rem]',
+      false: null,
+    },
   },
   defaultVariants: {
     fluid: false,
@@ -435,6 +449,9 @@ export const Container = forwardRef(
     {
       as: Component = 'div',
       fluid,
+      paddingTop,
+      paddingBottom,
+      marginBottom,
       resizeX,
       resizeY,
       children,
@@ -450,6 +467,9 @@ export const Container = forwardRef(
         ref={ref}
         className={styles({
           fluid,
+          paddingTop,
+          paddingBottom,
+          marginBottom,
           resizeX,
           resizeY,
           ...props,
