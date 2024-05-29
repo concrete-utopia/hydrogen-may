@@ -15,6 +15,7 @@ function SaleCard({className, ...props}) {
         gap={6}
         position="relative"
         className="z-10"
+        resizeY="fill"
         p={8}
         {...props}
       >
@@ -65,7 +66,7 @@ function SaleBadge({variant}) {
 export default function FeaturedProducts() {
   return (
     <Section>
-      <Grid columns={2} gap={0} justify="stretch">
+      <Grid columns={2} gap={0} align="stretch">
         <SaleCard className="bg-lightGray">
           <div className="relative">
             <SaleBadge variant={null} />
@@ -87,24 +88,21 @@ export default function FeaturedProducts() {
           </Flex>
           <AddToCartButton color="accent">Add to cart</AddToCartButton>
         </SaleCard>
-        <div className="h-full bg-black">
-          <Image
-            className="object-cover w-full h-full"
-            width={633}
-            height={555}
-            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/spotlight-image-home-1.jpg?v=1716832099"
-          />
-        </div>
+        <Image
+          className="object-cover w-full h-full"
+          width={633}
+          height={555}
+          src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/spotlight-image-home-1.jpg?v=1716832099"
+        />
       </Grid>
-      <Grid columns={2} gap={0}>
-        <div className="h-full bg-black">
-          <Image
-            className="object-cover w-full h-full"
-            width={633}
-            height={555}
-            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/spotlight-image-home-2.jpg?v=1716832296"
-          />
-        </div>
+      <Grid columns={2} gap={0} align="stretch">
+        <Image
+          className="object-cover w-full h-full"
+          width={633}
+          height={555}
+          src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/spotlight-image-home-2.jpg?v=1716832296"
+        />
+
         <SaleCard className="bg-accent">
           <div className="relative">
             <SaleBadge
