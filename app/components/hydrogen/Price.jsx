@@ -18,7 +18,7 @@ export function Price({variant, as = Text, ...props}) {
       altText: 'Placeholder',
       height: '600',
       width: '400',
-      url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
+      url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png',
     },
   };
 
@@ -48,7 +48,7 @@ export function PriceCompareAt({variant, as = Text, className, ...props}) {
       altText: 'Placeholder',
       height: '600',
       width: '400',
-      url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
+      url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png',
     },
   };
 

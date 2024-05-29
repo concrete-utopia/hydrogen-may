@@ -11,7 +11,7 @@ export const meta = ({data}) => {
 
 export async function loader({params, request, context}) {
   //   const {handle} = params;
-  const handle = 'builders-tote';
+  const handle = 'builder-tote';
   const {storefront} = context;
 
   const {product} = await storefront.query(PRODUCT_QUERY, {

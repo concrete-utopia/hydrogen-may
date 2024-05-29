@@ -7,10 +7,11 @@ import {Price, PriceCompareAt} from '@h2/Price';
 import {Background, Flex, Grid, Section} from '@h2/new/Layout';
 import Link from '@h2/Link';
 import Accordion from '@h2/new/Accordion';
+import {businessDaysFromNow} from '@h2/new/utils';
 
 export default function Hero() {
   const {product} = useLoaderData();
-  const {selectedVariant} = product;
+  const {featuredImage} = product;
   return (
     <Section className="relative">
       <Grid
@@ -24,10 +25,8 @@ export default function Hero() {
       >
         <div className="product-image">
           <Image
-            alt={selectedVariant?.image.altText || 'Product Image'}
             aspectRatio="1/1"
-            data={selectedVariant?.image}
-            key={selectedVariant?.image.id}
+            data={featuredImage}
             sizes="(min-width: 45em) 50vw, 100vw"
             className="object-fill"
           />
@@ -65,22 +64,16 @@ function ProductSummary() {
 
   const accordionData = [
     {
-      id: '1',
       title: 'Materials',
-      content:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias debitis illo unde itaque eius eos necessitatibus assumenda, quos nisi cum reprehenderit aut placeat modi corrupti repudiandae mollitia corporis et labore?',
+      content: product.materials.value,
     },
     {
-      id: '2',
       title: 'Care Instructions',
-      content:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias debitis illo unde itaque eius eos necessitatibus assumenda, quos nisi cum reprehenderit aut placeat modi corrupti repudiandae mollitia corporis et labore?',
+      content: product.care_guide.value,
     },
     {
-      id: '3',
       title: 'Fit',
-      content:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias debitis illo unde itaque eius eos necessitatibus assumenda, quos nisi cum reprehenderit aut placeat modi corrupti repudiandae mollitia corporis et labore?',
+      content: product.fit.value,
     },
   ];
 
@@ -179,55 +172,6 @@ function ProductSummary() {
   );
 }
 
-function businessDaysFromNow(days) {
-  let date = new Date();
-  let addedDays = 0;
-
-  while (addedDays < days) {
-    date.setDate(date.getDate() + 1);
-
-    // Check if the current day is a weekday (Monday-Friday)
-    const dayOfWeek = date.getDay();
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-      // 0 = Sunday, 6 = Saturday
-      addedDays++;
-    }
-  }
-
-  return formatDate(date);
-}
-
-function formatDate(date) {
-  const daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-
-  let dayName = daysOfWeek[date.getDay()];
-  let monthName = months[date.getMonth()];
-  let day = date.getDate();
-
-  return `${dayName}, ${monthName} ${day}`;
-}
 /**
  * @param {{
  *   product: ProductFragment;

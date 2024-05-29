@@ -1,5 +1,5 @@
 import {forwardRef} from 'react';
-import {compose, cva, cx} from './utils';
+import {compose, cva} from './utils';
 
 const typography = cva({
   base: ['max-w-prose'],
@@ -323,3 +323,25 @@ export const Strong = forwardRef(
     );
   },
 );
+
+export function HighlightText({text}) {
+  const parts = text.split('*');
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (index % 2 === 1) {
+          return (
+            <Span
+              key={index}
+              pill
+              className="bg-accent"
+              dangerouslySetInnerHTML={{__html: part}}
+            />
+          );
+        }
+        return part;
+      })}
+    </>
+  );
+}
