@@ -184,7 +184,7 @@ const IconQuote = () => (
 export const ReviewSummary = ({ average, count }) => (
   <Text size='2xl' weight='medium'>
     <Star />
-    {average}
+    {average}{' '}
     <Span transparent>&mdash; {count} reviews</Span>
   </Text>
 )
