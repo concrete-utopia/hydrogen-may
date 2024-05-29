@@ -4,7 +4,19 @@ import {
   Flex,
   MultiColumn,
   Spacer,
+  Section,
 } from '@h2/new/Layout'
+
+export const BooleanSegmentControl = Utopia.radioControl([
+  {
+    label: 'true',
+    value: 'true',
+  },
+  {
+    label: 'false',
+    value: 'false',
+  },
+])
 
 const annotations = {
   Background: {
@@ -204,6 +216,21 @@ const annotations = {
     component: Spacer,
     properties: {
       height: Utopia.numberControl(),
+    },
+    focus: 'never',
+    inspector: 'hidden',
+    children: 'not-supported',
+    variants: {
+      label: 'Spacer',
+      imports: "import { Spacer } from '@h2/new/Layout'",
+      code: `<Spacer height={144} />`,
+    },
+    icon: 'dashedframe',
+  },
+  Section: {
+    component: Section,
+    properties: {
+      padded: BooleanSegmentControl,
     },
     focus: 'never',
     inspector: 'hidden',
