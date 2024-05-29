@@ -11,7 +11,6 @@
     "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.jsx,.tsx .",
     "codegen": "shopify hydrogen codegen"
   },
-  "prettier": "@shopify/prettier-config",
   "dependencies": {
     "@headlessui/react": "^2.0.3",
     "@remix-run/react": "^2.8.0",
@@ -41,8 +40,7 @@
     "@shopify/hydrogen-codegen": "^0.3.0",
     "@shopify/mini-oxygen": "^3.0.1",
     "@shopify/oxygen-workers-types": "^4.0.0",
-    "@shopify/prettier-config": "^1.1.2",
-    "@tailwindcss/forms": "^0.5.7",
+    "s@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
     "@total-typescript/ts-reset": "^0.4.2",
     "@types/eslint": "^8.4.10",
