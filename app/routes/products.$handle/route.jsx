@@ -249,6 +249,18 @@ query Details(
           content: field(key: "content") {
             value
           }
+          image: field(key: "image") {
+            reference {
+              ... on MediaImage {
+                image {
+                  altText
+                  width
+                  height
+                  url
+                }
+              }
+            }
+          }
         }
       }
     }

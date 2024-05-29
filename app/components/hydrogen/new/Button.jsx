@@ -1,8 +1,8 @@
 import {forwardRef} from 'react';
-import {Link} from '@remix-run/react';
 import {CartForm} from '@shopify/hydrogen';
 
 import {cva, cx} from './utils';
+import Link from '@h2/Link';
 
 const button = cva({
   base: [

@@ -25,7 +25,7 @@ export default function Hero() {
               </Span>
             </Heading>
           </Flex>
-          <Button to="/">Shop now</Button>
+          <Button to="/products/builder-tote">Shop now</Button>
         </Flex>
       </Container>
       <Background columns={2}>
