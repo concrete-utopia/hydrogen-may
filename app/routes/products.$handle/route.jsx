@@ -123,7 +123,7 @@ function redirectToFirstVariant({product, request}) {
 }
 
 export default function Product() {
-  const {solution} = useLoaderData();
+  const {solution, reviews, relatedProducts, spotlight} = useLoaderData();
   return (
     <>
       <Hero />
@@ -136,7 +136,9 @@ export default function Product() {
           )}
         </Await>
       </Suspense>
-      <Reviews />
+      <Suspense>
+        <Await resolve={reviews}>{(data) => <Reviews data={data} />}</Await>
+      </Suspense>
       <Recommended />
       <Spotlight />
     </>
@@ -274,7 +276,7 @@ query Reviews(
   $handle: String!
   $language: LanguageCode
 ) @inContext(country: $country, language: $language) {
-  product(handle: $handle) {
+  reviews: product(handle: $handle) {
     review_count: metafield(namespace: "shopify", key: "rating_count") {
       value
     }
@@ -285,6 +287,7 @@ query Reviews(
       references(first: 6) {
         nodes {
           ... on Metaobject {
+            id
             quote: field(key: "quote") {
               value
             }

@@ -216,7 +216,7 @@ export const Heading = forwardRef(
 );
 
 const span = cva({
-  base: 'inline-block',
+  base: 'inline',
   variants: {
     pill: {
       true: ['px-5', 'rounded-full'],

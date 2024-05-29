@@ -9,4 +9,4 @@ module.exports = {
   jsxSingleQuote: true,
   jsxBracketSameLine: false,
   arrowParens: 'always',
-}
+};

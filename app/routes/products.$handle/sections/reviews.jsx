@@ -3,46 +3,11 @@ import {Heading, Span, Strong, Text} from '@h2/new/Text';
 import {Button} from '@h2/new/Button';
 import {cva, cx} from '@h2/new/utils';
 
-const reviews = [
-  {
-    id: '1',
-    quote:
-      'This is a really nice tote bag, perfect size for carry on travel or day trips. I really like that it zips up. Sturdy and the handles don’t slip off your shoulder! I love it.”',
-    customer: 'Lynn W.',
-  },
-  {
-    id: '2',
-    quote:
-      'I love my Builders Tote! It’s durable, and fits everything I need for my commute, from my laptop to my water bottle. Totally worth it!',
-    customer: 'Emma R.',
-  },
-  {
-    id: '3',
-    quote:
-      'This tote bag has become an essential part of my daily routine. It’s spacious enough for all my stuff, from documents to gym clothes, and it’s impressively sturdy.',
-    customer: 'Mark L.',
-  },
-  {
-    id: '4',
-    quote:
-      'Great tote for everyday use. It carries my laptop, books, and even my lunch with ease. Plus, it’s a fantastic conversation starter wherever I go.',
-    customer: 'Chris D.',
-  },
-  {
-    id: '5',
-    quote:
-      'Incredibly handy for my weekend trips. It’s big enough to hold all my essentials and looks fantastic with any outfit. Can’t imagine my weekends without it now',
-    customer: 'Rachel T.',
-  },
-  {
-    id: '6',
-    quote:
-      'The perfect blend of functionality and fashion. I take it to work, on weekend getaways, and even to the gym. It’s a must-have for any builder!',
-    customer: 'Sarah M.',
-  },
-];
+export default function Reviews({data}) {
+  const {review_count, review_avg, reviews} = data.reviews;
 
-export default function Reviews({data = reviews}) {
+  const customerReviews = reviews.references.nodes;
+
   return (
     <Section>
       <Container as="header" className="py-56 -mb-[26rem]">
@@ -64,7 +29,8 @@ export default function Reviews({data = reviews}) {
                   d="M4 17.3a.8.8 0 0 1-.4-.6l.1-.8 1.6-4.8-4-2.9-.6-.6a.8.8 0 0 1 0-.6c0-.2.2-.4.4-.5l.8-.2h5l1.5-4.7c.1-.3.2-.6.4-.7l.6-.3.6.3.4.7 1.5 4.8h5l.8.1c.2.1.4.3.4.5v.6l-.6.6-4 3 1.5 4.7c.1.3.2.6.1.8l-.3.6c-.2.1-.4.2-.6.1a1 1 0 0 1-.7-.3l-4.1-3-4 3-.8.3-.6-.1Z"
                 />
               </svg>{' '}
-              4.8 <Span className="opacity-50">&mdash; 385 Reviews</Span>
+              {JSON.parse(review_avg.value).value}{' '}
+              <Span className="opacity-50">&mdash; {review_count.value}</Span>
             </Text>
             <Button color="accent">View all reviews</Button>
           </Flex>
@@ -74,7 +40,7 @@ export default function Reviews({data = reviews}) {
         <div className="max-w-[52rem] ml-auto">
           <div className="gap-12 columns-2">
             <div className="mt-36" />
-            {data.map((review, i) => {
+            {customerReviews.map((review, i) => {
               return (
                 <Review
                   key={review.id}
@@ -108,7 +74,7 @@ function Review({data, className, ...props}) {
   const {quote, customer} = data;
   const classes = cx(review(props), className);
 
-  const {firstSentence, remainingText} = splitTextIntoSentences(quote);
+  const {firstSentence, remainingText} = splitTextIntoSentences(quote.value);
 
   return (
     <div className="relative inline-block">
@@ -134,7 +100,7 @@ function Review({data, className, ...props}) {
           weight="medium"
           className={props.background === 'black' && 'text-accent'}
         >
-          &mdash;{customer}
+          &mdash;{customer.value}
         </Text>
       </Flex>
     </div>
