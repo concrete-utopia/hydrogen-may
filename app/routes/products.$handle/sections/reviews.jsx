@@ -30,7 +30,7 @@ export default function Reviews({ data }) {
 
   return (
     <Section>
-      <Container as='header' paddingY='l' marginBottom>
+      <Container paddingY='l' marginBottom>
         <Flex direction='down' gap={8}>
           <Heading size='6xl'>
             Don’t take our word for it

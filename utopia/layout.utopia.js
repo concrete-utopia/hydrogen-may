@@ -298,7 +298,7 @@ const annotations = {
         label: 'Container (Review Title)',
         imports: `import { Container } from '@h2/new/Layout'
           import { Placeholder } from 'utopia-api'`,
-        code: `<Container as='header' paddingY='l' marginBottom>
+        code: `<Container paddingY='l' marginBottom>
           <Placeholder />
           <Placeholder />
         </Container>`,
