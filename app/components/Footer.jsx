@@ -2,7 +2,7 @@ import Link from '@h2/Link';
 import {Button} from '@h2/new/Button';
 import {Container, Flex, Grid, Section} from '@h2/new/Layout';
 import {Heading, Span, Text} from '@h2/new/Text';
-import { cx } from '@h2/new/utils';
+import {cx} from '@h2/new/utils';
 import {Form, NavLink, useLocation} from '@remix-run/react';
 import {useRootLoaderData} from '~/lib/root-data';
 

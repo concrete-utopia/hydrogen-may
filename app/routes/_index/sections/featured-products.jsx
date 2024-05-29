@@ -38,10 +38,10 @@ function SaleBadge({variant}) {
   return (
     <Flex
       direction="down"
-      gap={2}
+      gap={0}
       align="center"
       justify="center"
-      className="absolute top-0 right-0 w-40 pb-4 text-center translate-x-16 translate-y-16 bg-white rounded-full rotate-12 shadow-badge aspect-square"
+      className="absolute top-0 right-0 z-20 w-40 pb-2 text-center translate-x-8 translate-y-16 bg-white rounded-full rotate-12 shadow-badge aspect-square"
     >
       <PriceCompareAt
         align="center"
@@ -70,14 +70,14 @@ export default function FeaturedProducts() {
           <div className="relative">
             <SaleBadge variant={null} />
             <Image
-              aspectRatio="1/1"
               crop="center"
-              width={380}
+              width={450}
+              height={380}
               src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
             />
           </div>
           <Flex gap={4} direction="down" align="center" justify="center">
-            <Heading font="text" weight="medium" size={4}>
+            <Heading font="text" weight="medium" size="l">
               Builders Tote
             </Heading>
             <Text width="narrow" color="black" className="opacity-60">
@@ -89,55 +89,44 @@ export default function FeaturedProducts() {
         </SaleCard>
         <div className="h-full bg-black">
           <Image
-            className="object-cover h-full"
+            className="object-cover w-full h-full"
             width={633}
             height={555}
-            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
+            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/spotlight-image-home-1.jpg?v=1716832099"
           />
         </div>
       </Grid>
       <Grid columns={2} gap={0}>
         <div className="h-full bg-black">
           <Image
-            className="object-cover h-full"
+            className="object-cover w-full h-full"
             width={633}
             height={555}
-            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
+            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/spotlight-image-home-2.jpg?v=1716832296"
           />
         </div>
         <SaleCard className="bg-accent">
           <div className="relative">
-            <Flex
-              direction="down"
-              gap={2}
-              align="center"
-              justify="center"
-              className="absolute top-0 right-0 w-40 pb-4 text-center translate-x-16 translate-y-16 bg-white rounded-full rotate-12 shadow-card aspect-square"
-            >
-              <PriceCompareAt
-                as={Heading}
-                size={3}
-                align="center"
-                className="opacity-40"
-                withoutTrailingZeros
-              />
-              <Price
-                as={Heading}
-                size={4}
-                align="center"
-                withoutTrailingZeros
-              />
-            </Flex>
+            <SaleBadge
+              variant={{
+                availableForSale: true,
+                price: {
+                  amount: '39.00',
+                  currencyCode: 'CAD',
+                },
+              }}
+            />
             <Image
-              aspectRatio="1/1"
               crop="center"
-              width={380}
-              src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
+              width={450}
+              height={380}
+              className="translate-y-12"
+              src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-GSD-Hat-PDP.webp"
             />
           </div>
           <Flex gap={4} direction="down" align="center" justify="center">
-            <Heading font="text" weight="medium" size={4}>
-              Builders Tote
+            <Heading font="text" weight="medium" size="l">
+              Get Ship Done Hat 2.0
             </Heading>
             <Text width="narrow" color="black" className="opacity-60">
               Sofie Pavitt Face is an intentional edit of skincare essentials
