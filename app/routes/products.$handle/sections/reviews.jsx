@@ -25,6 +25,9 @@ export default function Reviews({ data }) {
     },
   )
 
+  const reviewAvg = JSON.parse(review_avg.value).value
+  const reviewCount = review_count.value
+
   return (
     <Section>
       <Container as='header' paddingY='l' marginBottom>
@@ -33,13 +36,10 @@ export default function Reviews({ data }) {
             Don’t take our word for it
           </Heading>
           <Flex direction='down' gap={6}>
-            <Text size='2xl' weight='medium'>
-              <Star />
-              {JSON.parse(review_avg.value).value}{' '}
-              <Span transparent>
-                &mdash; {review_count.value}
-              </Span>
-            </Text>
+            <ReviewSummary
+              average={reviewAvg}
+              count={reviewCount}
+            />
             <Button color='accent'>View all reviews</Button>
           </Flex>
         </Flex>
@@ -72,7 +72,6 @@ const review = cva({
 
 export function Review({ data, className, ...props }) {
   const { id, quote, customer, background } = data
-  console.log(background)
 
   const classes = cx(
     review({ ...props, background }),
@@ -143,6 +142,9 @@ export function ReviewsSkeleton({ data }) {
     },
   )
 
+  const reviewAvg = JSON.parse(review_avg.value).value
+  const reviewCount = review_count.value
+
   return <Section />
 }
 
@@ -177,4 +179,12 @@ const IconQuote = () => (
       d='m29 12.5-.2-.2c0-.2-.6-.6-1.4-1.3-.4-.4-.8-1-1-1.8C26 8.4 26 7.7 26 7c0-2 .6-3.4 1.9-4.5A8.7 8.7 0 0 1 33.5 1c5 0 7.6 2 7.6 6 0 1.7-.7 3.2-2 4.5a5.5 5.5 0 0 1-4.4 1.5c-1.8 0-2.7.1-2.7.7 0 .2.3.5.9.8A6 6 0 0 1 35 19c0 2-.7 3.4-2 4.5a7 7 0 0 1-5 1.7l-3.3-.1-1.9-.8c-1-.5-1.7-1.2-2.3-2.2a6 6 0 0 1-.8-3c0-1.6.6-3 1.8-4.1a6.5 6.5 0 0 1 4.6-1.8h1.3c1 0 1.4-.2 1.4-.7Zm-19.4 0-.1-.2L8 11c-.5-.4-.8-1-1-1.8-.3-.8-.5-1.5-.5-2.2 0-2 .7-3.4 2-4.5A8.7 8.7 0 0 1 14.2 1c5 0 7.6 2 7.6 6 0 1.7-.7 3.2-2 4.5a5.5 5.5 0 0 1-4.4 1.5c-1.8 0-2.7.1-2.7.7 0 .2.3.5.9.8.6.5 1 1.1 1.4 2 .4.8.6 1.7.6 2.7 0 1.8-.6 3.3-1.8 4.4a7 7 0 0 1-5 1.7l-3.3-.1c-.8-.2-1.4-.5-2-.8-.9-.5-1.6-1.2-2.2-2.2a6 6 0 0 1-.8-3c0-1.6.6-3 1.8-4.1a6.5 6.5 0 0 1 4.6-1.8h1.3c1 0 1.4-.2 1.4-.7Z'
     />
   </svg>
+)
+
+export const ReviewSummary = ({ average, count }) => (
+  <Text size='2xl' weight='medium'>
+    <Star />
+    {average}
+    <Span transparent>&mdash; {count} reviews</Span>
+  </Text>
 )
