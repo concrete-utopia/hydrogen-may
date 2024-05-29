@@ -40,7 +40,7 @@ export function Header() {
             <Logo className={cx('inline', linkColor)} />
           </Link>
           <Flex align="center" justify="end" gap="m">
-            <Link to="/account" className={linkClass}>
+            <Link prefetch="intent" to="/account" className={linkClass}>
               <IconAccount />
             </Link>
             <a href="#cart-aside" className={linkClass}>

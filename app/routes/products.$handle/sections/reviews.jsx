@@ -12,46 +12,11 @@ import { Placeholder } from 'utopia-api'
 import * as React from 'react'
 import { Star } from '/app/components/Star'
 
-const reviews = [
-  {
-    id: '1',
-    quote:
-      'This is a really nice tote bag, perfect size for carry on travel or day trips. I really like that it zips up. Sturdy and the handles don’t slip off your shoulder! I love it.”',
-    customer: 'Lynn W.',
-  },
-  {
-    id: '2',
-    quote:
-      'I love my Builders Tote! It’s durable, and fits everything I need for my commute, from my laptop to my water bottle. Totally worth it!',
-    customer: 'Emma R.',
-  },
-  {
-    id: '3',
-    quote:
-      'This tote bag has become an essential part of my daily routine. It’s spacious enough for all my stuff, from documents to gym clothes, and it’s impressively sturdy.',
-    customer: 'Mark L.',
-  },
-  {
-    id: '4',
-    quote:
-      'Great tote for everyday use. It carries my laptop, books, and even my lunch with ease. Plus, it’s a fantastic conversation starter wherever I go.',
-    customer: 'Chris D.',
-  },
-  {
-    id: '5',
-    quote:
-      'Incredibly handy for my weekend trips. It’s big enough to hold all my essentials and looks fantastic with any outfit. Can’t imagine my weekends without it now',
-    customer: 'Rachel T.',
-  },
-  {
-    id: '6',
-    quote:
-      'The perfect blend of functionality and fashion. I take it to work, on weekend getaways, and even to the gym. It’s a must-have for any builder!',
-    customer: 'Sarah M.',
-  },
-]
+export default function Reviews({data}) {
+  const {review_count, review_avg, reviews} = data.reviews;
 
-export default function Reviews({ data = reviews }) {
+  const customerReviews = reviews.references.nodes;
+
   return (
     <Section>
       <Container as='header' paddingY='l' marginBottom>
@@ -62,8 +27,8 @@ export default function Reviews({ data = reviews }) {
           <Flex direction='down' gap={6}>
             <Text size='2xl' weight='medium'>
               <Star />
-              4.8
-              <Span transparent>&mdash; 385 Reviews</Span>
+              {JSON.parse(review_avg.value).value}{' '}
+              <Span transparent>&mdash; {review_count.value}</Span>
             </Text>
             <Button color='accent'>View all reviews</Button>
           </Flex>
@@ -72,7 +37,7 @@ export default function Reviews({ data = reviews }) {
       <Container paddingBottom={'s'}>
         <MultiColumn columns={2} gap maxWidth>
           <Spacer height={144} />
-          {data.map((review) => {
+          {customerReviews.map((review) => {
             return <Review key={review.id} data={review} />
           })}
         </MultiColumn>
@@ -113,7 +78,7 @@ export function Review({ data, className, ...props }) {
     className,
   )
   const { firstSentence, remainingText } =
-    splitTextIntoSentences(quote)
+    splitTextIntoSentences(quote.value)
 
   console.log(background)
   return (
@@ -158,7 +123,7 @@ export function Review({ data, className, ...props }) {
             background === 'black' && 'text-accent'
           }
         >
-          &mdash;{customer}
+          &mdash;{customer.value}
         </Text>
       </Flex>
     </div>

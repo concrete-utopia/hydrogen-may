@@ -1,4 +1,4 @@
-import {Heading, Span, Text} from '@h2/new/Text';
+import {Heading, HighlightText, Span, Text} from '@h2/new/Text';
 import {useLoaderData} from '@remix-run/react';
 import {Button} from '@h2/new/Button';
 import {Image} from '@shopify/hydrogen';
@@ -10,10 +10,13 @@ import {
   Grid,
 } from '/app/components/hydrogen/new/Layout';
 
-export default function HighlightSolution() {
+export default function HighlightSolution({data}) {
   const {
-    product: {selectedVariant},
+    product: {featuredImage},
   } = useLoaderData();
+
+  const {title, description, learn_more} = data;
+
   return (
     <Section className="aspect-[2/1]">
       <Flex
@@ -34,22 +37,10 @@ export default function HighlightSolution() {
               gap={9}
             >
               <Heading uppercase wrap="balance">
-                Your{' '}
-                <Span pill className="bg-accent">
-                  ideal
-                </Span>
-                &nbsp;
-                <Span pill className="w-[1em] px-6 bg-accent">
-                  &nbsp;
-                </Span>{' '}
-                travel companion
+                <HighlightText text={title.value} />
               </Heading>
               <Text wrap="balance" size="xl" className="opacity-70">
-                This is a really nice tote bag, perfect size for carry on travel
-                or day trips. It&rsquo;s the maximum size for “personal” carry
-                on luggage on flights. Lots of pockets in all the right places.
-                I really like that it zips up. Sturdy and the handles don’t slip
-                off your shoulder! I love it.
+                {description.value}
               </Text>
               <Button color="white">Learn more</Button>
             </Flex>
@@ -60,7 +51,7 @@ export default function HighlightSolution() {
         <div className="h-full">
           <Image
             className="object-fill w-auto scale-[118%] -translate-y-14 -translate-x-6 pointer-events-none mix-blend-darken rotate-12"
-            data={selectedVariant.image}
+            data={featuredImage}
           />
         </div>
       </Background>

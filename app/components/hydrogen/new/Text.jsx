@@ -217,7 +217,7 @@ export const Heading = forwardRef(
 )
 
 const span = cva({
-  base: 'inline-block',
+  base: 'inline',
   variants: {
     pill: {
       true: ['px-5', 'rounded-full'],
@@ -329,4 +329,26 @@ export const Strong = forwardRef(
       </Component>
     )
   },
-)
+);
+
+export function HighlightText({text}) {
+  const parts = text.split('*');
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (index % 2 === 1) {
+          return (
+            <Span
+              key={index}
+              pill
+              className="bg-accent"
+              dangerouslySetInnerHTML={{__html: part}}
+            />
+          );
+        }
+        return part;
+      })}
+    </>
+  );
+}

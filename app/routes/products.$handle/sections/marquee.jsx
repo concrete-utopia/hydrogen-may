@@ -13,7 +13,11 @@ export default function Banner() {
       </div>
     ));
 
-  return <Marquee className="text-white uppercase bg-black">{slogan}</Marquee>;
+  return (
+    <div className="bg-black h-[8.5rem]">
+      <Marquee className="text-white uppercase">{slogan}</Marquee>;
+    </div>
+  );
 }
 
 const Star = () => {

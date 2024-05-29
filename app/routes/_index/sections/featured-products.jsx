@@ -96,7 +96,7 @@ export default function FeaturedProducts() {
               aspectRatio='1/1'
               crop='center'
               width={380}
-              src='https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png'
+              src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
             />
           </div>
           <Flex
@@ -127,7 +127,7 @@ export default function FeaturedProducts() {
             className='object-cover h-full'
             width={633}
             height={555}
-            src='https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png'
+            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
           />
         </div>
       </Grid>
@@ -137,7 +137,7 @@ export default function FeaturedProducts() {
             className='object-cover h-full'
             width={633}
             height={555}
-            src='https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png'
+            src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
           />
         </div>
         <SaleCard className='bg-accent'>
@@ -169,7 +169,7 @@ export default function FeaturedProducts() {
               aspectRatio='1/1'
               crop='center'
               width={380}
-              src='https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png'
+              src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
             />
           </div>
           <Flex

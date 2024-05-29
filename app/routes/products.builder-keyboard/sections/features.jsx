@@ -37,7 +37,7 @@ const data = [
     description:
       'Type at lightning speed Build faster than ever with the Shopify Keyboard thanks to its ultra-slim design, featuring low-profile switches (0.2 ms latency). These switches are 31% thinner than those found on average mechanical keyboards, allowing you to type, work, and play faster. Listen to the smooth sound of the Gatreon low-profile red switch.',
     image: {
-      src: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
+      src: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png',
     },
   },
   {
@@ -46,7 +46,7 @@ const data = [
     description:
       'Pair your keyboard’s backlights with your preferences. Whether you’re coding, gaming, or creating—adjust the hue, saturation, and brightness of your backlight using a range of over 22 dynamic RGB settings.',
     image: {
-      src: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
+      src: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png',
     },
   },
   {
@@ -55,7 +55,7 @@ const data = [
     description:
       'Whether you’re updating inventory on your laptop or shipping code on your desktop—seamlessly transition between platforms. The Shopify Keyboard can pair with up to 3 Bluetooth devices, but if you prefer to connect via cable, make the switch in seconds with the toggle function. Whatever your preference, experience a keyboard that adapts to your needs.',
     image: {
-      src: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
+      src: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png',
     },
   },
 ];
