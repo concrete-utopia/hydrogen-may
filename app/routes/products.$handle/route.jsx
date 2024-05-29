@@ -139,8 +139,18 @@ export default function Product() {
       <Suspense>
         <Await resolve={reviews}>{(data) => <Reviews data={data} />}</Await>
       </Suspense>
-      <Recommended />
-      <Spotlight />
+      <Suspense>
+        <Await resolve={relatedProducts}>
+          {(data) => (
+            <Recommended data={data.product.relatedProducts.references.nodes} />
+          )}
+        </Await>
+      </Suspense>
+      <Suspense>
+        <Await resolve={spotlight}>
+          {(data) => <Spotlight data={data.product.spotlight.reference} />}
+        </Await>
+      </Suspense>
     </>
   );
 }
