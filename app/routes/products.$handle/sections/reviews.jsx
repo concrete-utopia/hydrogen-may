@@ -130,6 +130,22 @@ export function Review({ data, className, ...props }) {
   )
 }
 
+export function ReviewsSkeleton({ data }) {
+  const { review_count, review_avg, reviews } = data.reviews
+
+  const customerReviews = reviews.references.nodes.map(
+    (r, i) => {
+      return {
+        ...r,
+        background:
+          i === 0 ? 'black' : i === 4 ? 'accent' : 'white',
+      }
+    },
+  )
+
+  return <Section />
+}
+
 function splitTextIntoSentences(text) {
   const regex = /([.!?]\s+)(?=[A-Z"'\s])/
 
