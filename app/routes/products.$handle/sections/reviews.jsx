@@ -36,7 +36,7 @@ export default function Reviews({ data }) {
             Don’t take our word for it
           </Heading>
           <Flex direction='down' gap={6}>
-            <ReviewSummary
+            <ReviewStatistics
               average={reviewAvg}
               count={reviewCount}
             />
@@ -181,10 +181,12 @@ const IconQuote = () => (
   </svg>
 )
 
-export const ReviewSummary = ({ average, count }) => (
-  <Text size='2xl' weight='medium'>
-    <Star />
-    {average}{' '}
-    <Span transparent>&mdash; {count} reviews</Span>
-  </Text>
-)
+export const ReviewStatistics = ({ average, count }) => {
+  const averageLabel = ` ${average} `
+  return (
+    <Text size='2xl' weight='medium'>
+      <Star /> {averageLabel}
+      <Span transparent>&mdash; {count} reviews</Span>
+    </Text>
+  )
+}
