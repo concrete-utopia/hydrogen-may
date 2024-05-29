@@ -5,6 +5,7 @@ import HighlightSolution from '/app/routes/products.$handle/sections/highlight-s
 import Recommended from '/app/routes/products.$handle/sections/recommended'
 import Reviews, {
   Review,
+  ReviewStatistics,
 } from '/app/routes/products.$handle/sections/reviews'
 import Spotlight from '/app/routes/products.$handle/sections/spotlight'
 
@@ -79,6 +80,25 @@ const Components = {
               'This is a really nice tote bag, perfect size for carry on travel or day trips. I really like that it zips up. Sturdy and the handles don’t slip off your shoulder! I love it.”',
             customer: 'Lynn W.',
           }} />`,
+        },
+      ],
+    },
+    ReviewStatistics: {
+      component: ReviewStatistics,
+      properties: {
+        average: Utopia.numberControl(),
+        count: Utopia.numberControl(),
+      },
+      inspector: 'hidden',
+      children: 'not-supported',
+      variants: [
+        {
+          label: 'ReviewStatistics',
+          imports: `import { ReviewStatistics } from '/app/routes/products.$handle/sections/reviews'`,
+          code: `<ReviewStatistics
+            average={3.8}
+            count={127}
+          />`,
         },
       ],
     },
