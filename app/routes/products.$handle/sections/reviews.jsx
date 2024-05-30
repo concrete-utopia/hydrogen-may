@@ -8,7 +8,6 @@ import {
 import { Heading, Span, Strong, Text } from '@h2/new/Text'
 import { Button } from '@h2/new/Button'
 import { cva, cx } from '@h2/new/utils'
-import { Placeholder } from 'utopia-api'
 import * as React from 'react'
 import { Star } from '/app/components/Star'
 
@@ -44,7 +43,7 @@ export default function Reviews({ data }) {
           </Flex>
         </Flex>
       </Container>
-      <Container paddingBottom={'s'}>
+      <Container paddingBottom='s'>
         <MultiColumn columns={2} gap maxWidth>
           <Spacer height={144} />
           {customerReviews.map((review) => {
@@ -185,7 +184,8 @@ export const ReviewStatistics = ({ average, count }) => {
   const averageLabel = ` ${average} `
   return (
     <Text size='2xl' weight='medium'>
-      <Star /> {averageLabel}
+      <Star />
+      {averageLabel}
       <Span transparent>&mdash; {count} reviews</Span>
     </Text>
   )
