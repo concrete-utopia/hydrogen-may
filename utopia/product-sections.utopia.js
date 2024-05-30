@@ -122,7 +122,7 @@ const Components = {
       children: 'not-supported',
       variants: [
         {
-          label: 'ReviewStatistics (without Star icon)',
+          label: 'ReviewStatistics (Star icon)',
           imports: `import { ReviewStatistics } from '/app/routes/products.$handle/sections/reviews'
             import { Star } from '/app/components/Star'`,
           code: `<ReviewStatistics
@@ -132,7 +132,7 @@ const Components = {
           />`,
         },
         {
-          label: 'ReviewStatistics (without icon)',
+          label: 'ReviewStatistics (no icon)',
           imports: `import { ReviewStatistics } from '/app/routes/products.$handle/sections/reviews'`,
           code: `<ReviewStatistics
             average={3.8}
