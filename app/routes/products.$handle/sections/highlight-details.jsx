@@ -1,6 +1,7 @@
 import {Container, Section, Background, Grid, Flex} from '@h2/new/Layout';
 import {Heading, Text} from '@h2/new/Text';
 import {useLoaderData} from '@remix-run/react';
+import {Image} from '@shopify/hydrogen';
 
 export default function HighlightDetails() {
   const {details} = useLoaderData();
@@ -39,7 +40,12 @@ export default function HighlightDetails() {
       </Container>
       <Background columns={2}>
         <div className="w-full h-full"></div>
-        <div className="w-full h-full bg-accent"></div>
+        <div className="w-full h-full bg-accent">
+          <Image
+            className="w-full h-full"
+            data={details.features.reference.image.reference.image}
+          />
+        </div>
       </Background>
     </Section>
   );

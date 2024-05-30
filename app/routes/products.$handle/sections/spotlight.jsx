@@ -5,7 +5,7 @@ import {Image} from '@shopify/hydrogen';
 
 export default function Spotlight() {
   return (
-    <Section padding>
+    <Section padding className="mb-24">
       <Container as="header" className="pb-16">
         <Flex gap={4} direction="down">
           <Heading size={9} uppercase weight="regular">
@@ -31,19 +31,19 @@ export default function Spotlight() {
           >
             <div className="w-[22rem] h-[15rem] flex items-end justify-center">
               <Image
-                aspectRatio="1/1"
                 crop="center"
                 width={380}
-                src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
+                height={250}
+                src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-GSD-Hat-PDP.webp"
               />
             </div>
             <Flex gap={4} direction="down" align="center" justify="center">
-              <Heading size="l" weight="medium">
-                Builders Tote
+              <Heading size="l" font="text" weight="medium">
+                Get Ship Done Hat 2.0
               </Heading>
               <Text width="narrow">
-                Sofie Pavitt Face is an intentional edit of skincare essentials
-                designed for acne-prone skin.
+                Back by popular demand, the GSD Hat 2.0 features premium
+                materials and adjustable strap.
               </Text>
             </Flex>
             <AddToCartButton>Add to cart</AddToCartButton>
@@ -53,7 +53,7 @@ export default function Spotlight() {
               className="object-cover h-full"
               width={633}
               height={555}
-              src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/01-DevMode-Buildertote_PDP_3_fa8b6520-484a-47e7-818d-b217b04d31e6.png"
+              src="https://cdn.shopify.com/s/files/1/0657/3811/3197/files/spotlight-image-home-2.jpg?v=1716832296"
             />
           </div>
         </Grid>
