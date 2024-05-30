@@ -3,8 +3,8 @@ import { Money } from '@shopify/hydrogen'
 import { cx } from '@h2/new/utils'
 import { Text } from '@h2/new/Text'
 
-export function Price({variant, as = Text, ...props}) {
-  variant = variant || {
+export function Price({ variant, as = Text, ...props }) {
+  const nonNullVariant = variant ?? {
     availableForSale: true,
     price: {
       amount: '38.00',
@@ -14,9 +14,11 @@ export function Price({variant, as = Text, ...props}) {
       amount: '42.00',
       currencyCode: 'CAD',
     },
-  };
+  }
 
-  return <Money data={variant.price} as={as} {...props} />;
+  return (
+    <Money data={nonNullVariant.price} as={as} {...props} />
+  )
 }
 
 export function isDiscounted(price, compareAtPrice) {
@@ -32,7 +34,7 @@ export function PriceCompareAt({
   className,
   ...props
 }) {
-  variant = variant || {
+  const nonNullVariant = variant ?? {
     availableForSale: true,
     price: {
       amount: '38.00',
@@ -42,16 +44,16 @@ export function PriceCompareAt({
       amount: '42.00',
       currencyCode: 'CAD',
     },
-  };
+  }
 
   return isDiscounted(
-    variant.price,
-    variant.compareAtPrice,
+    nonNullVariant.price,
+    nonNullVariant.compareAtPrice,
   ) ? (
     <Money
       as={as}
       className={cx('line-through', className)}
-      data={variant.compareAtPrice}
+      data={nonNullVariant.compareAtPrice}
       {...props}
     />
   ) : null
