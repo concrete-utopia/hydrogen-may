@@ -429,7 +429,27 @@ const container = cva({
       m: 'py-32',
       l: 'py-56',
     },
+    paddingTop: {
+      s: 'pt-16',
+      m: 'pt-32',
+      l: 'pt-56',
+    },
     paddingBottom: {
+      s: 'pb-16',
+      m: 'pb-32',
+      l: 'pb-56',
+    },
+    paddingX: {
+      s: 'py-16',
+      m: 'py-32',
+      l: 'py-56',
+    },
+    paddingLeft: {
+      s: 'pt-16',
+      m: 'pt-32',
+      l: 'pt-56',
+    },
+    paddingRight: {
       s: 'pb-16',
       m: 'pb-32',
       l: 'pb-56',

@@ -10,11 +10,11 @@ import {
 
 export const BooleanSegmentControl = Utopia.radioControl([
   {
-    label: 'true',
+    label: 'Yes',
     value: 'true',
   },
   {
-    label: 'false',
+    label: 'No',
     value: 'false',
   },
 ])
@@ -155,7 +155,10 @@ const annotations = {
       wrap: BooleanSegmentControl,
     },
     focus: 'never',
-    inspector: 'hidden',
+    inspector: {
+      display: 'collapsed',
+      sections: ['typography'],
+    },
     variants: [
       {
         label: 'Flex row with placeholders',
@@ -185,7 +188,10 @@ const annotations = {
       maxWidth: BooleanSegmentControl,
     },
     focus: 'never',
-    inspector: 'hidden',
+    inspector: {
+      display: 'collapsed',
+      sections: ['typography'],
+    },
     variants: [
       {
         label: 'MultiColumn with 2 columns',
@@ -234,7 +240,10 @@ const annotations = {
       padded: BooleanSegmentControl,
     },
     focus: 'never',
-    inspector: 'hidden',
+    inspector: {
+      display: 'collapsed',
+      sections: ['typography'],
+    },
     variants: [
       {
         label: 'Section',
@@ -253,38 +262,101 @@ const annotations = {
     component: Container,
     properties: {
       fluid: BooleanSegmentControl,
-      paddingY: Utopia.radioControl([
-        {
-          label: 's',
-          value: 's',
-        },
-        {
-          label: 'm',
-          value: 'm',
-        },
-        {
-          label: 'l',
-          value: 'l',
-        },
-      ]),
-      paddingBottom: Utopia.radioControl([
-        {
-          label: 's',
-          value: 's',
-        },
-        {
-          label: 'm',
-          value: 'm',
-        },
-        {
-          label: 'l',
-          value: 'l',
-        },
-      ]),
-      marginBottom: BooleanSegmentControl,
+      paddingBottom: {
+        control: 'radio',
+        options: [
+          {
+            label: 'None',
+            value: 'null',
+          },
+          {
+            label: 'S',
+            value: 's',
+          },
+          {
+            label: 'M',
+            value: 'm',
+          },
+          {
+            label: 'L',
+            value: 'l',
+          },
+        ],
+        label: 'Bottom padding',
+        folder: 'Padding',
+      },
+      paddingTop: {
+        control: 'radio',
+        options: [
+          {
+            label: 'None',
+            value: 'null',
+          },
+          {
+            label: 'S',
+            value: 's',
+          },
+          {
+            label: 'M',
+            value: 'm',
+          },
+          {
+            label: 'L',
+            value: 'l',
+          },
+        ],
+        label: 'Top padding',
+        folder: 'Padding',
+      },
+      paddingY: {
+        control: 'radio',
+        options: [
+          {
+            label: 'None',
+            value: 'null',
+          },
+          {
+            label: 'S',
+            value: 's',
+          },
+          {
+            label: 'M',
+            value: 'm',
+          },
+          {
+            label: 'L',
+            value: 'l',
+          },
+        ],
+        label: 'Vertical padding',
+        folder: 'Padding',
+      },
+
+      marginBottom: {
+        control: 'radio',
+        options: [
+          {
+            label: 'Yes',
+            value: 'true',
+          },
+          {
+            label: 'No',
+            value: 'false',
+          },
+        ],
+        label: 'Bottom margin',
+        folder: 'Margin',
+      },
+      backgroundColor: {
+        control: 'color',
+        label: 'Background color',
+      },
     },
     focus: 'never',
-    inspector: 'hidden',
+    inspector: {
+      display: 'collapsed',
+      sections: ['typography'],
+    },
     variants: [
       {
         label: 'Container with placeholder',
