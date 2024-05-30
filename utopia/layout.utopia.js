@@ -67,7 +67,10 @@ const annotations = {
       rows: Utopia.sliderControl(1, 5, 1),
     },
     focus: 'never',
-    inspector: 'hidden',
+    inspector: {
+      display: 'collapsed',
+      sections: ['typography'],
+    },
     variants: [
       {
         label: 'Background with placeholders',
