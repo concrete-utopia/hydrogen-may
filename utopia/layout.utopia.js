@@ -85,15 +85,7 @@ const annotations = {
   Flex: {
     component: Flex,
     properties: {
-      direction: Utopia.popupListControl([
-        {
-          label: 'row',
-          value: 'row',
-        },
-        {
-          label: 'column',
-          value: 'column',
-        },
+      direction: Utopia.radioControl([
         {
           label: 'right',
           value: 'right',
@@ -111,7 +103,7 @@ const annotations = {
           value: 'up',
         },
       ]),
-      align: Utopia.popupListControl([
+      align: Utopia.radioControl([
         {
           label: 'start',
           value: 'start',
@@ -133,7 +125,7 @@ const annotations = {
           value: 'stretch',
         },
       ]),
-      justify: Utopia.popupListControl([
+      justify: Utopia.radioControl([
         {
           label: 'start',
           value: 'start',
