@@ -38,6 +38,7 @@ export default function Reviews({ data }) {
             <ReviewStatistics
               average={reviewAvg}
               count={reviewCount}
+              icon={<Star />}
             />
             <Button color='accent'>View all reviews</Button>
           </Flex>

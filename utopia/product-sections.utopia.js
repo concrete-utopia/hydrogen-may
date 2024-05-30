@@ -100,14 +100,39 @@ const Components = {
     ReviewStatistics: {
       component: ReviewStatistics,
       properties: {
-        average: Utopia.numberControl(),
-        count: Utopia.numberControl(),
+        average: {
+          control: 'number-input',
+          label: 'Average rating',
+        },
+        count: {
+          control: 'number-input',
+          label: 'Number of reviews',
+        },
+        icon: {
+          control: 'jsx',
+          preferredContents: {
+            component: 'Star',
+            moduleName: '/app/components/Star',
+            variants: [],
+          },
+        },
       },
+      focus: 'never',
       inspector: 'hidden',
       children: 'not-supported',
       variants: [
         {
-          label: 'ReviewStatistics',
+          label: 'ReviewStatistics (without Star icon)',
+          imports: `import { ReviewStatistics } from '/app/routes/products.$handle/sections/reviews'
+            import { Star } from '/app/components/Star'`,
+          code: `<ReviewStatistics
+            icon={<Star />}
+            average={3.8}
+            count={127}
+          />`,
+        },
+        {
+          label: 'ReviewStatistics (without icon)',
           imports: `import { ReviewStatistics } from '/app/routes/products.$handle/sections/reviews'`,
           code: `<ReviewStatistics
             average={3.8}
