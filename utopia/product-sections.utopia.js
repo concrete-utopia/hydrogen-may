@@ -6,6 +6,7 @@ import Recommended from '/app/routes/products.$handle/sections/recommended'
 import Reviews, {
   Review,
   ReviewStatistics,
+  ReviewsSkeleton,
 } from '/app/routes/products.$handle/sections/reviews'
 import Spotlight from '/app/routes/products.$handle/sections/spotlight'
 
@@ -47,12 +48,22 @@ const Components = {
       inspector: 'hidden',
       focus: 'always',
     },
+    ReviewsSkeleton: {
+      component: ReviewsSkeleton,
+      properties: {},
+      inspector: 'hidden',
+      focus: 'always',
+    },
     Review: {
       component: Review,
       properties: {
         data: Utopia.objectControl({
-          quote: Utopia.stringControl(),
-          customer: Utopia.stringControl(),
+          quote: Utopia.objectControl({
+            value: Utopia.stringControl(),
+          }),
+          customer: Utopia.objectControl({
+            value: Utopia.stringControl(),
+          }),
         }),
         background: Utopia.radioControl([
           {
@@ -76,9 +87,12 @@ const Components = {
           imports: `import { Review } from '/app/routes/products.$handle/sections/reviews'`,
           code: `<Review data= {{
             id: '1',
-            quote:
-              'This is a really nice tote bag, perfect size for carry on travel or day trips. I really like that it zips up. Sturdy and the handles don’t slip off your shoulder! I love it.”',
-            customer: 'Lynn W.',
+            quote: {
+              value: 'This is a really nice tote bag, perfect size for carry on travel or day trips. I really like that it zips up. Sturdy and the handles don’t slip off your shoulder! I love it.”'
+            },
+            customer: {
+              value: 'Lynn W.',
+            }
           }} />`,
         },
       ],
