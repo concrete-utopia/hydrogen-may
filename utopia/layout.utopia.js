@@ -295,7 +295,7 @@ const annotations = {
         </Container>`,
       },
       {
-        label: 'Container (Review Title)',
+        label: 'Container (Reviews Title)',
         imports: `import { Container } from '@h2/new/Layout'
           import { Placeholder } from 'utopia-api'`,
         code: `<Container paddingY='l' marginBottom>
@@ -304,7 +304,7 @@ const annotations = {
         </Container>`,
       },
       {
-        label: 'Container (Review Content)',
+        label: 'Container (Reviews Content)',
         imports: `import { Container } from '@h2/new/Layout'
           import { Placeholder } from 'utopia-api'`,
         code: `<Container paddingBottom='s' >
