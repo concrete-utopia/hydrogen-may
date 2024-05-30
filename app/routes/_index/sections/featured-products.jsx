@@ -1,22 +1,17 @@
-import { AddToCartButton } from '@h2/new/Button'
-import { Heading, Text } from '@h2/new/Text'
-import {
-  Background,
-  Flex,
-  Grid,
-  Section,
-} from '@h2/new/Layout'
-import { Image } from '@shopify/hydrogen'
-import { Price, PriceCompareAt } from '@h2/Price'
-import { cx } from '@h2/new/utils'
+import {AddToCartButton} from '@h2/new/Button';
+import {Heading, Text} from '@h2/new/Text';
+import {Background, Flex, Grid, Section} from '@h2/new/Layout';
+import {Image} from '@shopify/hydrogen';
+import {Price, PriceCompareAt} from '@h2/Price';
+import {cx} from '@h2/new/utils';
 
-function SaleCard({ className, ...props }) {
+function SaleCard({className, ...props}) {
   return (
     <div className={cx('relative', className)} {...props}>
       <Flex
-        direction='down'
-        align='center'
-        justify='center'
+        direction="down"
+        align="center"
+        justify="center"
         gap={6}
         position="relative"
         className="z-10"
@@ -26,21 +21,21 @@ function SaleCard({ className, ...props }) {
       >
         {props.children}
       </Flex>
-      <Background justify='center' align='center'>
+      <Background justify="center" align="center">
         <Heading
-          color='white'
+          color="white"
           uppercase
-          className='text-[25rem] z-0 absolute left-1/2 -translate-x-1/2'
-          align='center'
+          className="text-[25rem] z-0 absolute left-1/2 -translate-x-1/2"
+          align="center"
         >
           Sale
         </Heading>
       </Background>
     </div>
-  )
+  );
 }
 
-function SaleBadge({ variant }) {
+function SaleBadge({variant}) {
   return (
     <Flex
       direction="down"
@@ -50,43 +45,25 @@ function SaleBadge({ variant }) {
       className="absolute top-0 right-0 z-20 w-40 pb-2 text-center translate-x-8 translate-y-16 bg-white rounded-full rotate-12 shadow-badge aspect-square"
     >
       <PriceCompareAt
-        align='center'
+        align="center"
         as={Heading}
-        className='opacity-40'
+        className="opacity-40"
         size={3}
         variant={variant}
         withoutTrailingZeros
       />
       <Price
-        align='center'
+        align="center"
         as={Heading}
         size={4}
         variant={variant}
         withoutTrailingZeros
       />
     </Flex>
-  )
+  );
 }
 
 export default function FeaturedProducts() {
-  const variant = {
-    availableForSale: true,
-    price: {
-      amount: '38.00',
-      currencyCode: 'CAD',
-    },
-    compareAtPrice: {
-      amount: '42.00',
-      currencyCode: 'CAD',
-    },
-    image: {
-      id: 'gid://Shopify/placeholder/1234',
-      altText: 'Placeholder',
-      height: '600',
-      width: '400',
-      url: 'https://cdn.shopify.com/s/files/1/0657/3811/3197/files/builders-tote.png',
-    },
-  }
   return (
     <Section>
       <Grid columns={2} gap={0} align="stretch">
@@ -104,19 +81,12 @@ export default function FeaturedProducts() {
             <Heading font="text" weight="medium" size="l">
               Builders Tote
             </Heading>
-            <Text
-              width='narrow'
-              color='black'
-              className='opacity-60'
-            >
-              Sofie Pavitt Face is an intentional edit of
-              skincare essentials designed for acne-prone
-              skin.
+            <Text width="narrow" color="black" className="opacity-60">
+              Sofie Pavitt Face is an intentional edit of skincare essentials
+              designed for acne-prone skin.
             </Text>
           </Flex>
-          <AddToCartButton color='accent'>
-            Add to cart
-          </AddToCartButton>
+          <AddToCartButton color="accent">Add to cart</AddToCartButton>
         </SaleCard>
         <Image
           className="object-cover w-full h-full"
@@ -156,21 +126,14 @@ export default function FeaturedProducts() {
             <Heading font="text" weight="medium" size="l">
               Get Ship Done Hat 2.0
             </Heading>
-            <Text
-              width='narrow'
-              color='black'
-              className='opacity-60'
-            >
-              Sofie Pavitt Face is an intentional edit of
-              skincare essentials designed for acne-prone
-              skin.
+            <Text width="narrow" color="black" className="opacity-60">
+              Sofie Pavitt Face is an intentional edit of skincare essentials
+              designed for acne-prone skin.
             </Text>
           </Flex>
-          <AddToCartButton color='white'>
-            Add to cart
-          </AddToCartButton>
+          <AddToCartButton color="white">Add to cart</AddToCartButton>
         </SaleCard>
       </Grid>
     </Section>
-  )
+  );
 }
