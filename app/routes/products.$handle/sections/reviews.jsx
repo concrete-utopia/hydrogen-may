@@ -181,11 +181,15 @@ const IconQuote = () => (
   </svg>
 )
 
-export const ReviewStatistics = ({ average, count }) => {
+export const ReviewStatistics = ({
+  icon,
+  average,
+  count,
+}) => {
   const averageLabel = ` ${average} `
   return (
     <Text size='2xl' weight='medium'>
-      <Star />
+      {icon}
       {averageLabel}
       <Span transparent>&mdash; {count} reviews</Span>
     </Text>
