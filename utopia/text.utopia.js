@@ -15,6 +15,43 @@ const tshirtSizes = [
   '6xl',
 ]
 
+const HeadingVariants = tshirtSizes.map((size) => ({
+  label: `Heading (size ${size})`,
+  imports: `import { Heading } from '@h2/new/Text'`,
+  code: `<Heading size={'${size}'}>
+    Lorem ipsum
+</ Heading>`,
+}))
+
+const TextVariants = tshirtSizes.map((size) => ({
+  label: `Text (size ${size})`,
+  imports: `import { Text } from '@h2/new/Text'`,
+  code: `<Text size={'${size}'}>
+    Lorem ipsum 
+</ Text>`,
+}))
+
+const HeadingContents = [
+  {
+    component: 'Heading',
+    moduleName: '@h2/new/Text',
+    variants: HeadingVariants,
+  },
+]
+
+const TextContents = [
+  {
+    component: 'Text',
+    moduleName: '@h2/new/Text',
+    variants: TextVariants,
+  },
+]
+
+export const DefaultTextContents = [
+  ...HeadingContents,
+  ...TextContents,
+]
+
 const annotations = {
   Heading: {
     component: Heading,
@@ -244,13 +281,7 @@ const annotations = {
     },
     focus: 'never',
     inspector: 'hidden',
-    variants: tshirtSizes.map((size) => ({
-      label: `Heading (size ${size})`,
-      imports: `import { Heading } from '@h2/new/Text'`,
-      code: `<Heading size={'${size}'}>
-        Lorem ipsum
-    </ Heading>`,
-    })),
+    variants: HeadingVariants,
   },
   Text: {
     component: Text,
@@ -264,13 +295,7 @@ const annotations = {
     },
     focus: 'never',
     inspector: 'hidden',
-    variants: tshirtSizes.map((size) => ({
-      label: `Text (size ${size})`,
-      imports: `import { Text } from '@h2/new/Text'`,
-      code: `<Text size={'${size}'}>
-        Lorem ipsum
-    </ Text>`,
-    })),
+    variants: TextVariants,
   },
   Span: {
     component: Span,

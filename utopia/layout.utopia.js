@@ -7,6 +7,7 @@ import {
   Section,
   Container,
 } from '@h2/new/Layout'
+import { DefaultTextContents } from './text.utopia.js'
 
 export const BooleanSegmentControl = Utopia.radioControl([
   {
@@ -39,7 +40,7 @@ const ColumnWithPlaceholdersVariant = {
 </Flex>`,
 }
 
-const DefaultLayoutContent = [
+const DefaultLayoutContents = [
   {
     component: 'Flex row',
     moduleName: '@h2/new/Layout',
@@ -228,6 +229,13 @@ const annotations = {
       RowWithPlaceholdersVariant,
       ColumnWithPlaceholdersVariant,
     ],
+    children: {
+      preferredContents: [
+        ...ContainerContents,
+        ...DefaultLayoutContents,
+        ...DefaultTextContents,
+      ],
+    },
   },
   MultiColumn: {
     component: MultiColumn,
@@ -308,7 +316,8 @@ const annotations = {
     children: {
       preferredContents: [
         ...ContainerContents,
-        ...DefaultLayoutContent,
+        ...DefaultLayoutContents,
+        ...DefaultTextContents,
       ],
     },
     icon: 'dashedframe',
@@ -413,7 +422,10 @@ const annotations = {
       sections: ['typography'],
     },
     children: {
-      preferredContents: [...DefaultLayoutContent],
+      preferredContents: [
+        ...DefaultLayoutContents,
+        ...DefaultTextContents,
+      ],
     },
     variants: ContainerVariants,
     icon: 'dashedframe',
