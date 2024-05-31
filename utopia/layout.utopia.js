@@ -19,6 +19,76 @@ export const BooleanSegmentControl = Utopia.radioControl([
   },
 ])
 
+const RowWithPlaceholdersVariant = {
+  label: 'Flex row with placeholders',
+  imports: `import { Flex } from '@h2/new/Layout'
+    import { Placeholder } from 'utopia-api'`,
+  code: `<Flex>
+  <Placeholder />
+  <Placeholder />
+</Flex>`,
+}
+
+const ColumnWithPlaceholdersVariant = {
+  label: 'Flex column with placeholders',
+  imports: `import { Flex } from '@h2/new/Layout'
+    import { Placeholder } from 'utopia-api'`,
+  code: `<Flex direction={'column'}>
+  <Placeholder />
+  <Placeholder />
+</Flex>`,
+}
+
+const DefaultLayoutContent = [
+  {
+    component: 'Flex row',
+    moduleName: '@h2/new/Layout',
+    variants: RowWithPlaceholdersVariant,
+  },
+  {
+    component: 'Flex column',
+    moduleName: '@h2/new/Layout',
+    variants: ColumnWithPlaceholdersVariant,
+  },
+]
+
+const ContainerVariants = [
+  {
+    label: 'Container with placeholder',
+    imports: `import { Container } from '@h2/new/Layout'
+      import { Placeholder } from 'utopia-api'`,
+    code: `<Container>
+      <Placeholder />
+    </Container>`,
+  },
+  {
+    label: 'Container (Reviews Title)',
+    imports: `import { Container } from '@h2/new/Layout'
+      import { Placeholder } from 'utopia-api'`,
+    code: `<Container paddingY='l' marginBottom>
+      <Placeholder />
+      <Placeholder />
+    </Container>`,
+  },
+  {
+    label: 'Container (Reviews Content)',
+    imports: `import { Container } from '@h2/new/Layout'
+      import { Placeholder } from 'utopia-api'`,
+    code: `<Container paddingBottom='s' >
+      <Placeholder />
+      <Placeholder />
+    </Container>`,
+  },
+]
+
+const ContainerContents = [
+  {
+    component: 'Container',
+    moduleName: '@h2/new/Layout',
+    variants: ContainerVariants,
+  },
+]
+
 const annotations = {
   Background: {
     component: Background,
@@ -155,24 +225,8 @@ const annotations = {
       sections: ['typography'],
     },
     variants: [
-      {
-        label: 'Flex row with placeholders',
-        imports: `import { Flex } from '@h2/new/Layout'
-          import { Placeholder } from 'utopia-api'`,
-        code: `<Flex>
-        <Placeholder />
-        <Placeholder />
-      </Flex>`,
-      },
-      {
-        label: 'Flex column with placeholders',
-        imports: `import { Flex } from '@h2/new/Layout'
-          import { Placeholder } from 'utopia-api'`,
-        code: `<Flex direction={'column'}>
-        <Placeholder />
-        <Placeholder />
-      </Flex>`,
-      },
+      RowWithPlaceholdersVariant,
+      ColumnWithPlaceholdersVariant,
     ],
   },
   MultiColumn: {
@@ -251,6 +305,12 @@ const annotations = {
         code: `<Section padded />`,
       },
     ],
+    children: {
+      preferredContents: [
+        ...ContainerContents,
+        ...DefaultLayoutContent,
+      ],
+    },
     icon: 'dashedframe',
   },
   Container: {
@@ -352,34 +412,10 @@ const annotations = {
       display: 'collapsed',
       sections: ['typography'],
     },
-    variants: [
-      {
-        label: 'Container with placeholder',
-        imports: `import { Container } from '@h2/new/Layout'
-          import { Placeholder } from 'utopia-api'`,
-        code: `<Container>
-          <Placeholder />
-        </Container>`,
-      },
-      {
-        label: 'Container (Reviews Title)',
-        imports: `import { Container } from '@h2/new/Layout'
-          import { Placeholder } from 'utopia-api'`,
-        code: `<Container paddingY='l' marginBottom>
-          <Placeholder />
-          <Placeholder />
-        </Container>`,
-      },
-      {
-        label: 'Container (Reviews Content)',
-        imports: `import { Container } from '@h2/new/Layout'
-          import { Placeholder } from 'utopia-api'`,
-        code: `<Container paddingBottom='s' >
-          <Placeholder />
-          <Placeholder />
-        </Container>`,
-      },
-    ],
+    children: {
+      preferredContents: [...DefaultLayoutContent],
+    },
+    variants: ContainerVariants,
     icon: 'dashedframe',
   },
 }

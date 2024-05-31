@@ -63,7 +63,11 @@
     "featuredRoutes": [
       "/",
       "/blogs/news",
-      "/page-yellow-tuesday"
+      "/page-yellow-tuesday",
+      "/page-equal-scallion",
+      "/page-palm-plume",
+      "/page-capricious-judo",
+      "/page-zesty-lace"
     ],
     "pageTemplates": [
       {
