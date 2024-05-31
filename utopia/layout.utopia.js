@@ -51,6 +51,15 @@ const DefaultLayoutContents = [
     moduleName: '@h2/new/Layout',
     variants: ColumnWithPlaceholdersVariant,
   },
+  {
+    component: 'Placeholder',
+    moduleName: 'utopia-api',
+    variants: {
+      label: 'Placeholder',
+      imports: `import { Placeholder } from 'utopia-api'`,
+      code: `<Placeholder />`
+    },
+  },
 ]
 
 const ContainerVariants = [
@@ -231,7 +240,6 @@ const annotations = {
     ],
     children: {
       preferredContents: [
-        ...ContainerContents,
         ...DefaultLayoutContents,
         ...DefaultTextContents,
       ],
@@ -275,6 +283,12 @@ const annotations = {
       </MultiColumn>`,
       },
     ],
+    children: {
+      preferredContents: [
+        ...DefaultLayoutContents,
+        ...DefaultTextContents,
+      ],
+    },
   },
   Spacer: {
     component: Spacer,
