@@ -539,7 +539,7 @@ export const Section = forwardRef(
 )
 
 export const multiColumn = cva({
-  base: ['ml-auto gap-12 columns-2'],
+  base: ['ml-auto'],
   variants: {
     columns: {
       1: null,
