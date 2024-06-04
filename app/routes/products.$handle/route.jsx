@@ -1,101 +1,118 @@
 import React from 'react'
-import {defer, redirect} from '@shopify/remix-oxygen';
-import {getSelectedProductOptions} from '@shopify/hydrogen';
-import {getVariantUrl} from '~/lib/variants';
-import Hero from './sections/hero';
-import HighlightDetails from './sections/highlight-details';
-import HighlightSolution from './sections/highlight-solution';
-import Reviews from './sections/reviews';
-import Spotlight from './sections/spotlight';
-import Recommended from './sections/recommended';
-import Marquee from './sections/marquee';
-import {Await, useLoaderData} from '@remix-run/react';
-import {Suspense} from 'react';
+import { defer, redirect } from '@shopify/remix-oxygen'
+import { getSelectedProductOptions } from '@shopify/hydrogen'
+import { getVariantUrl } from '~/lib/variants'
+import Hero from './sections/hero'
+import HighlightDetails from './sections/highlight-details'
+import HighlightSolution from './sections/highlight-solution'
+import Reviews from './sections/reviews'
+import Spotlight from './sections/spotlight'
+import Recommended from './sections/recommended'
+import Marquee from './sections/marquee'
+import { Await, useLoaderData } from '@remix-run/react'
+import { Suspense } from 'react'
 
-export const meta = ({data}) => {
-  return [{title: `Builder Supply | ${data?.product.title ?? ''}`}];
-};
+export const meta = ({ data }) => {
+  return [
+    {
+      title: `Builder Supply | ${
+        data?.product.title ?? ''
+      }`,
+    },
+  ]
+}
 
 export async function loader(args) {
   return defer({
     ...(await primaryData(args)),
     ...secondaryData(args),
-  });
+  })
 }
 
 /**
  * Load data necessary for rendering content above the fold. This is the primary data
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
-async function primaryData({context, params, request}) {
-  const {handle} = params;
-  const {storefront} = context;
+async function primaryData({ context, params, request }) {
+  const { handle } = params
+  const { storefront } = context
 
   if (!handle) {
-    throw new Error('Expected product handle to be defined');
+    throw new Error('Expected product handle to be defined')
   }
 
-  const [{product}, {details}] = await Promise.all([
+  const [{ product }, { details }] = await Promise.all([
     storefront.query(PRODUCT_QUERY, {
-      variables: {handle, selectedOptions: getSelectedProductOptions(request)},
+      variables: {
+        handle,
+        selectedOptions: getSelectedProductOptions(request),
+      },
     }),
     // Add other queries here, so that they are loaded in parallel
     storefront.query(DETAILS_QUERY, {
-      variables: {handle},
+      variables: { handle },
     }),
-  ]);
+  ])
 
   if (!product?.id) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 })
   }
 
-  const firstVariant = product.variants.nodes[0];
+  const firstVariant = product.variants.nodes[0]
   const firstVariantIsDefault = Boolean(
     firstVariant.selectedOptions.find(
-      (option) => option.name === 'Title' && option.value === 'Default Title',
+      (option) =>
+        option.name === 'Title' &&
+        option.value === 'Default Title',
     ),
-  );
+  )
 
   if (firstVariantIsDefault) {
-    product.selectedVariant = firstVariant;
+    product.selectedVariant = firstVariant
   } else {
     // if no selected variant was returned from the selected options,
     // we redirect to the first variant's url with it's selected options applied
     if (!product.selectedVariant) {
-      throw redirectToFirstVariant({product, request});
+      throw redirectToFirstVariant({ product, request })
     }
   }
 
   return {
     product,
     details,
-  };
+  }
 }
 
 /**
  * Load data for rendering content below the fold. This data is deferred and will be
  * fetched after the initial page load. If it's unavailable, the page should still 200.
  */
-function secondaryData({context: {storefront}, params: {handle}}) {
+function secondaryData({
+  context: { storefront },
+  params: { handle },
+}) {
   const variants = storefront.query(VARIANTS_QUERY, {
-    variables: {handle},
-  });
+    variables: { handle },
+  })
 
   const solution = storefront.query(SOLUTION_QUERY, {
-    variables: {handle},
-  });
+    variables: { handle },
+  })
 
   const reviews = storefront.query(REVIEWS_QUERY, {
-    variables: {handle},
-  });
+    variables: { handle },
+  })
 
-  const relatedProducts = storefront.query(RELATED_PRODUCTS_QUERY, {
-    variables: {handle},
-  });
+  const relatedProducts = storefront.query(
+    RELATED_PRODUCTS_QUERY,
+    {
+      variables: { handle },
+    },
+  )
 
   const spotlight = storefront.query(SPOTLIGHT_QUERY, {
-    variables: {handle},
-  });
+    variables: { handle },
+  })
 
   return {
     variants,
@@ -103,12 +120,12 @@ function secondaryData({context: {storefront}, params: {handle}}) {
     reviews,
     relatedProducts,
     spotlight,
-  };
+  }
 }
 
-function redirectToFirstVariant({product, request}) {
-  const url = new URL(request.url);
-  const firstVariant = product.variants.nodes[0];
+function redirectToFirstVariant({ product, request }) {
+  const url = new URL(request.url)
+  const firstVariant = product.variants.nodes[0]
 
   return redirect(
     getVariantUrl({
@@ -120,40 +137,54 @@ function redirectToFirstVariant({product, request}) {
     {
       status: 302,
     },
-  );
+  )
 }
 
 export default function Product() {
-  const {solution, reviews, relatedProducts, spotlight} = useLoaderData();
+  const { solution, reviews, relatedProducts, spotlight } =
+    useLoaderData()
   return (
     <>
       <Hero />
       <Marquee />
       <HighlightDetails />
-      <Suspense>
-        <Await resolve={solution}>
+      <Suspense data-can-condense>
+        <Await resolve={solution} data-can-condense>
           {(data) => (
-            <HighlightSolution data={data.product.solution.reference} />
+            <HighlightSolution
+              data={data.product.solution.reference}
+            />
           )}
         </Await>
       </Suspense>
-      <Suspense>
-        <Await resolve={reviews}>{(data) => <Reviews data={data} />}</Await>
+      <Suspense data-can-condense>
+        <Await resolve={reviews} data-can-condense>
+          {(data) => <Reviews data={data} />}
+        </Await>
       </Suspense>
-      <Suspense>
-        <Await resolve={relatedProducts}>
+      <Suspense data-can-condense>
+        <Await resolve={relatedProducts} data-can-condense>
           {(data) => (
-            <Recommended data={data.product.relatedProducts.references.nodes} />
+            <Recommended
+              data={
+                data.product.relatedProducts.references
+                  .nodes
+              }
+            />
           )}
         </Await>
       </Suspense>
-      <Suspense>
-        <Await resolve={spotlight}>
-          {(data) => <Spotlight data={data.product.spotlight.reference} />}
+      <Suspense data-can-condense>
+        <Await resolve={spotlight} data-can-condense>
+          {(data) => (
+            <Spotlight
+              data={data.product.spotlight.reference}
+            />
+          )}
         </Await>
       </Suspense>
     </>
-  );
+  )
 }
 
 /***********************
@@ -195,7 +226,7 @@ const PRODUCT_VARIANT_FRAGMENT = `#graphql
       currencyCode
     }
   }
-`;
+`
 
 const PRODUCT_FRAGMENT = `#graphql
   fragment Product on Product {
@@ -235,7 +266,7 @@ const PRODUCT_FRAGMENT = `#graphql
     }
   }
   ${PRODUCT_VARIANT_FRAGMENT}
-`;
+`
 
 const DETAILS_QUERY = `#graphql
 query Details(
@@ -266,7 +297,7 @@ query Details(
       }
     }
   }
-}`;
+}`
 
 const SOLUTION_QUERY = `#graphql
 query Solution(
@@ -291,7 +322,7 @@ query Solution(
       }
     }
   }
-}`;
+}`
 
 const REVIEWS_QUERY = `#graphql
 query Reviews(
@@ -322,7 +353,7 @@ query Reviews(
       }
     }
   }
-}`;
+}`
 
 const RELATED_PRODUCTS_QUERY = `#graphql
 query RelatedProducts(
@@ -365,7 +396,7 @@ query RelatedProducts(
       }
     }
   }
-}`;
+}`
 
 const SPOTLIGHT_QUERY = `#graphql
 query Spotlight(
@@ -430,7 +461,7 @@ query Spotlight(
       }
     }
   }
-}`;
+}`
 
 const PRODUCT_QUERY = `#graphql
   query Product(
@@ -444,7 +475,7 @@ const PRODUCT_QUERY = `#graphql
     }
   }
   ${PRODUCT_FRAGMENT}
-`;
+`
 
 const PRODUCT_VARIANTS_FRAGMENT = `#graphql
   fragment ProductVariants on Product {
@@ -455,7 +486,7 @@ const PRODUCT_VARIANTS_FRAGMENT = `#graphql
     }
   }
   ${PRODUCT_VARIANT_FRAGMENT}
-`;
+`
 
 const VARIANTS_QUERY = `#graphql
   query ProductVariants(
@@ -468,7 +499,7 @@ const VARIANTS_QUERY = `#graphql
     }
   }
   ${PRODUCT_VARIANTS_FRAGMENT}
-`;
+`
 
 /** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */
 /** @template T @typedef {import('@remix-run/react').MetaFunction<T>} MetaFunction */
