@@ -228,8 +228,34 @@ const annotations = {
       ]),
       gap: Utopia.sliderControl(0, 9, 1),
       wrap: BooleanSegmentControl,
-      maxHeight: BooleanSegmentControl,
-      maxwidth: BooleanSegmentControl,
+      maxHeight: {
+        control: 'radio',
+        label: 'Max Height',
+        options: [
+          {
+            label: 'Yes',
+            value: 'true',
+          },
+          {
+            label: 'No',
+            value: 'false',
+          },
+        ],
+      },
+      maxWidth: {
+        control: 'radio',
+        label: 'Max Width',
+        options: [
+          {
+            label: 'Yes',
+            value: 'true',
+          },
+          {
+            label: 'No',
+            value: 'false',
+          },
+        ],
+      },
     },
     focus: 'never',
     inspector: {
