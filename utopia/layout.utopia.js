@@ -2,7 +2,6 @@ import * as Utopia from 'utopia-api'
 import {
   Background,
   Flex,
-  MultiColumn,
   Spacer,
   Section,
   Container,
@@ -265,51 +264,6 @@ const annotations = {
     variants: [
       RowWithPlaceholdersVariant,
       ColumnWithPlaceholdersVariant,
-    ],
-    children: {
-      preferredContents: [
-        ...DefaultLayoutContents,
-        ...DefaultTextContents,
-      ],
-    },
-  },
-  MultiColumn: {
-    component: MultiColumn,
-    properties: {
-      columns: Utopia.sliderControl(1, 4, 1),
-      gap: BooleanSegmentControl,
-      maxWidth: BooleanSegmentControl,
-    },
-    focus: 'never',
-    inspector: {
-      display: 'collapsed',
-      sections: ['typography'],
-    },
-    variants: [
-      {
-        label: 'MultiColumn with 2 columns',
-        imports: `import { MultiColumn } from '@h2/new/Layout'
-          import { Placeholder } from 'utopia-api'`,
-        code: `<MultiColumn columns={2} gap maxWidth>
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-      </MultiColumn>`,
-      },
-      {
-        label: 'MultiColumn with 3 columns',
-        imports: `import { MultiColumn } from '@h2/new/Layout'
-          import { Placeholder } from 'utopia-api'`,
-        code: `<MultiColumn columns={3} gap maxWidth>
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-      </MultiColumn>`,
-      },
     ],
     children: {
       preferredContents: [

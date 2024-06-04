@@ -545,48 +545,6 @@ export const Section = forwardRef(
   },
 )
 
-export const multiColumn = cva({
-  base: ['ml-auto'],
-  variants: {
-    columns: {
-      1: null,
-      2: 'columns-2',
-      3: 'columns-3',
-      4: 'columns-4',
-    },
-    gap: { true: 'gap-12', false: null },
-    maxWidth: { true: 'max-w-[52rem]', false: null },
-    defaultVariants: {
-      columns: 2,
-      gap: false,
-      maxWidth: false,
-    },
-  },
-})
-
-export const MultiColumn = forwardRef(
-  (
-    {
-      as: Component = 'div',
-      children,
-      className,
-      ...props
-    },
-    ref,
-  ) => {
-    return (
-      <Component
-        ref={ref}
-        data-h2='MultiColumn'
-        className={multiColumn({ ...props, className })}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  },
-)
-
 export const Spacer = ({ height }) => (
   <div style={{ height: height ?? 36 }} />
 )
