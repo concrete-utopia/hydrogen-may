@@ -48,7 +48,7 @@ export default function Reviews({ data }) {
         <Flex direction='row' justify='end'>
           <Flex
             direction='down'
-            wrap='true'
+            wrap
             align='end'
             maxHeight
             maxWidth

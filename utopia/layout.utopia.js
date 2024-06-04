@@ -8,16 +8,20 @@ import {
 } from '@h2/new/Layout'
 import { DefaultTextContents } from './text.utopia.js'
 
-export const BooleanSegmentControl = Utopia.radioControl([
+export const BooleanSegmentControlOptions = [
   {
     label: 'Yes',
-    value: 'true',
+    value: true,
   },
   {
     label: 'No',
-    value: 'false',
+    value: false,
   },
-])
+]
+
+export const BooleanSegmentControl = Utopia.radioControl(
+  BooleanSegmentControlOptions,
+)
 
 const RowWithPlaceholdersVariant = {
   label: 'Flex row with placeholders',
@@ -230,30 +234,12 @@ const annotations = {
       maxHeight: {
         control: 'radio',
         label: 'Max Height',
-        options: [
-          {
-            label: 'Yes',
-            value: 'true',
-          },
-          {
-            label: 'No',
-            value: 'false',
-          },
-        ],
+        options: BooleanSegmentControlOptions,
       },
       maxWidth: {
         control: 'radio',
         label: 'Max Width',
-        options: [
-          {
-            label: 'Yes',
-            value: 'true',
-          },
-          {
-            label: 'No',
-            value: 'false',
-          },
-        ],
+        options: BooleanSegmentControlOptions,
       },
     },
     focus: 'never',
@@ -394,16 +380,7 @@ const annotations = {
 
       marginBottom: {
         control: 'radio',
-        options: [
-          {
-            label: 'Yes',
-            value: 'true',
-          },
-          {
-            label: 'No',
-            value: 'false',
-          },
-        ],
+        options: BooleanSegmentControlOptions,
         label: 'Bottom margin',
         folder: 'Margin',
       },
