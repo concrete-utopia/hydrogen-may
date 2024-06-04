@@ -62,18 +62,20 @@ export function ProductCard({product, className, loading, onClick, quickAdd}) {
               />
             )}
           </div>
-          <Grid gap={1} justify="start">
-            <Heading font="text" truncate size={3} weight="medium" as="h3">
+          <Grid gap={0} justify="start">
+            <Heading font="text" truncate size="m" as="h3" leading="none">
               {product.title}
             </Heading>
             <Flex gap={3} justify="start" align="baseline">
               <Price
+                withoutTrailingZeros
                 color="black"
                 className="opacity-60"
                 as={Text}
                 variant={firstVariant}
               />
               <PriceCompareAt
+                withoutTrailingZeros
                 as={Text}
                 color="black"
                 className="opacity-60"

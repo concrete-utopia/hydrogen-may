@@ -33,7 +33,7 @@ export default function HighlightSolution({data}) {
               <Heading uppercase wrap="balance">
                 <HighlightText text={title.value} />
               </Heading>
-              <Text wrap="balance" size="xl" className="opacity-70">
+              <Text wrap="balance" size="xl">
                 {description.value}
               </Text>
               <Button color="white">Learn more</Button>

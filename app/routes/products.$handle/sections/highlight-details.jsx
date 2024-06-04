@@ -6,6 +6,8 @@ import {Image} from '@shopify/hydrogen';
 export default function HighlightDetails() {
   const {details} = useLoaderData();
 
+  if (!details) return null;
+
   const {highlights} = JSON.parse(details.features.reference.content.value);
 
   return (
@@ -15,7 +17,7 @@ export default function HighlightDetails() {
           <Flex resizeY="fill" justify="center" direction="down" gap={9}>
             {highlights.map((highlight) => (
               <Flex direction="down" gap={5} key={highlight.title}>
-                <Heading font="text" size={4} color="white">
+                <Heading font="text" size={4} weight="bold" color="white">
                   {highlight.title}
                 </Heading>
                 <Flex as="ul" gap={2} direction="down">

@@ -1,8 +1,14 @@
 import {ProductCard} from '@h2/ProductCard';
 import {Heading, Span} from '@h2/new/Text';
 import {Container, Flex, Grid, Section} from '@h2/new/Layout';
+import {useLoaderData} from '@remix-run/react';
+import {flattenConnection} from '@shopify/hydrogen';
 
 export default function BestSellers() {
+  const {bestSellers} = useLoaderData();
+
+  const products = flattenConnection(bestSellers.products);
+
   return (
     <Section className="pt-32">
       <Container as="header" className="z-20 pointer-events-none">
@@ -22,12 +28,12 @@ export default function BestSellers() {
       </Container>
       <Container>
         <Grid columns={12} rows={10} gapY="xl" gap="l" className="aspect-[5/7]">
-          <ProductCard className="col-span-5 col-start-1 row-start-1 pr-12" />
-          <ProductCard className="col-span-3 col-start-7 row-start-2" />
-          <ProductCard className="col-span-3 col-start-10 row-start-1" />
-          <ProductCard className="col-span-3 col-start-1 row-start-6" />
-          <ProductCard className="col-span-3 col-start-4 row-start-5" />
-          <ProductCard className="col-span-4 col-start-9 row-start-5 mt-8" />
+          <ProductCard product={products[0]} className="col-span-5 col-start-1 row-start-1 pr-12" />
+          <ProductCard product={products[1]} className="col-span-3 col-start-7 row-start-2" />
+          <ProductCard product={products[2]} className="col-span-3 col-start-10 row-start-1" />
+          <ProductCard product={products[3]} className="col-span-3 col-start-1 row-start-6" />
+          <ProductCard product={products[4]} className="col-span-3 col-start-4 row-start-5" />
+          <ProductCard product={products[5]} className="col-span-4 col-start-9 row-start-5 mt-8" />
         </Grid>
       </Container>
     </Section>

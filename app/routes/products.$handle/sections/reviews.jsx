@@ -16,7 +16,7 @@ export default function Reviews({data}) {
             Don’t take our word for it
           </Heading>
           <Flex direction="down" gap={6}>
-            <Text size="2xl" weight="medium">
+            <Text size="2xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="19"

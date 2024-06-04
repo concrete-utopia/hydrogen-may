@@ -58,7 +58,13 @@ export default {
       },
       fontFamily: {
         display: 'Synchro',
-        sans: ['Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: [
+          'Sequel',
+          'Helvetica Neue',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
         serif: ['"IBMPlexSerif"', 'Palatino', 'ui-serif'],
       },
       fontSize: {

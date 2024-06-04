@@ -6,6 +6,38 @@
   font-display: block;
 }
 
+@font-face {
+  font-family: 'Sequel';
+  src: url('/sequel-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Sequel';
+  src: url('/sequel-medium.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Sequel';
+  src: url('/sequel-itals.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Sequel';
+  src: url('/sequel-mediumitalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: block;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,7 +78,7 @@
   }
 
   body {
-    @apply antialiased text-primary/90 bg-contrast border-primary/10;
+    @apply text-primary/90 bg-contrast border-primary/10;
   }
 }
 
