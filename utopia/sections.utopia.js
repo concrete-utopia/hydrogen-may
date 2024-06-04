@@ -10,6 +10,7 @@ const Components = {
     Hero: {
       component: Hero,
       properties: {},
+      focus: 'always',
       inspector: 'hidden',
     },
   },
@@ -17,6 +18,7 @@ const Components = {
     BestSellers: {
       component: BestSellers,
       properties: {},
+      focus: 'always',
       inspector: 'hidden',
     },
   },
@@ -24,6 +26,7 @@ const Components = {
     Collections: {
       component: Collections,
       properties: {},
+      focus: 'always',
       inspector: 'hidden',
     },
   },
@@ -31,6 +34,7 @@ const Components = {
     FeaturedProducts: {
       component: FeaturedProducts,
       properties: {},
+      focus: 'always',
       inspector: 'hidden',
     },
   },
@@ -38,6 +42,7 @@ const Components = {
     OurPromise: {
       component: OurPromise,
       properties: {},
+      focus: 'always',
       inspector: 'hidden',
     },
   },
