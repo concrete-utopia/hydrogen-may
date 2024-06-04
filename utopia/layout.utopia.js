@@ -57,7 +57,7 @@ const DefaultLayoutContents = [
     variants: {
       label: 'Placeholder',
       imports: `import { Placeholder } from 'utopia-api'`,
-      code: `<Placeholder />`
+      code: `<Placeholder />`,
     },
   },
 ]
@@ -228,6 +228,8 @@ const annotations = {
       ]),
       gap: Utopia.sliderControl(0, 9, 1),
       wrap: BooleanSegmentControl,
+      maxHeight: BooleanSegmentControl,
+      maxwidth: BooleanSegmentControl,
     },
     focus: 'never',
     inspector: {

@@ -45,12 +45,22 @@ export default function Reviews({ data }) {
         </Flex>
       </Container>
       <Container paddingBottom='s'>
-        <MultiColumn columns={2} gap maxWidth>
-          <Spacer height={144} />
-          {customerReviews.map((review) => {
-            return <Review key={review.id} data={review} />
-          })}
-        </MultiColumn>
+        <Flex direction='row' justify='end'>
+          <Flex
+            direction='down'
+            wrap='true'
+            align='end'
+            maxHeight
+            maxWidth
+          >
+            <Spacer height={144} />
+            {customerReviews.map((review) => {
+              return (
+                <Review key={review.id} data={review} />
+              )
+            })}
+          </Flex>
+        </Flex>
       </Container>
     </Section>
   )
@@ -81,13 +91,14 @@ export function Review({ data, className, ...props }) {
     splitTextIntoSentences(quote.value)
 
   return (
-    <div className='relative inline-block'>
+    <div className='relative inline-block mx-6'>
       <Flex
         px={7}
         py={6}
         direction='down'
         gap={5}
         className={classes}
+        style={{ width: 392 }}
       >
         <span
           className={`${

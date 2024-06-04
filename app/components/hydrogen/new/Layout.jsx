@@ -250,6 +250,8 @@ export const Flex = forwardRef(
       wrap,
       resizeX,
       resizeY,
+      maxHeight,
+      maxWidth,
       className,
       ...props
     },
@@ -269,6 +271,11 @@ export const Flex = forwardRef(
         })}
         data-h2='Flex'
         {...props}
+        style={{
+          ...props.style,
+          maxWidth: maxWidth ? 832 : undefined,
+          maxHeight: maxHeight ? 1084 : undefined,
+        }}
       >
         {children}
       </Component>
