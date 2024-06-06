@@ -93,7 +93,7 @@ export function ProductCard({
                 color='black'
                 className='opacity-60'
                 as={Text}
-                variant={firstVariant}
+                variant={firstVariant?.price}
               />
               <PriceCompareAt
                 as={Text}

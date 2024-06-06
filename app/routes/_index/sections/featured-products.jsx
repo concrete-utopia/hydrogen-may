@@ -41,7 +41,7 @@ function SaleCard({ className, ...props }) {
   )
 }
 
-function SaleBadge({ variant }) {
+export function SaleBadge({ variant }) {
   return (
     <Flex
       direction='down'
@@ -62,7 +62,7 @@ function SaleBadge({ variant }) {
         align='center'
         as={Heading}
         size={4}
-        variant={variant}
+        variant={variant?.price}
         withoutTrailingZeros
       />
     </Flex>
