@@ -282,6 +282,7 @@ const annotations = {
     focus: 'never',
     inspector: 'hidden',
     variants: HeadingVariants,
+    icon: 'title',
   },
   Text: {
     component: Text,
@@ -512,6 +513,7 @@ const annotations = {
     focus: 'never',
     inspector: 'hidden',
     variants: TextVariants,
+    icon: 'text',
   },
   Span: {
     component: Span,
@@ -536,6 +538,7 @@ const annotations = {
     </ Span>`,
       },
     ],
+    icon: 'text',
   },
 }
 
