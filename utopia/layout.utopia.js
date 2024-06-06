@@ -5,8 +5,15 @@ import {
   Spacer,
   Section,
   Container,
+  HalfAndHalf,
 } from '@h2/new/Layout'
 import { DefaultTextContents } from './text.utopia.js'
+
+const PlaceholderContent = {
+  component: 'Placeholder',
+  moduleName: 'utopia-api',
+  variants: [],
+}
 
 export const BooleanSegmentControlOptions = [
   {
@@ -253,6 +260,7 @@ const annotations = {
     ],
     children: {
       preferredContents: [
+        PlaceholderContent,
         ...DefaultLayoutContents,
         ...DefaultTextContents,
       ],
@@ -297,6 +305,7 @@ const annotations = {
     ],
     children: {
       preferredContents: [
+        PlaceholderContent,
         ...ContainerContents,
         ...DefaultLayoutContents,
         ...DefaultTextContents,
@@ -396,12 +405,49 @@ const annotations = {
     },
     children: {
       preferredContents: [
+        PlaceholderContent,
         ...DefaultLayoutContents,
         ...DefaultTextContents,
       ],
     },
     variants: ContainerVariants,
     icon: 'dashedframe',
+  },
+  HalfAndHalf: {
+    component: HalfAndHalf,
+    properties: {
+      left: {
+        control: 'jsx',
+        preferredContents: [
+          PlaceholderContent,
+          ...DefaultLayoutContents,
+          ...DefaultTextContents,
+        ],
+      },
+      right: {
+        control: 'jsx',
+        preferredContents: [
+          PlaceholderContent,
+          ...DefaultLayoutContents,
+          ...DefaultTextContents,
+        ],
+      },
+      padded: BooleanSegmentControl,
+      gap: Utopia.numberControl(),
+    },
+    focus: 'never',
+    children: 'not-supported',
+    variants: {
+      label: 'HalfAndHalf',
+      imports: `
+        import { HalfAndHalf } from "/app/components/Components"
+        import { Placeholder } from "utopia-api"`,
+      code: `<HalfAndHalf
+          style={{ gap: 10 }}
+          left={<Placeholder />}
+          right={<Placeholder />}
+        />`,
+    },
   },
 }
 

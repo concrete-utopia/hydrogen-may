@@ -548,3 +548,24 @@ export const Section = forwardRef(
 export const Spacer = ({ height }) => (
   <div style={{ height: height ?? 36 }} />
 )
+
+export const HalfAndHalf = ({
+  left,
+  right,
+  padded,
+  gap,
+  style,
+}) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      padding: padded ? '20px' : 0,
+      gap: gap ? '40px' : 0,
+      ...style,
+    }}
+  >
+    {left}
+    {right}
+  </div>
+)
