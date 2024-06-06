@@ -412,7 +412,7 @@ const annotations = {
       ],
     },
     variants: ContainerVariants,
-    icon: 'dashedframe',
+    icon: 'section',
   },
   HalfAndHalf: {
     component: HalfAndHalf,
