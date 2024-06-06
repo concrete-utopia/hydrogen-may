@@ -6,6 +6,7 @@ import {
   Section,
   Container,
   HalfAndHalf,
+  Grid,
 } from '@h2/new/Layout'
 import { DefaultTextContents } from './text.utopia.js'
 
@@ -449,6 +450,11 @@ const annotations = {
           right={<Placeholder />}
         />`,
     },
+  },
+  Grid: {
+    component: Grid,
+    properties: {},
+    icon: 'grid',
   },
 }
 
