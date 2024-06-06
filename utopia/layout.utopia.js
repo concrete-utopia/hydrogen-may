@@ -311,7 +311,7 @@ const annotations = {
         ...DefaultTextContents,
       ],
     },
-    icon: 'dashedframe',
+    icon: 'section',
   },
   Container: {
     component: Container,
