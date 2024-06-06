@@ -265,6 +265,7 @@ const annotations = {
         ...DefaultTextContents,
       ],
     },
+    icon: 'layout',
   },
   Spacer: {
     component: Spacer,
