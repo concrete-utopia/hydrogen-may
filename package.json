@@ -73,6 +73,10 @@
       {
         "label": "Featured Product Page",
         "path": "/app/routes/featured-products-template.jsx"
+      },
+      {
+        "label": "Builder Tote Page",
+        "path": "/app/routes/featured-products-template.jsx"
       }
     ]
   }
