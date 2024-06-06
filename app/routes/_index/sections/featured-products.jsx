@@ -41,7 +41,7 @@ function SaleCard({ className, ...props }) {
   )
 }
 
-export function SaleBadge({ variant }) {
+export function SaleBadge({ price, compareAtPrice }) {
   return (
     <Flex
       direction='down'
@@ -55,14 +55,15 @@ export function SaleBadge({ variant }) {
         as={Heading}
         className='opacity-40'
         size={3}
-        variant={variant}
+        price={price}
+        compareAtPrice={compareAtPrice}
         withoutTrailingZeros
       />
       <Price
         align='center'
         as={Heading}
         size={4}
-        variant={variant?.price}
+        price={price}
         withoutTrailingZeros
       />
     </Flex>
@@ -76,7 +77,16 @@ export default function FeaturedProducts() {
         left={
           <SaleCard className='bg-lightGray'>
             <div className='relative'>
-              <SaleBadge variant={null} />
+              <SaleBadge
+                price={{
+                  amount: '39.00',
+                  currencyCode: 'CAD',
+                }}
+                compareAtPrice={{
+                  amount: '42.00',
+                  currencyCode: 'CAD',
+                }}
+              />
               <Image
                 crop='center'
                 width={450}
@@ -130,12 +140,13 @@ export default function FeaturedProducts() {
           <SaleCard className='bg-accent'>
             <div className='relative'>
               <SaleBadge
-                variant={{
-                  availableForSale: true,
-                  price: {
-                    amount: '39.00',
-                    currencyCode: 'CAD',
-                  },
+                price={{
+                  amount: '39.00',
+                  currencyCode: 'CAD',
+                }}
+                compareAtPrice={{
+                  amount: '42.00',
+                  currencyCode: 'CAD',
                 }}
               />
               <Image

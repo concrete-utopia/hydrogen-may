@@ -110,13 +110,16 @@ function ProductSummary() {
             <Price
               size='xl'
               weight='medium'
-              variant={selectedVariant?.price}
+              price={selectedVariant?.price}
             />
             <PriceCompareAt
               size='xl'
               weight='medium'
               className='strike opacity-40'
-              variant={selectedVariant}
+              price={selectedVariant?.price}
+              compareAtPrice={
+                selectedVariant?.compareAtPrice
+              }
             />
           </div>
           <Text align='left' id='product-description'>

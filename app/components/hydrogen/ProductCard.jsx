@@ -93,13 +93,16 @@ export function ProductCard({
                 color='black'
                 className='opacity-60'
                 as={Text}
-                variant={firstVariant?.price}
+                price={firstVariant?.price}
               />
               <PriceCompareAt
                 as={Text}
                 color='black'
                 className='opacity-60'
-                variant={firstVariant}
+                price={firstVariant?.price}
+                compareAtPrice={
+                  firstVariant?.compareAtPrice
+                }
               />
             </Flex>
           </Grid>

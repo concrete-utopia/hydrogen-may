@@ -20,31 +20,29 @@ export function isDiscounted(price, compareAtPrice) {
 }
 
 export function PriceCompareAt({
-  variant,
+  price,
+  compareAtPrice,
   as = Text,
   className,
   ...props
 }) {
-  const nonNullVariant = variant ?? {
-    availableForSale: true,
-    price: {
-      amount: '38.00',
-      currencyCode: 'CAD',
-    },
-    compareAtPrice: {
-      amount: '42.00',
-      currencyCode: 'CAD',
-    },
+  const nonNullPrice = price ?? {
+    amount: '38.00',
+    currencyCode: 'CAD',
+  }
+  const nonNullCompareAtPrice = compareAtPrice ?? {
+    amount: '42.00',
+    currencyCode: 'CAD',
   }
 
   return isDiscounted(
-    nonNullVariant.price,
-    nonNullVariant.compareAtPrice,
+    nonNullPrice,
+    nonNullCompareAtPrice,
   ) ? (
     <Money
       as={as}
       className={cx('line-through', className)}
-      data={nonNullVariant.compareAtPrice}
+      data={nonNullCompareAtPrice}
       {...props}
     />
   ) : null

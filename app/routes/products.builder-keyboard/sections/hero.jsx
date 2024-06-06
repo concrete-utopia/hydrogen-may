@@ -46,7 +46,7 @@ export default function Hero() {
               font='display'
               as={Text}
               size='6xl'
-              variant={selectedVariant?.price}
+              price={selectedVariant?.price}
             />
           </Flex>
           <Flex direction='down' gap={4}>
