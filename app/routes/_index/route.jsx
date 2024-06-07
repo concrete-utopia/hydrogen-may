@@ -6,6 +6,7 @@ import {
 } from '@remix-run/react'
 import { Suspense } from 'react'
 import { Image, Money } from '@shopify/hydrogen'
+import { Flex } from '@h2/new/Layout'
 import Hero from './sections/hero'
 import BestSellers from './sections/best-sellers'
 import Collections from './sections/collections'
@@ -30,13 +31,13 @@ export default function Homepage() {
   /** @type {LoaderReturnData} */
   // const data = useLoaderData();
   return (
-    <>
+    <Flex direction='column'>
       <Hero />
       <BestSellers />
       <Collections />
       <FeaturedProducts />
       <OurPromise />
-    </>
+    </Flex>
   )
 }
 
