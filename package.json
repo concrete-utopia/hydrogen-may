@@ -71,11 +71,11 @@
     ],
     "pageTemplates": [
       {
-        "label": "Featured Product Page",
+        "label": "Empty Product Page",
         "path": "/app/routes/featured-products-template.jsx"
       },
       {
-        "label": "Builder Tote Page",
+        "label": "Featured Product Page",
         "path": "/app/routes/featured-products-template.jsx"
       }
     ]
