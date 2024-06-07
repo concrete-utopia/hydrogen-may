@@ -1,25 +1,29 @@
-import {defer} from '@shopify/remix-oxygen';
-import {Await, useLoaderData, Link} from '@remix-run/react';
-import {Suspense} from 'react';
-import {Image, Money} from '@shopify/hydrogen';
-import Hero from './sections/hero';
-import BestSellers from './sections/best-sellers';
-import Collections from './sections/collections';
-import FeaturedProducts from './sections/featured-products';
-import OurPromise from './sections/our-promise';
+import { defer } from '@shopify/remix-oxygen'
+import {
+  Await,
+  useLoaderData,
+  Link,
+} from '@remix-run/react'
+import { Suspense } from 'react'
+import { Image, Money } from '@shopify/hydrogen'
+import Hero from './sections/hero'
+import BestSellers from './sections/best-sellers'
+import Collections from './sections/collections'
+import FeaturedProducts from './sections/featured-products'
+import OurPromise from './sections/our-promise'
 
 /**
  * @type {MetaFunction}
  */
 export const meta = () => {
-  return [{title: 'Builder Supply | Home'}];
-};
+  return [{ title: 'Builder Supply | Home' }]
+}
 
 /**
  * @param {LoaderFunctionArgs}
  */
-export async function loader({context: {storefront}}) {
-  return null;
+export async function loader({ context: { storefront } }) {
+  return null
 }
 
 export default function Homepage() {
@@ -33,7 +37,7 @@ export default function Homepage() {
       <FeaturedProducts />
       <OurPromise />
     </>
-  );
+  )
 }
 
 /** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */

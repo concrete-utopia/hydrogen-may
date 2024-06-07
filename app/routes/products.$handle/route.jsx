@@ -25,7 +25,7 @@ export const meta = ({ data }) => {
 export async function loader(args) {
   return defer({
     ...(await primaryData(args)),
-    ...secondaryData(args),
+    ...(await secondaryData(args)),
   })
 }
 
@@ -87,39 +87,37 @@ async function primaryData({ context, params, request }) {
  * Load data for rendering content below the fold. This data is deferred and will be
  * fetched after the initial page load. If it's unavailable, the page should still 200.
  */
-function secondaryData({
+async function secondaryData({
   context: { storefront },
   params: { handle },
 }) {
-  const variants = storefront.query(VARIANTS_QUERY, {
-    variables: { handle },
-  })
+  const [variants, solution, reviews, relatedProducts] =
+    await Promise.all([
+      storefront.query(VARIANTS_QUERY, {
+        variables: { handle },
+      }),
+      storefront.query(SOLUTION_QUERY, {
+        variables: { handle },
+      }),
+      storefront.query(REVIEWS_QUERY, {
+        variables: { handle },
+      }),
+      storefront.query(RELATED_PRODUCTS_QUERY, {
+        variables: { handle },
+      }),
+    ])
 
-  const solution = storefront.query(SOLUTION_QUERY, {
-    variables: { handle },
-  })
-
-  const reviews = storefront.query(REVIEWS_QUERY, {
-    variables: { handle },
-  })
-
-  const relatedProducts = storefront.query(
-    RELATED_PRODUCTS_QUERY,
-    {
-      variables: { handle },
-    },
-  )
-
-  const spotlight = storefront.query(SPOTLIGHT_QUERY, {
-    variables: { handle },
-  })
+  const product = {
+    ...solution.product,
+    ...relatedProducts.product,
+  }
 
   return {
-    variants,
-    solution,
+    variants: variants.product.variants,
+    solution: solution.product.solution,
+    relatedProducts:
+      relatedProducts.product.relatedProducts,
     reviews,
-    relatedProducts,
-    spotlight,
   }
 }
 
@@ -141,48 +139,17 @@ function redirectToFirstVariant({ product, request }) {
 }
 
 export default function Product() {
-  const { solution, reviews, relatedProducts, spotlight } =
-    useLoaderData()
+  const data = useLoaderData()
+  const { product, reviews } = data
   return (
     <>
       <Hero />
       <Marquee />
       <HighlightDetails />
-      <Suspense data-can-condense>
-        <Await resolve={solution} data-can-condense>
-          {(data) => (
-            <HighlightSolution
-              data={data.product.solution.reference}
-            />
-          )}
-        </Await>
-      </Suspense>
-      <Suspense data-can-condense>
-        <Await resolve={reviews} data-can-condense>
-          {(data) => <Reviews data={data} />}
-        </Await>
-      </Suspense>
-      <Suspense data-can-condense>
-        <Await resolve={relatedProducts} data-can-condense>
-          {(data) => (
-            <Recommended
-              data={
-                data.product.relatedProducts.references
-                  .nodes
-              }
-            />
-          )}
-        </Await>
-      </Suspense>
-      <Suspense data-can-condense>
-        <Await resolve={spotlight} data-can-condense>
-          {(data) => (
-            <Spotlight
-              data={data.product.spotlight.reference}
-            />
-          )}
-        </Await>
-      </Suspense>
+      <HighlightSolution />
+      <Reviews />
+      <Recommended />
+      <Spotlight />
     </>
   )
 }

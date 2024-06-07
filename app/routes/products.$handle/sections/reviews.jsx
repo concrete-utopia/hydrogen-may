@@ -10,19 +10,15 @@ import { Button } from '@h2/new/Button'
 import { cva, cx } from '@h2/new/utils'
 import * as React from 'react'
 import { Star } from '/app/components/Star'
+import { useLoaderData } from '@remix-run/react'
 
-export default function Reviews({ data }) {
-  const { review_count, review_avg, reviews } = data.reviews
+export default function Reviews() {
+  const data = useLoaderData()
 
-  const customerReviews = reviews.references.nodes.map(
-    (r, i) => {
-      return {
-        ...r,
-        background:
-          i === 0 ? 'black' : i === 4 ? 'accent' : 'white',
-      }
-    },
-  )
+  const { review_count, review_avg, reviews } =
+    data.reviews.reviews
+
+  const customerReviews = reviews.references.nodes
 
   const reviewAvg = JSON.parse(review_avg.value).value
   const reviewCount = review_count.value
