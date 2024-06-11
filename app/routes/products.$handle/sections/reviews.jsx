@@ -6,6 +6,10 @@ import {cva, cx} from '@h2/new/utils';
 export default function Reviews({data}) {
   const {review_count, review_avg, reviews} = data.reviews;
 
+  if (reviews == null) {
+    return null
+  }
+  
   const customerReviews = reviews.references.nodes;
 
   return (

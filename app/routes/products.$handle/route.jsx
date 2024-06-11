@@ -132,7 +132,7 @@ export default function Product() {
       <Suspense>
         <Await resolve={solution}>
           {(data) => (
-            <HighlightSolution data={data.product.solution.reference} />
+           data.product?.solution != null ? <HighlightSolution data={data.product.solution.reference} /> : null
           )}
         </Await>
       </Suspense>
@@ -142,13 +142,13 @@ export default function Product() {
       <Suspense>
         <Await resolve={relatedProducts}>
           {(data) => (
-            <Recommended data={data.product.relatedProducts.references.nodes} />
+            data.product?.relatedProducts != null ? <Recommended data={data.product.relatedProducts.references.nodes} /> : null
           )}
         </Await>
       </Suspense>
       <Suspense>
         <Await resolve={spotlight}>
-          {(data) => <Spotlight data={data.product.spotlight.reference} />}
+          {(data) => data.product?.spotlight != null ? <Spotlight data={data.product.spotlight.reference} /> : null}
         </Await>
       </Suspense>
     </>
